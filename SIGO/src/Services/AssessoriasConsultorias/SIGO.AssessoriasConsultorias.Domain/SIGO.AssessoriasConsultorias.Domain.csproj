@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CrossCutting\SIGO.Domain\SIGO.Domain.csproj" />
     <ProjectReference Include="..\src\Services\CrossCutting\SIGO.Domain\SIGO.Domain.csproj" />
   </ItemGroup>
 

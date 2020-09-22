@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\SIGO.AssessoriasConsultorias.Domain\SIGO.AssessoriasConsultorias.Domain.csproj" />
+    <ProjectReference Include="..\SIGO.AssessoriasConsultorias.Domain\SIGO.AssessoriasConsultorias.Domain.csproj" />
   </ItemGroup>
 
 
