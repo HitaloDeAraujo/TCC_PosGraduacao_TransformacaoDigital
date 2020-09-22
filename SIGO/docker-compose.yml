@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  sigo.assessoriasconsultorias.api:
+    image: ${DOCKER_REGISTRY-}sigoassessoriasconsultoriasapi
+    build:
+      context: .
+      dockerfile: src\Services\AssessoriasConsultorias\SIGO.AssessoriasConsultorias.API\Dockerfile
+
+  sigo.gestaonormas.api:
+    image: ${DOCKER_REGISTRY-}sigogestaonormasapi
+    build:
+      context: .
+      dockerfile: src\Services\GestaoNormas\SIGO.GestaoNormas.API\Dockerfile
+
+  sigo.gestaoprocessoindustrial.api:
+    image: ${DOCKER_REGISTRY-}sigogestaoprocessoindustrialapi
+    build:
+      context: .
+      dockerfile: src\Services\GestaoProcessoIndustrial\SIGO.GestaoProcessoIndustrial.API\Dockerfile

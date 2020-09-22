@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GestaoProcessoIndustrial", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.GestaoProcessoIndustrial.Domain", "src\Services\GestaoProcessoIndustrial\SIGO.GestaoProcessoIndustrial.Domain\SIGO.GestaoProcessoIndustrial.Domain.csproj", "{3B629741-B4A5-4820-BCDA-4560AAF9B551}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E9481F50-8A33-4A3F-AF17-5B175714F391}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{3B629741-B4A5-4820-BCDA-4560AAF9B551}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B629741-B4A5-4820-BCDA-4560AAF9B551}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B629741-B4A5-4820-BCDA-4560AAF9B551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9481F50-8A33-4A3F-AF17-5B175714F391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9481F50-8A33-4A3F-AF17-5B175714F391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9481F50-8A33-4A3F-AF17-5B175714F391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9481F50-8A33-4A3F-AF17-5B175714F391}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
