@@ -9,5 +9,7 @@ namespace SIGO.AssessoriasConsultorias.Domain.Entidades
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public string URL { get; set; }
+        public int ParceiroID { get; set; }
+        public Parceiro Parceiro { get; set; }
     }
 }

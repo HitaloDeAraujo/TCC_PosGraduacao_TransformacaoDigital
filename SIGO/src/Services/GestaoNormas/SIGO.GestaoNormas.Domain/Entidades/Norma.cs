@@ -9,5 +9,7 @@ namespace SIGO.GestaoNormas.Domain.Entidades
         public string URL { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }
+        public int RepositorioID { get; set; }
+        public Repositorio Repositorio { get; set; }
     }
 }

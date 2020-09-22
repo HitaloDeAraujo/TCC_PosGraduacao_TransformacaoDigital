@@ -14,7 +14,11 @@ namespace SIGO.AssessoriasConsultorias.API.Controllers
         {
             Contrato contrato = new Contrato()
             {
-                Nome = "Cont"
+                Nome = "Cont",
+                Parceiro = new Parceiro()
+                {
+                    Nome = "JP Morgan"
+                }
             };
 
             return Ok(contrato);
