@@ -5,29 +5,29 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B277C7EF-55E5-4F6D-B6DD-E029AB9F255E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{3142E915-C8BA-49C8-A71A-37326260C51E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modulos", "Modulos", "{3142E915-C8BA-49C8-A71A-37326260C51E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCutting", "{1A1F6FD7-1C95-4F71-B14B-9863803B80C2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.GestaoNormas.API", "src\Services\GestaoNormas\SIGO.GestaoNormas.API\SIGO.GestaoNormas.API.csproj", "{91CB5A3E-A18D-4F70-B494-D984D5767240}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.GestaoNormas.API", "src\Modulos\GestaoNormas\SIGO.GestaoNormas.API\SIGO.GestaoNormas.API.csproj", "{91CB5A3E-A18D-4F70-B494-D984D5767240}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.Domain", "src\Services\CrossCutting\SIGO.Domain\SIGO.Domain.csproj", "{66954C20-4AE0-4604-A4A3-B55D7577BAAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.Domain", "src\Modulos\CrossCutting\SIGO.Domain\SIGO.Domain.csproj", "{66954C20-4AE0-4604-A4A3-B55D7577BAAA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GestaoNormas", "GestaoNormas", "{B370BF84-7AC8-468F-9D53-0EFD085BC41E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.GestaoNormas.Domain", "src\Services\GestaoNormas\SIGO.GestaoNormas.Domain\SIGO.GestaoNormas.Domain.csproj", "{6E9E9C5F-227E-4E2A-B988-EFFEB6588A8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.GestaoNormas.Domain", "src\Modulos\GestaoNormas\SIGO.GestaoNormas.Domain\SIGO.GestaoNormas.Domain.csproj", "{6E9E9C5F-227E-4E2A-B988-EFFEB6588A8D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AssessoriasConsultorias", "AssessoriasConsultorias", "{C453C711-AEE3-4A53-8DF7-F23E42E48025}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.AssessoriasConsultorias.API", "src\Services\AssessoriasConsultorias\SIGO.AssessoriasConsultorias.API\SIGO.AssessoriasConsultorias.API.csproj", "{EFD62092-F23A-4F2D-87AE-56D4278154D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.AssessoriasConsultorias.API", "src\Modulos\AssessoriasConsultorias\SIGO.AssessoriasConsultorias.API\SIGO.AssessoriasConsultorias.API.csproj", "{EFD62092-F23A-4F2D-87AE-56D4278154D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.AssessoriasConsultorias.Domain", "src\Services\AssessoriasConsultorias\SIGO.AssessoriasConsultorias.Domain\SIGO.AssessoriasConsultorias.Domain.csproj", "{FC7F384B-7724-4D62-A282-A5855C1EC63A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.AssessoriasConsultorias.Domain", "src\Modulos\AssessoriasConsultorias\SIGO.AssessoriasConsultorias.Domain\SIGO.AssessoriasConsultorias.Domain.csproj", "{FC7F384B-7724-4D62-A282-A5855C1EC63A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.GestaoProcessoIndustrial.API", "src\Services\GestaoProcessoIndustrial\SIGO.GestaoProcessoIndustrial.API\SIGO.GestaoProcessoIndustrial.API.csproj", "{A0FBA432-DC1E-44EB-A3C1-00299B72E622}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.GestaoProcessoIndustrial.API", "src\Modulos\GestaoProcessoIndustrial\SIGO.GestaoProcessoIndustrial.API\SIGO.GestaoProcessoIndustrial.API.csproj", "{A0FBA432-DC1E-44EB-A3C1-00299B72E622}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GestaoProcessoIndustrial", "GestaoProcessoIndustrial", "{0273CF16-2877-4CBD-AC99-C2005647652C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.GestaoProcessoIndustrial.Domain", "src\Services\GestaoProcessoIndustrial\SIGO.GestaoProcessoIndustrial.Domain\SIGO.GestaoProcessoIndustrial.Domain.csproj", "{3B629741-B4A5-4820-BCDA-4560AAF9B551}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.GestaoProcessoIndustrial.Domain", "src\Modulos\GestaoProcessoIndustrial\SIGO.GestaoProcessoIndustrial.Domain\SIGO.GestaoProcessoIndustrial.Domain.csproj", "{3B629741-B4A5-4820-BCDA-4560AAF9B551}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E9481F50-8A33-4A3F-AF17-5B175714F391}"
 EndProject
