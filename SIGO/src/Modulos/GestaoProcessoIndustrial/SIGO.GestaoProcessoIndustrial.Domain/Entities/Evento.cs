@@ -1,7 +1,7 @@
-﻿using SIGO.Domain.Entidades;
+﻿using SIGO.Domain.Entities;
 using System;
 
-namespace SIGO.GestaoProcessoIndustrial.Domain.Entidades
+namespace SIGO.GestaoProcessoIndustrial.Domain.Entities
 {
     public class Evento : EntidadeBase
     {

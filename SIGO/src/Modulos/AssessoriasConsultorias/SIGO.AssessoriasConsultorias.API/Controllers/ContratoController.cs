@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SIGO.AssessoriasConsultorias.Domain.Entidades;
+using SIGO.AssessoriasConsultorias.Domain.Entities;
 using System.Threading.Tasks;
 
 namespace SIGO.AssessoriasConsultorias.API.Controllers

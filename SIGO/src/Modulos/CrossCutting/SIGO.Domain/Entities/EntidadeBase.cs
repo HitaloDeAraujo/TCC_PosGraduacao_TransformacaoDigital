@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SIGO.Domain.Entidades
+namespace SIGO.Domain.Entities
 {
     public class EntidadeBase
     {

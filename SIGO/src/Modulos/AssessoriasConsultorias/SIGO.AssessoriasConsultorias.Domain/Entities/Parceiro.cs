@@ -1,7 +1,7 @@
-﻿using SIGO.Domain.Entidades;
+﻿using SIGO.Domain.Entities;
 using System;
 
-namespace SIGO.AssessoriasConsultorias.Domain.Entidades
+namespace SIGO.AssessoriasConsultorias.Domain.Entities
 {
     public class Parceiro : EntidadeBase
     {

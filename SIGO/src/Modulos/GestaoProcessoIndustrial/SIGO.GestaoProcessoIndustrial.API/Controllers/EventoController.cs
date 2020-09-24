@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SIGO.GestaoProcessoIndustrial.Domain.Entidades;
+using SIGO.GestaoProcessoIndustrial.Domain.Entities;
 using System.Threading.Tasks;
 
 namespace SIGO.GestaoProcessoIndustrial.API.Controllers

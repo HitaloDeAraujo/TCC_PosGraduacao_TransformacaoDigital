@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SIGO.GestaoNormas.Domain.Entidades;
+using SIGO.GestaoNormas.Domain.Entities;
 using System.Threading.Tasks;
 
 namespace SIGO.GestaoNormas.API.Controllers

@@ -1,8 +1,8 @@
-﻿using SIGO.Domain.Entidades;
+﻿using SIGO.Domain.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace SIGO.GestaoNormas.Domain.Entidades
+namespace SIGO.GestaoNormas.Domain.Entities
 {
     public class Repositorio : EntidadeBase
     {

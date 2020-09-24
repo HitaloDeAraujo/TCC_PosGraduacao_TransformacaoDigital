@@ -1,7 +1,7 @@
-﻿using SIGO.Domain.Entidades;
+﻿using SIGO.Domain.Entities;
 using System;
 
-namespace SIGO.GestaoNormas.Domain.Entidades
+namespace SIGO.GestaoNormas.Domain.Entities
 {
     public class Norma : EntidadeBase
     {
