@@ -7,21 +7,19 @@ using System.Threading.Tasks;
 
 namespace SIGO.GestaoNormas.API.IntegrationEvents.EventHandling
 {
-    public class OrderStatusChangedToPaidIntegrationEventHandler :
-         IIntegrationEventHandler<ProductPriceChangedIntegrationEvent>
+    public class NormaCadastradaIntegrationEventHandler : IIntegrationEventHandler<NormaCadastradaIntegrationEvent>
     {
         private readonly GestaoNormasDbContext _gestaoNormasDbContext;
-        private readonly ILogger<OrderStatusChangedToPaidIntegrationEventHandler> _logger;
+        private readonly ILogger<NormaCadastradaIntegrationEventHandler> _logger;
 
-        public OrderStatusChangedToPaidIntegrationEventHandler(
-            GestaoNormasDbContext gestaoNormasDbContext,
-            ILogger<OrderStatusChangedToPaidIntegrationEventHandler> logger)
+        public NormaCadastradaIntegrationEventHandler(
+            GestaoNormasDbContext gestaoNormasDbContext, ILogger<NormaCadastradaIntegrationEventHandler> logger)
         {
             _gestaoNormasDbContext = gestaoNormasDbContext;
             _logger = logger ?? throw new System.ArgumentNullException(nameof(logger));
         }
 
-        public async Task Handle(ProductPriceChangedIntegrationEvent @event)
+        public async Task Handle(NormaCadastradaIntegrationEvent @event)
         {
             using (LogContext.PushProperty("IntegrationEventContext", $"{@event.Id}-{Program.AppName}"))
             {

@@ -12,8 +12,8 @@ namespace SIGO.GestaoNormas.API.Controllers
     {
         public NormaController(IGestaoNormasIntegrationEventService gestaoNormasIntegrationEventService)
         {
-            gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new ProductPriceChangedIntegrationEvent(1, 2, 3));
-            gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new ProductPriceChangedIntegrationEvent(1, 2, 4));
+            gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new NormaCadastradaIntegrationEvent(1, "Norma 1"));
+            gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new NormaCadastradaIntegrationEvent(2, "Norma 2"));
         }
 
         [HttpGet]

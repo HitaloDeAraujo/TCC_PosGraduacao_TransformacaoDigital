@@ -53,12 +53,9 @@ namespace SIGO.GestaoNormas.API.IntegrationEvents
         public async Task SaveEventAndCatalogContextChangesAsync(IntegrationEvent evt)
         {
             _logger.LogInformation("----- CatalogIntegrationEventService - Saving changes and integrationEvent: {IntegrationEventId}", evt.Id);
-
-            //Use of an EF Core resiliency strategy when using multiple DbContexts within an explicit BeginTransaction():
-            //See: https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency            
+          
             await ResilientTransaction.New(_gestaoNormasDbContext).ExecuteAsync(async () =>
             {
-                // Achieving atomicity between original catalog database operation and the IntegrationEventLog thanks to a local transaction
                 await _gestaoNormasDbContext.SaveChangesAsync();
                 await _eventLogService.SaveEventAsync(evt, _gestaoNormasDbContext.Database.CurrentTransaction);
             });

@@ -60,7 +60,7 @@ namespace SIGO.GestaoNormas.API
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
-            eventBus.Subscribe<ProductPriceChangedIntegrationEvent, OrderStatusChangedToPaidIntegrationEventHandler>();
+            eventBus.Subscribe<NormaCadastradaIntegrationEvent, NormaCadastradaIntegrationEventHandler>();
         }
     }
 
@@ -122,7 +122,7 @@ namespace SIGO.GestaoNormas.API
             });
 
             services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
-            services.AddTransient<OrderStatusChangedToPaidIntegrationEventHandler>();
+            services.AddTransient<NormaCadastradaIntegrationEventHandler>();
 
             return services;
         }
