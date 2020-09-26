@@ -13,6 +13,7 @@ namespace SIGO.GestaoNormas.API.Controllers
         public NormaController(IGestaoNormasIntegrationEventService gestaoNormasIntegrationEventService)
         {
             gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new ProductPriceChangedIntegrationEvent(1, 2, 3));
+            gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new ProductPriceChangedIntegrationEvent(1, 2, 4));
         }
 
         [HttpGet]

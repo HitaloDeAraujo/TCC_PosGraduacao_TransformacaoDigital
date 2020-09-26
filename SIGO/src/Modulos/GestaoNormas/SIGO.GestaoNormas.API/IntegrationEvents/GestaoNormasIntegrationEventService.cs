@@ -30,7 +30,7 @@ namespace SIGO.GestaoNormas.API.IntegrationEvents
             _gestaoNormasDbContext = gestaoNormasDbContext ?? throw new ArgumentNullException(nameof(gestaoNormasDbContext));
           //  _integrationEventLogServiceFactory = integrationEventLogServiceFactory ?? throw new ArgumentNullException(nameof(integrationEventLogServiceFactory));
             _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
-            _eventLogService = _integrationEventLogServiceFactory(_gestaoNormasDbContext.Database.GetDbConnection());
+            //_eventLogService = _integrationEventLogServiceFactory(_gestaoNormasDbContext.Database.GetDbConnection());
         }
 
         public async Task PublishThroughEventBusAsync(IntegrationEvent evt)
@@ -39,9 +39,9 @@ namespace SIGO.GestaoNormas.API.IntegrationEvents
             {
                 _logger.LogInformation("----- Publishing integration event: {IntegrationEventId_published} from {AppName} - ({@IntegrationEvent})", evt.Id, Program.AppName, evt);
 
-                await _eventLogService.MarkEventAsInProgressAsync(evt.Id);
+               // await _eventLogService.MarkEventAsInProgressAsync(evt.Id);
                 _eventBus.Publish(evt);
-                await _eventLogService.MarkEventAsPublishedAsync(evt.Id);
+               // await _eventLogService.MarkEventAsPublishedAsync(evt.Id);
             }
             catch (Exception ex)
             {

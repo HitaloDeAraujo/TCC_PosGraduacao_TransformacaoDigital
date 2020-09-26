@@ -1,5 +1,4 @@
 using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +15,6 @@ using SIGO.GestaoNormas.API.IntegrationEvents;
 using SIGO.GestaoNormas.API.IntegrationEvents.EventHandling;
 using SIGO.GestaoNormas.API.IntegrationEvents.Events;
 using SIGO.GestaoNormas.Infra.Context;
-using System;
 
 namespace SIGO.GestaoNormas.API
 {
@@ -56,7 +54,6 @@ namespace SIGO.GestaoNormas.API
                 endpoints.MapControllers();
             });
 
-
             ConfigureEventBus(app);
         }
 
@@ -76,13 +73,12 @@ namespace SIGO.GestaoNormas.API
 
             services.AddTransient<IIntegrationEventLogService, IntegrationEventLogService>();
 
-            services.AddDbContext<GestaoNormasDbContext>(options => options.UseSqlServer("DoctorCnnSqlServer"));
+            services.AddDbContext<GestaoNormasDbContext>(options => options.UseSqlServer("GestaoNormasSqlServer"));
 
             services.AddTransient<IGestaoNormasIntegrationEventService, GestaoNormasIntegrationEventService>();
 
             services.AddSingleton<IRabbitMQPersistentConnection>(sp =>
             {
-                //var settings = sp.GetRequiredService<IOptions<CatalogSettings>>().Value;
                 var logger = sp.GetRequiredService<ILogger<DefaultRabbitMQPersistentConnection>>();
 
                 var factory = new ConnectionFactory()

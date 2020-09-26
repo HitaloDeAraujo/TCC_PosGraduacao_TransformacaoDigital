@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
 using RabbitMQ.Client;
@@ -12,22 +13,20 @@ using SIGO.Bus.EventBus.Extensions;
 using System;
 using System.Net.Sockets;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web.Helpers;
-using Microsoft.CSharp;
 
 namespace SIGO.Bus.EventBusRabbitMQ
 {
     public class EventBusRabbitMQ : IEventBus, IDisposable
     {
-        const string BROKER_NAME = "eshop_event_bus";
+        const string BROKER_NAME = "sigo_event_bus";
 
         private readonly IRabbitMQPersistentConnection _persistentConnection;
         private readonly ILogger<EventBusRabbitMQ> _logger;
         private readonly IEventBusSubscriptionsManager _subsManager;
         private readonly ILifetimeScope _autofac;
-        private readonly string AUTOFAC_SCOPE_NAME = "eshop_event_bus";
+        private readonly string AUTOFAC_SCOPE_NAME = "sigo_event_bus";
         private readonly int _retryCount;
 
         private IModel _consumerChannel;
@@ -87,13 +86,11 @@ namespace SIGO.Bus.EventBusRabbitMQ
 
             using (var channel = _persistentConnection.CreateModel())
             {
-
                 _logger.LogTrace("Declaring RabbitMQ exchange to publish event: {EventId}", @event.Id);
 
                 channel.ExchangeDeclare(exchange: BROKER_NAME, type: "direct");
 
-
-                var message = JsonSerializer.Serialize(@event);
+                var message = JsonConvert.SerializeObject(@event);
                 var body = Encoding.UTF8.GetBytes(message);
 
                 policy.Execute(() =>
@@ -222,9 +219,6 @@ namespace SIGO.Bus.EventBusRabbitMQ
                 _logger.LogWarning(ex, "----- ERROR Processing message \"{Message}\"", message);
             }
 
-            // Even on exception we take the message off the queue.
-            // in a REAL WORLD app this should be handled with a Dead Letter Exchange (DLX). 
-            // For more information see: https://www.rabbitmq.com/dlx.html
             _consumerChannel.BasicAck(eventArgs.DeliveryTag, multiple: false);
         }
 
@@ -284,8 +278,10 @@ namespace SIGO.Bus.EventBusRabbitMQ
                         {
                             var handler = scope.ResolveOptional(subscription.HandlerType);
                             if (handler == null) continue;
-                            var eventType = _subsManager.GetEventTypeByName(eventName);
-                            var integrationEvent = JsonSerializer.Deserialize(message, eventType);
+                            Type eventType = _subsManager.GetEventTypeByName(eventName);
+
+                            var integrationEvent = JsonConvert.DeserializeObject(message, eventType);
+
                             var concreteType = typeof(IIntegrationEventHandler<>).MakeGenericType(eventType);
 
                             await Task.Yield();
