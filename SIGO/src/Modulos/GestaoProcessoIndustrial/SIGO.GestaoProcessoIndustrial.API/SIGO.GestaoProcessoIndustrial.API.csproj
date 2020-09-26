@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -17,11 +17,17 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0-preview1.19506.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0-preview1-19509-03" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CrossCutting\SIGO.Bus\SIGO.Bus.csproj" />
     <ProjectReference Include="..\..\GestaoNormas\SIGO.GestaoNormas.Domain\SIGO.GestaoNormas.Domain.csproj" />
     <ProjectReference Include="..\SIGO.GestaoProcessoIndustrial.Domain\SIGO.GestaoProcessoIndustrial.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="IntegrationEvents\" />
   </ItemGroup>
 
 

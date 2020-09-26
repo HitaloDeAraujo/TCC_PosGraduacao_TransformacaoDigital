@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,8 +8,11 @@ namespace SIGO.GestaoNormas.Infra.Context
 {
     public class GestaoNormasDbContext : DbContext
     {
-        public GestaoNormasDbContext()
+        private IConfiguration _configuration;
+
+        public GestaoNormasDbContext(IConfiguration configuration)
         {
+            _configuration = configuration;
         }
 
         #region DbSet

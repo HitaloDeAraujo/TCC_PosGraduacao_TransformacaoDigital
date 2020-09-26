@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SIGO.GestaoNormas.API.IntegrationEvents;
+using SIGO.GestaoNormas.API.IntegrationEvents.Events;
 using SIGO.GestaoNormas.Domain.Entities;
 using System.Threading.Tasks;
 
@@ -8,6 +10,11 @@ namespace SIGO.GestaoNormas.API.Controllers
     [ApiController]
     public class NormaController : ControllerBase
     {
+        public NormaController(IGestaoNormasIntegrationEventService gestaoNormasIntegrationEventService)
+        {
+            gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new ProductPriceChangedIntegrationEvent(1, 2, 3));
+        }
+
         [HttpGet]
         //[Authorize]
         public async Task<IActionResult> Get()
@@ -18,7 +25,13 @@ namespace SIGO.GestaoNormas.API.Controllers
                 Descricao = "Teste"
             };
 
+            receive();
+
             return Ok(norma);
+        }
+
+        private static void receive()
+        {
         }
     }
 }
