@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0-preview1.19506.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0-preview1.19506.2">
       <PrivateAssets>all</PrivateAssets>
@@ -20,7 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CrossCutting\SIGO.Bus\SIGO.Bus.csproj" />
+    <ProjectReference Include="..\..\CrossCutting\SIGO.Utils\SIGO.Utils.csproj" />
     <ProjectReference Include="..\SIGO.AssessoriasConsultorias.Domain\SIGO.AssessoriasConsultorias.Domain.csproj" />
+    <ProjectReference Include="..\SIGO.AssessoriasConsultorias.Infra\SIGO.AssessoriasConsultorias.Infra.csproj" />
   </ItemGroup>
 
 

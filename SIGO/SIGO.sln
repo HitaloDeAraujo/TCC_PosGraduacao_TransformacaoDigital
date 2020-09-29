@@ -35,9 +35,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.GestaoNormas.Infra", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.Bus", "src\Modulos\CrossCutting\SIGO.Bus\SIGO.Bus.csproj", "{C0DC5F34-1690-45C2-A3EE-D01F664343C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.Utils", "src\Modulos\CrossCutting\SIGO.Utils\SIGO.Utils.csproj", "{FE369F7E-7FCA-461D-A27E-2621E50320A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.Utils", "src\Modulos\CrossCutting\SIGO.Utils\SIGO.Utils.csproj", "{FE369F7E-7FCA-461D-A27E-2621E50320A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.GestaoProcessoIndustrial.Infra", "src\Modulos\GestaoProcessoIndustrial\SIGO.GestaoProcessoIndustrial.Infra\SIGO.GestaoProcessoIndustrial.Infra.csproj", "{C25B143D-8673-4B3E-A20C-1742654158C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.GestaoProcessoIndustrial.Infra", "src\Modulos\GestaoProcessoIndustrial\SIGO.GestaoProcessoIndustrial.Infra\SIGO.GestaoProcessoIndustrial.Infra.csproj", "{C25B143D-8673-4B3E-A20C-1742654158C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.AssessoriasConsultorias.Infra", "src\Modulos\AssessoriasConsultorias\SIGO.AssessoriasConsultorias.Infra\SIGO.AssessoriasConsultorias.Infra.csproj", "{BE3FE848-7182-4903-9F07-A8A5471D3C33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{C25B143D-8673-4B3E-A20C-1742654158C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C25B143D-8673-4B3E-A20C-1742654158C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C25B143D-8673-4B3E-A20C-1742654158C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE3FE848-7182-4903-9F07-A8A5471D3C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE3FE848-7182-4903-9F07-A8A5471D3C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE3FE848-7182-4903-9F07-A8A5471D3C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE3FE848-7182-4903-9F07-A8A5471D3C33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +120,7 @@ Global
 		{C0DC5F34-1690-45C2-A3EE-D01F664343C1} = {1A1F6FD7-1C95-4F71-B14B-9863803B80C2}
 		{FE369F7E-7FCA-461D-A27E-2621E50320A5} = {1A1F6FD7-1C95-4F71-B14B-9863803B80C2}
 		{C25B143D-8673-4B3E-A20C-1742654158C9} = {0273CF16-2877-4CBD-AC99-C2005647652C}
+		{BE3FE848-7182-4903-9F07-A8A5471D3C33} = {C453C711-AEE3-4A53-8DF7-F23E42E48025}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A39EA7AC-C7A1-4D6B-9939-C9315C157AF4}

@@ -1,9 +1,9 @@
 ﻿using SIGO.Bus.EventBus.Events;
 using System.Threading.Tasks;
 
-namespace SIGO.GestaoProcessoIndustrial.API.IntegrationEvents
+namespace SIGO.AssessoriasConsultorias.API.IntegrationEvents
 {
-    public interface IGestaoProcessoIndustrialIntegrationEventService
+    public interface IAssessoriasConsultoriasIntegrationEventService
     {
         Task SaveEventAndCatalogContextChangesAsync(IntegrationEvent evt);
         Task PublishThroughEventBusAsync(IntegrationEvent evt);
