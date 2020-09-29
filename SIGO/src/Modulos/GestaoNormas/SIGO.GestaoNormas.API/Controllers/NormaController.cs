@@ -2,6 +2,7 @@
 using SIGO.GestaoNormas.API.IntegrationEvents;
 using SIGO.GestaoNormas.API.IntegrationEvents.Events;
 using SIGO.GestaoNormas.Domain.Entities;
+using SIGO.GestaoNormas.Domain.Interfaces.Service;
 using System.Threading.Tasks;
 
 namespace SIGO.GestaoNormas.API.Controllers
@@ -10,8 +11,13 @@ namespace SIGO.GestaoNormas.API.Controllers
     [ApiController]
     public class NormaController : ControllerBase
     {
-        public NormaController(IGestaoNormasIntegrationEventService gestaoNormasIntegrationEventService)
+        private readonly INormaService _normaService;
+
+        public NormaController(IGestaoNormasIntegrationEventService gestaoNormasIntegrationEventService,
+            INormaService normaService)
         {
+            _normaService = normaService;
+
             gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new NormaCadastradaIntegrationEvent(1, "Norma 1"));
             gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new NormaCadastradaIntegrationEvent(2, "Norma 2"));
         }
@@ -20,15 +26,9 @@ namespace SIGO.GestaoNormas.API.Controllers
         //[Authorize]
         public async Task<IActionResult> Get()
         {
-            Norma norma = null;
-            norma = new Norma()
-            {
-                Descricao = "Teste"
-            };
+            var normas = await _normaService.ObterNormas();
 
-            receive();
-
-            return Ok(norma);
+            return Ok(normas);
         }
 
         private static void receive()

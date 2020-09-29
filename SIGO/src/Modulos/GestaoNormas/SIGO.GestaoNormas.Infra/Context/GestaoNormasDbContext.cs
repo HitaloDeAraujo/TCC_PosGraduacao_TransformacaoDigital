@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using SIGO.GestaoNormas.Domain.Entities;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace SIGO.GestaoNormas.Infra.Context
 
         #region DbSet
 
-        //public DbSet<Repositorio> Repositorios { get; set; }
+        public DbSet<Norma> Normas { get; set; }
 
         #endregion
 

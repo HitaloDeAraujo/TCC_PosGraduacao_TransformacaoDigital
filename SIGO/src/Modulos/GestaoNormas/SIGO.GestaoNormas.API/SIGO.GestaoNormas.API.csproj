@@ -27,6 +27,7 @@
     <ProjectReference Include="..\..\CrossCutting\SIGO.Utils\SIGO.Utils.csproj" />
     <ProjectReference Include="..\SIGO.GestaoNormas.Domain\SIGO.GestaoNormas.Domain.csproj" />
     <ProjectReference Include="..\SIGO.GestaoNormas.Infra\SIGO.GestaoNormas.Infra.csproj" />
+    <ProjectReference Include="..\SIGO.GestaoNormas.Service\SIGO.GestaoNormas.Service.csproj" />
   </ItemGroup>
 
 

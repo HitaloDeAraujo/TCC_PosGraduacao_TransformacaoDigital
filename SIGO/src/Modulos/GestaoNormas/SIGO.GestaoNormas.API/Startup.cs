@@ -13,8 +13,14 @@ using SIGO.Bus.EventBusRabbitMQ;
 using SIGO.Bus.IntegrationEventLogEF.Services;
 using SIGO.GestaoNormas.API.IntegrationEvents;
 using SIGO.GestaoNormas.API.IntegrationEvents.EventHandling;
-using SIGO.GestaoNormas.API.IntegrationEvents.Events;
+using SIGO.GestaoNormas.Domain.Interfaces;
+using SIGO.GestaoNormas.Domain.Interfaces.Repository;
+using SIGO.GestaoNormas.Domain.Interfaces.Service;
+using SIGO.GestaoNormas.Infra.Connection;
 using SIGO.GestaoNormas.Infra.Context;
+using SIGO.GestaoNormas.Infra.Repository;
+using SIGO.GestaoNormas.Infra.UnitOfWork;
+using SIGO.GestaoNormas.Service;
 using SIGO.Utils;
 
 namespace SIGO.GestaoNormas.API
@@ -33,7 +39,12 @@ namespace SIGO.GestaoNormas.API
             services.AddControllers();
 
             services.AddEventBus(Configuration)
-                    .AddIntegrationServices(Configuration);
+                    .AddIntegrationServices(Configuration)
+                    .AddServices()
+                    .AddRepositories();
+
+            services.AddScoped<IDapperDbConnection, DapperDbConnection>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -71,7 +82,7 @@ namespace SIGO.GestaoNormas.API
 
             services.AddTransient<IIntegrationEventLogService, IntegrationEventLogService>();
 
-            services.AddDbContext<GestaoNormasDbContext>(options => options.UseSqlServer("GestaoNormasSqlServer"));
+            services.AddDbContext<GestaoNormasDbContext>(options => options.UseMySql("GestaoNormasSqlServer"));
 
             services.AddTransient<IGestaoNormasIntegrationEventService, GestaoNormasIntegrationEventService>();
 
@@ -121,6 +132,20 @@ namespace SIGO.GestaoNormas.API
 
             services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
             services.AddTransient<NormaCadastradaIntegrationEventHandler>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            services.AddScoped<INormaService, NormaService>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<INormaRepository, NormaRepository>();
 
             return services;
         }
