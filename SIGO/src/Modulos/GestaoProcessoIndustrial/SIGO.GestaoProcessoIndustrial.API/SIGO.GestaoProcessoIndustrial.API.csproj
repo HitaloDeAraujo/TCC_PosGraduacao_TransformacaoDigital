@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0-preview1.19506.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0-preview1.19506.2">
       <PrivateAssets>all</PrivateAssets>
@@ -18,16 +19,15 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0-preview1-19509-03" />
     <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\CrossCutting\SIGO.Bus\SIGO.Bus.csproj" />
+    <ProjectReference Include="..\..\CrossCutting\SIGO.Utils\SIGO.Utils.csproj" />
     <ProjectReference Include="..\..\GestaoNormas\SIGO.GestaoNormas.Domain\SIGO.GestaoNormas.Domain.csproj" />
     <ProjectReference Include="..\SIGO.GestaoProcessoIndustrial.Domain\SIGO.GestaoProcessoIndustrial.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="IntegrationEvents\" />
+    <ProjectReference Include="..\SIGO.GestaoProcessoIndustrial.Infra\SIGO.GestaoProcessoIndustrial.Infra.csproj" />
   </ItemGroup>
 
 

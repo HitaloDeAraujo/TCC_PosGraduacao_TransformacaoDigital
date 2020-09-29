@@ -218,7 +218,7 @@ namespace SIGO.Bus.EventBusRabbitMQ
             {
                 _logger.LogWarning(ex, "----- ERROR Processing message \"{Message}\"", message);
             }
-
+            
             _consumerChannel.BasicAck(eventArgs.DeliveryTag, multiple: false);
         }
 

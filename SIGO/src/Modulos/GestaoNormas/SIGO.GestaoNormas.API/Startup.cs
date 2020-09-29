@@ -15,29 +15,27 @@ using SIGO.GestaoNormas.API.IntegrationEvents;
 using SIGO.GestaoNormas.API.IntegrationEvents.EventHandling;
 using SIGO.GestaoNormas.API.IntegrationEvents.Events;
 using SIGO.GestaoNormas.Infra.Context;
+using SIGO.Utils;
 
 namespace SIGO.GestaoNormas.API
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
 
             services.AddEventBus(Configuration)
-                 .AddIntegrationServices(Configuration);
+                    .AddIntegrationServices(Configuration);
         }
 
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -60,7 +58,7 @@ namespace SIGO.GestaoNormas.API
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
-            eventBus.Subscribe<NormaCadastradaIntegrationEvent, NormaCadastradaIntegrationEventHandler>();
+            //eventBus.Subscribe<NormaCadastradaIntegrationEvent, NormaCadastradaIntegrationEventHandler>();
         }
     }
 
@@ -83,19 +81,19 @@ namespace SIGO.GestaoNormas.API
 
                 var factory = new ConnectionFactory()
                 {
-                    HostName = configuration["EventBusConnection"],
+                    HostName = configuration[Configuration.Keys.EventBusConnection],
                     DispatchConsumersAsync = true
                 };
 
-                if (!string.IsNullOrEmpty(configuration["EventBusUserName"]))
-                    factory.UserName = configuration["EventBusUserName"];
+                if (!string.IsNullOrEmpty(configuration[Configuration.Keys.EventBusUserName]))
+                    factory.UserName = configuration[Configuration.Keys.EventBusUserName];
 
-                if (!string.IsNullOrEmpty(configuration["EventBusPassword"]))
-                    factory.Password = configuration["EventBusPassword"];
+                if (!string.IsNullOrEmpty(configuration[Configuration.Keys.EventBusPassword]))
+                    factory.Password = configuration[Configuration.Keys.EventBusPassword];
 
                 var retryCount = 5;
-                if (!string.IsNullOrEmpty(configuration["EventBusRetryCount"]))
-                    retryCount = int.Parse(configuration["EventBusRetryCount"]);
+                if (!string.IsNullOrEmpty(configuration[Configuration.Keys.EventBusRetryCount]))
+                    retryCount = int.Parse(configuration[Configuration.Keys.EventBusRetryCount]);
 
                 return new DefaultRabbitMQPersistentConnection(factory, logger, retryCount);
             });
@@ -105,7 +103,7 @@ namespace SIGO.GestaoNormas.API
 
         public static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
         {
-            var subscriptionClientName = configuration["SubscriptionClientName"];
+            var subscriptionClientName = configuration[Configuration.Keys.SubscriptionClientName];
 
             services.AddSingleton<IEventBus, EventBusRabbitMQ>(sp =>
             {
@@ -115,8 +113,8 @@ namespace SIGO.GestaoNormas.API
                 var eventBusSubcriptionsManager = sp.GetRequiredService<IEventBusSubscriptionsManager>();
 
                 var retryCount = 5;
-                if (!string.IsNullOrEmpty(configuration["EventBusRetryCount"]))
-                    retryCount = int.Parse(configuration["EventBusRetryCount"]);
+                if (!string.IsNullOrEmpty(configuration[Configuration.Keys.EventBusRetryCount]))
+                    retryCount = int.Parse(configuration[Configuration.Keys.EventBusRetryCount]);
 
                 return new EventBusRabbitMQ(rabbitMQPersistentConnection, logger, iLifetimeScope, eventBusSubcriptionsManager, subscriptionClientName, retryCount);
             });

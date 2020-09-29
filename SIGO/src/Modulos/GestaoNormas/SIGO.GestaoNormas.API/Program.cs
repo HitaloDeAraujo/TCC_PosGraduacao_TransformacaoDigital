@@ -6,7 +6,7 @@ namespace SIGO.GestaoNormas.API
 {
     public class Program
     {
-        public static string AppName { get; internal set; } = "SIGO";
+        public static string AppName { get; internal set; } = "SIGO - Gestão de Normas";
 
         public static void Main(string[] args)
         {

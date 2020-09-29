@@ -1,22 +1,22 @@
 ﻿using Microsoft.Extensions.Logging;
 using Serilog.Context;
 using SIGO.Bus.EventBus.Abstractions;
-using SIGO.GestaoNormas.API.IntegrationEvents.Events;
-using SIGO.GestaoNormas.Infra.Context;
+using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents.Events;
+using SIGO.GestaoProcessoIndustrial.Infra.Context;
 using System.Threading.Tasks;
 using static SIGO.Utils.Configuration;
 
-namespace SIGO.GestaoNormas.API.IntegrationEvents.EventHandling
+namespace SIGO.GestaoProcessoIndustrial.API.IntegrationEvents.EventHandling
 {
     public class NormaCadastradaIntegrationEventHandler : IIntegrationEventHandler<NormaCadastradaIntegrationEvent>
     {
-        private readonly GestaoNormasDbContext _gestaoNormasDbContext;
+        private readonly GestaoProcessoIndustrialDbContext _gestaoProcessoIndustrialDbContext;
         private readonly ILogger<NormaCadastradaIntegrationEventHandler> _logger;
 
         public NormaCadastradaIntegrationEventHandler(
-            GestaoNormasDbContext gestaoNormasDbContext, ILogger<NormaCadastradaIntegrationEventHandler> logger)
+            GestaoProcessoIndustrialDbContext gestaoProcessoIndustrialDbContext, ILogger<NormaCadastradaIntegrationEventHandler> logger)
         {
-            _gestaoNormasDbContext = gestaoNormasDbContext;
+            _gestaoProcessoIndustrialDbContext = gestaoProcessoIndustrialDbContext;
             _logger = logger ?? throw new System.ArgumentNullException(nameof(logger));
         }
 

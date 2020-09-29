@@ -3,31 +3,31 @@ using SIGO.Bus.EventBus.Abstractions;
 using SIGO.Bus.EventBus.Events;
 using SIGO.Bus.IntegrationEventLogEF.Services;
 using SIGO.Bus.IntegrationEventLogEF.Utilities;
-using SIGO.GestaoNormas.Infra.Context;
+using SIGO.GestaoProcessoIndustrial.Infra.Context;
 using System;
 using System.Data.Common;
 using System.Threading.Tasks;
 
-namespace SIGO.GestaoNormas.API.IntegrationEvents
+namespace SIGO.GestaoProcessoIndustrial.API.IntegrationEvents
 {
-    public class GestaoNormasIntegrationEventService : IGestaoNormasIntegrationEventService, IDisposable
+    public class GestaoProcessoIndustrialIntegrationEventService : IGestaoProcessoIndustrialIntegrationEventService
     {
         private readonly Func<DbConnection, IIntegrationEventLogService> _integrationEventLogServiceFactory;
         private readonly IEventBus _eventBus;
-        private readonly GestaoNormasDbContext _gestaoNormasDbContext;
+        private readonly GestaoProcessoIndustrialDbContext _gestaoProcessoIndustrialDbContext;
         private readonly IIntegrationEventLogService _eventLogService;
-        private readonly ILogger<GestaoNormasIntegrationEventService> _logger;
+        private readonly ILogger<GestaoProcessoIndustrialIntegrationEventService> _logger;
         private volatile bool disposedValue;
 
-        public GestaoNormasIntegrationEventService(
-            ILogger<GestaoNormasIntegrationEventService> logger,
+        public GestaoProcessoIndustrialIntegrationEventService(
+            ILogger<GestaoProcessoIndustrialIntegrationEventService> logger,
             IEventBus eventBus,
-            GestaoNormasDbContext gestaoNormasDbContext
+            GestaoProcessoIndustrialDbContext gestaoProcessoIndustrialDbContext
             /*,Func<DbConnection, IIntegrationEventLogService> integrationEventLogServiceFactory*/)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _gestaoNormasDbContext = gestaoNormasDbContext ?? throw new ArgumentNullException(nameof(gestaoNormasDbContext));
-          //  _integrationEventLogServiceFactory = integrationEventLogServiceFactory ?? throw new ArgumentNullException(nameof(integrationEventLogServiceFactory));
+            _gestaoProcessoIndustrialDbContext = gestaoProcessoIndustrialDbContext ?? throw new ArgumentNullException(nameof(gestaoProcessoIndustrialDbContext));
+            //  _integrationEventLogServiceFactory = integrationEventLogServiceFactory ?? throw new ArgumentNullException(nameof(integrationEventLogServiceFactory));
             _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
             //_eventLogService = _integrationEventLogServiceFactory(_gestaoNormasDbContext.Database.GetDbConnection());
         }
@@ -38,9 +38,9 @@ namespace SIGO.GestaoNormas.API.IntegrationEvents
             {
                 _logger.LogInformation("----- Publishing integration event: {IntegrationEventId_published} from {AppName} - ({@IntegrationEvent})", evt.Id, Program.AppName, evt);
 
-               // await _eventLogService.MarkEventAsInProgressAsync(evt.Id);
+                // await _eventLogService.MarkEventAsInProgressAsync(evt.Id);
                 _eventBus.Publish(evt);
-               // await _eventLogService.MarkEventAsPublishedAsync(evt.Id);
+                // await _eventLogService.MarkEventAsPublishedAsync(evt.Id);
             }
             catch (Exception ex)
             {
@@ -52,11 +52,11 @@ namespace SIGO.GestaoNormas.API.IntegrationEvents
         public async Task SaveEventAndCatalogContextChangesAsync(IntegrationEvent evt)
         {
             _logger.LogInformation("----- CatalogIntegrationEventService - Saving changes and integrationEvent: {IntegrationEventId}", evt.Id);
-          
-            await ResilientTransaction.New(_gestaoNormasDbContext).ExecuteAsync(async () =>
+
+            await ResilientTransaction.New(_gestaoProcessoIndustrialDbContext).ExecuteAsync(async () =>
             {
-                await _gestaoNormasDbContext.SaveChangesAsync();
-                await _eventLogService.SaveEventAsync(evt, _gestaoNormasDbContext.Database.CurrentTransaction);
+                await _gestaoProcessoIndustrialDbContext.SaveChangesAsync();
+                await _eventLogService.SaveEventAsync(evt, _gestaoProcessoIndustrialDbContext.Database.CurrentTransaction);
             });
         }
 
