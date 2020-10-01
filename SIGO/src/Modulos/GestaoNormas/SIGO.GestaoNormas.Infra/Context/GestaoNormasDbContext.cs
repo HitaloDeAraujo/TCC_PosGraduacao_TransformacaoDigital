@@ -11,6 +11,10 @@ namespace SIGO.GestaoNormas.Infra.Context
     {
         private IConfiguration _configuration;
 
+        //public GestaoNormasDbContext()
+        //{
+        //}
+
         public GestaoNormasDbContext(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -24,7 +28,7 @@ namespace SIGO.GestaoNormas.Infra.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(_configuration["ConnectionStrings:DoctorCnnSqlServer"]);
+            optionsBuilder.UseMySql(_configuration["ConnectionStrings:GestaoNormasConnection"]);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
