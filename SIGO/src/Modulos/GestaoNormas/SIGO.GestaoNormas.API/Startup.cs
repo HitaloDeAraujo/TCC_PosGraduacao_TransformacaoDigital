@@ -17,11 +17,11 @@ using SIGO.GestaoNormas.API.IntegrationEvents.EventHandling;
 using SIGO.GestaoNormas.Domain.Interfaces;
 using SIGO.GestaoNormas.Domain.Interfaces.Repository;
 using SIGO.GestaoNormas.Domain.Interfaces.Service;
-using SIGO.GestaoNormas.Infra.Connection;
 using SIGO.GestaoNormas.Infra.Context;
 using SIGO.GestaoNormas.Infra.Repository;
 using SIGO.GestaoNormas.Infra.UnitOfWork;
 using SIGO.GestaoNormas.Service;
+using SIGO.Infra;
 using SIGO.Utils;
 
 namespace SIGO.GestaoNormas.API
@@ -165,6 +165,7 @@ namespace SIGO.GestaoNormas.API
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<INormaRepository, NormaRepository>();
+            services.AddScoped<IRepositorioRepository, RepositorioRepository>();
 
             return services;
         }

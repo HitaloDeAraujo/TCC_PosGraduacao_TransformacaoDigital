@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SIGO.GestaoNormas.Domain.Interfaces.Repository
+namespace SIGO.Infra
 {
     public interface IDapperDbConnection : IDisposable
     {

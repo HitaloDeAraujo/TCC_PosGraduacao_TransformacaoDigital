@@ -1,25 +1,25 @@
-﻿using SIGO.GestaoNormas.Domain.Entities;
-using SIGO.GestaoNormas.Domain.Interfaces;
-using SIGO.GestaoNormas.Domain.Interfaces.Service;
+﻿using SIGO.GestaoProcessoIndustrial.Domain.Entities;
+using SIGO.GestaoProcessoIndustrial.Domain.Interfaces;
+using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SIGO.GestaoNormas.Service
+namespace SIGO.GestaoProcessoIndustrial.Service
 {
-    public class NormaService : INormaService
+    public class EventoService : IEventoService
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public NormaService(IUnitOfWork unitOfWork)
+        public EventoService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Norma> Salvar(Norma norma)
+        public async Task<Evento> Salvar(Evento evento)
         {
             try
             {
-                await _unitOfWork.Normas.Salvar(norma);
+                await _unitOfWork.Eventos.Salvar(evento);
                 await _unitOfWork.CommitAsync();
             }
             catch
@@ -27,14 +27,14 @@ namespace SIGO.GestaoNormas.Service
                 throw;
             }
 
-            return norma;
+            return evento;
         }
 
-        public async Task Atualizar(Norma norma)
+        public async Task Atualizar(Evento evento)
         {
             try
             {
-                _unitOfWork.Normas.Atualizar(norma);
+                _unitOfWork.Eventos.Atualizar(evento);
                 await _unitOfWork.CommitAsync();
             }
             catch
@@ -47,7 +47,7 @@ namespace SIGO.GestaoNormas.Service
         {
             try
             {
-                await _unitOfWork.Normas.Excluir(guid);
+                await _unitOfWork.Eventos.Excluir(guid);
                 await _unitOfWork.CommitAsync();
             }
             catch
@@ -56,27 +56,27 @@ namespace SIGO.GestaoNormas.Service
             }
         }
 
-        public async Task<Norma> ObterNorma(string guid)
+        public async Task<Evento> ObterEvento(string guid)
         {
-            var norma = new Norma();
+            var evento = new Evento();
 
             try
             {
-                norma = await _unitOfWork.Normas.ObterNorma(guid);
+                evento = await _unitOfWork.Eventos.ObterEvento(guid);
             }
             catch
             {
                 throw;
             }
 
-            return norma;
+            return evento;
         }
 
-        public async Task<List<Norma>> ObterNormas()
+        public async Task<List<Evento>> ObterEventos()
         {
             try
             {
-                return await _unitOfWork.Normas.ObterNormas();
+                return await _unitOfWork.Eventos.ObterEventos();
             }
             catch
             {

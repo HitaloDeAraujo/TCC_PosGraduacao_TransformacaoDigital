@@ -10,5 +10,6 @@ namespace SIGO.GestaoNormas.Domain.Interfaces
         Task<int> CommitAsync();
 
         INormaRepository Normas { get; }
+        IRepositorioRepository Repositorios { get; }
     }
 }

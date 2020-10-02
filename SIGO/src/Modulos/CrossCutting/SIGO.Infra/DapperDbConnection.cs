@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
-using SIGO.GestaoNormas.Domain.Interfaces.Repository;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace SIGO.GestaoNormas.Infra.Connection
+namespace SIGO.Infra
 {
     public class DapperDbConnection : IDapperDbConnection
     {

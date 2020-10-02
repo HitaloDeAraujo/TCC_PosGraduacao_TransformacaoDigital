@@ -1,15 +1,13 @@
-﻿using SIGO.GestaoNormas.Domain.Interfaces.Repository;
-using SIGO.GestaoNormas.Infra.Connection;
-using SIGO.GestaoNormas.Infra.Context;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
 
-namespace SIGO.GestaoNormas.Infra.Repository
+namespace SIGO.Infra
 {
     public abstract class RepositoryBase
     {
         protected SqlConnection DapperConnection = null;
         protected SqlConnection DapperReportConnection = null;
-        protected GestaoNormasDbContext Context = null;
+        protected DbContext Context = null;
 
         public RepositoryBase(IDapperDbConnection dapperDbConnection)
         {
@@ -17,11 +15,11 @@ namespace SIGO.GestaoNormas.Infra.Repository
             DapperReportConnection = ((DapperDbConnection)dapperDbConnection).GetReportConnection();
         }
 
-        public RepositoryBase(GestaoNormasDbContext context, IDapperDbConnection dapperDbConnection)
+        public RepositoryBase(DbContext context, IDapperDbConnection dapperDbConnection)
         {
             DapperConnection = ((DapperDbConnection)dapperDbConnection).GetConnection();
             DapperReportConnection = ((DapperDbConnection)dapperDbConnection).GetReportConnection();
             Context = context;
-        }      
+        }
     }
 }

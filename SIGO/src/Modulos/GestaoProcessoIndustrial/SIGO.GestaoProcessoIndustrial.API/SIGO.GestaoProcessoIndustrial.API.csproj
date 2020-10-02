@@ -20,14 +20,15 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0-preview1-19509-03" />
     <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
     <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\CrossCutting\SIGO.Bus\SIGO.Bus.csproj" />
     <ProjectReference Include="..\..\CrossCutting\SIGO.Utils\SIGO.Utils.csproj" />
-    <ProjectReference Include="..\..\GestaoNormas\SIGO.GestaoNormas.Domain\SIGO.GestaoNormas.Domain.csproj" />
     <ProjectReference Include="..\SIGO.GestaoProcessoIndustrial.Domain\SIGO.GestaoProcessoIndustrial.Domain.csproj" />
     <ProjectReference Include="..\SIGO.GestaoProcessoIndustrial.Infra\SIGO.GestaoProcessoIndustrial.Infra.csproj" />
+    <ProjectReference Include="..\SIGO.GestaoProcessoIndustrial.Service\SIGO.GestaoProcessoIndustrial.Service.csproj" />
   </ItemGroup>
 
 

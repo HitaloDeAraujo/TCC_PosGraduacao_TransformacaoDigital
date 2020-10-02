@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SIGO.GestaoNormas.Domain.Entities;
+using SIGO.GestaoNormas.Infra.Mapping;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace SIGO.GestaoNormas.Infra.Context
         #region DbSet
 
         public DbSet<Norma> Normas { get; set; }
+        public DbSet<Repositorio> Repositorios { get; set; }
 
         #endregion
 
@@ -27,7 +29,8 @@ namespace SIGO.GestaoNormas.Infra.Context
 
             #region Mapeamento
 
-            //new RepositorioMap(modelBuilder);
+            new NormaMap(modelBuilder);
+            new RepositorioMap(modelBuilder);
 
             #endregion
 

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using RabbitMQ.Client;
 using SIGO.Bus.EventBus;
 using SIGO.Bus.EventBus.Abstractions;
@@ -14,7 +15,14 @@ using SIGO.Bus.IntegrationEventLogEF.Services;
 using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents;
 using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents.EventHandling;
 using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents.Events;
+using SIGO.GestaoProcessoIndustrial.Domain.Interfaces;
+using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Repository;
+using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service;
 using SIGO.GestaoProcessoIndustrial.Infra.Context;
+using SIGO.GestaoProcessoIndustrial.Infra.Repository;
+using SIGO.GestaoProcessoIndustrial.Infra.UnitOfWork;
+using SIGO.GestaoProcessoIndustrial.Service;
+using SIGO.Infra;
 using SIGO.Utils;
 
 namespace SIGO.GestaoProcessoIndustrial.API
@@ -30,10 +38,26 @@ namespace SIGO.GestaoProcessoIndustrial.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = Configuration["ConnectionStrings:GestaoProcessoIndustrialConnection"];
+
+            services.AddDbContext<GestaoProcessoIndustrialDbContext>(options =>
+                options.UseMySql(connection)
+            );
+
             services.AddControllers();
 
             services.AddEventBus(Configuration)
-                   .AddIntegrationServices(Configuration);
+                    .AddIntegrationServices(Configuration)
+                    .AddServices()
+                    .AddRepositories();
+
+            services.AddScoped<IDapperDbConnection, DapperDbConnection>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Gestao Normas", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +77,13 @@ namespace SIGO.GestaoProcessoIndustrial.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Gestao do Processo Industrial");
             });
 
             ConfigureEventBus(app);
@@ -125,6 +156,20 @@ namespace SIGO.GestaoProcessoIndustrial.API
             services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
             services.AddTransient<NormaCadastradaIntegrationEventHandler>();
 
+            return services;
+        }
+
+        public static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            services.AddScoped<IEventoService, EventoService>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IEventoRepository, EventoRepository>();
+            
             return services;
         }
     }

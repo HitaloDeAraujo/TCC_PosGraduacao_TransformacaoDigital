@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace SIGO.GestaoNormas.Infra.Repository
 {
-    public class NormaRepository : RepositoryBase, INormaRepository
+    public class RepositorioRepository : RepositoryBase, IRepositorioRepository
     {
         private readonly GestaoNormasDbContext _context;
 
-        public NormaRepository(GestaoNormasDbContext context, IDapperDbConnection dbConnection) : base(dbConnection)
+        public RepositorioRepository(GestaoNormasDbContext context, IDapperDbConnection dbConnection) : base(dbConnection)
         {
             _context = context;
         }
 
-        public async Task Salvar(Norma norma)
+        public async Task Salvar(Repositorio repositorio)
         {
             try
             {
-                await _context.Normas.AddAsync(norma);
+                await _context.Repositorios.AddAsync(repositorio);
             }
             catch
             {
@@ -30,11 +30,11 @@ namespace SIGO.GestaoNormas.Infra.Repository
             }
         }
 
-        public void Atualizar(Norma norma)
+        public void Atualizar(Repositorio repositorio)
         {
             try
             {
-                _context.Entry(norma).State = EntityState.Modified;
+                _context.Entry(repositorio).State = EntityState.Modified;
             }
             catch
             {
@@ -46,14 +46,14 @@ namespace SIGO.GestaoNormas.Infra.Repository
         {
             try
             {
-                var norma = await ObterNorma(guid);
+                var repositorio = await ObterRepositorio(guid);
 
-                if (norma == null)
+                if (repositorio == null)
                     throw new Exception();
 
-                norma.DataExclusao = DateTime.Now;
+                repositorio.DataExclusao = DateTime.Now;
 
-                Atualizar(norma);
+                Atualizar(repositorio);
             }
             catch
             {
@@ -61,11 +61,11 @@ namespace SIGO.GestaoNormas.Infra.Repository
             }
         }
 
-        public async Task<Norma> ObterNorma(string guid)
+        public async Task<Repositorio> ObterRepositorio(string guid)
         {
             try
             {
-                return await _context.Normas.SingleOrDefaultAsync(x => x.GUID.ToString().Equals(guid));
+                return await _context.Repositorios.SingleOrDefaultAsync(x => x.GUID.ToString().Equals(guid));
             }
             catch
             {
@@ -73,11 +73,11 @@ namespace SIGO.GestaoNormas.Infra.Repository
             }
         }
 
-        public async Task<List<Norma>> ObterNormas()
+        public async Task<List<Repositorio>> ObterRepositorios()
         {
             try
             {
-                return await _context.Normas.ToListAsync();
+                return await _context.Repositorios.ToListAsync();
             }
             catch
             {
