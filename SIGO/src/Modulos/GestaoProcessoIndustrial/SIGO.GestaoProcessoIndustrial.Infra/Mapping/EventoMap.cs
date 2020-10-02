@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SIGO.GestaoNormas.Domain.Entities;
+using SIGO.GestaoProcessoIndustrial.Domain.Entities;
 using SIGO.Infra;
 using SIGO.Utils;
 
-namespace SIGO.GestaoNormas.Infra.Mapping
+namespace SIGO.GestaoProcessoIndustrial.Infra.Mapping
 {
-    public class RepositorioMap : BaseMap<Repositorio>
+    public class EventoMap : BaseMap<Evento>
     {
-        public RepositorioMap(ModelBuilder modelBuilder) : base(modelBuilder)
+        public EventoMap(ModelBuilder modelBuilder) : base(modelBuilder)
         {
             Map.Property(x => x.GUID)
                 .ValueGeneratedOnAdd();
@@ -17,19 +17,23 @@ namespace SIGO.GestaoNormas.Infra.Mapping
                 .IsRequired()
                 .HasMaxLength(DataLength.GUID);
 
-            Map.Property(x => x.URL)
-                .HasColumnType(DataTypes.MySQL.STRING)
-                .IsRequired();
-
             Map.Property(x => x.Nome)
                 .HasColumnType(DataTypes.MySQL.STRING)
                 .IsRequired()
-                .HasMaxLength(DataLength.TEXT_MEDIUM);
+                .HasMaxLength(DataLength.TEXT_MEDIUM); ;
 
             Map.Property(x => x.Descricao)
                 .HasColumnType(DataTypes.MySQL.STRING)
                 .IsRequired()
                 .HasMaxLength(DataLength.TEXT_LONG);
+
+            Map.Property(x => x.Grau)
+                .HasColumnType(DataTypes.MySQL.INT)
+                .IsRequired();
+
+            Map.Property(x => x.TipoEventoID)
+                .HasColumnType(DataTypes.MySQL.INT)
+                .IsRequired();
         }
     }
 }

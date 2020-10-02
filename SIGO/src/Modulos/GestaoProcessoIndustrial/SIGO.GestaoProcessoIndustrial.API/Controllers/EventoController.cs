@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SIGO.GestaoProcessoIndustrial.Domain.Entities;
+using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service;
 using System.Threading.Tasks;
-using RabbitMQ.Client;
-using System.Text;
-using SIGO.Bus.EventBusRabbitMQ;
-using System;
 
 namespace SIGO.GestaoProcessoIndustrial.API.Controllers
 {
@@ -12,40 +9,29 @@ namespace SIGO.GestaoProcessoIndustrial.API.Controllers
     [ApiController]
     public class EventoController : ControllerBase
     {
+        private readonly IEventoService _eventoService;
+
+        public EventoController(IEventoService eventoService)
+        {
+            _eventoService = eventoService;
+        }
+
         [HttpGet]
         //[Authorize]
         public async Task<IActionResult> Get()
         {
-            Evento evento = new Evento()
-            {
-                Nome = "Nome"
-            };
+            var eventos = await _eventoService.ObterEventos();
 
-            send();
-
-            return Ok(evento);
+            return Ok(eventos);
         }
 
-        private static void send()
+        [HttpGet]
+        [Route("{guid}")]
+        public async Task<IActionResult> Get(string guid)
         {
-            //var factory = new ConnectionFactory() { HostName = "localhost" };
-            //using (var connection = factory.CreateConnection())
-            //using (var channel = connection.CreateModel())
-            //{
-            //    channel.QueueDeclare(queue: "hello",
-            //                         durable: false,
-            //                         exclusive: false,
-            //                         autoDelete: false,
-            //                         arguments: null);
+            var evento = await _eventoService.ObterEvento(guid);
 
-            //    string message = "Hello World!";
-            //    var body = Encoding.UTF8.GetBytes(message);
-
-            //    channel.BasicPublish(exchange: "",
-            //                         routingKey: "hello",
-            //                         basicProperties: null,
-            //                         body: body);
-            //}
+            return Ok(evento);
         }
     }
 }

@@ -10,6 +10,6 @@ namespace SIGO.GestaoProcessoIndustrial.Domain.Entities
         public string Descricao { get; set; }
         public int Grau { get; set; }
         public int TipoEventoID { get; set; }
-        public TipoEvento TipoEvento { get; set; }
+        public virtual TipoEvento TipoEvento { get; set; }
     }
 }

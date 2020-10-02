@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SIGO.GestaoProcessoIndustrial.Domain.Entities;
+using SIGO.GestaoProcessoIndustrial.Infra.Mapping;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,23 +10,17 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Context
 {
     public class GestaoProcessoIndustrialDbContext : DbContext
     {
-        private IConfiguration _configuration;
-
-        public GestaoProcessoIndustrialDbContext(IConfiguration configuration)
+        public GestaoProcessoIndustrialDbContext(DbContextOptions<GestaoProcessoIndustrialDbContext> options) : base(options)
         {
-            _configuration = configuration;
         }
 
         #region DbSet
 
         public DbSet<Evento> Eventos { get; set; }
+        public DbSet<TipoEvento> TiposEvento { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         #endregion
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //optionsBuilder.UseSqlServer(_configuration["ConnectionStrings:DoctorCnnSqlServer"]);
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,9 +31,46 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Context
 
             #region Mapeamento
 
-            //new RepositorioMap(modelBuilder);
+            new EventoMap(modelBuilder);
+            new TipoEventoMap(modelBuilder);
+            new UsuarioMap(modelBuilder);
 
             #endregion
+
+            modelBuilder.Entity<TipoEvento>().HasData(
+              new TipoEvento
+              {
+                  ID = 1,
+                  DataCriacao = DateTime.Now,
+                  Nome = "Norma Cadastrada"
+              },
+              new TipoEvento
+              {
+                  ID = 2,
+                  DataCriacao = DateTime.Now,
+                  Nome = "Norma Atualizada"
+              });
+
+            modelBuilder.Entity<Evento>().HasData(
+             new Evento
+             {
+                 ID = 1,
+                 DataCriacao = DateTime.Now,
+                 Nome = "Norma Cadastrada",
+                 GUID = Guid.NewGuid(),
+                 Descricao = "Desc",
+                 Grau = 1,
+                 TipoEventoID = 1
+             });
+
+            modelBuilder.Entity<Usuario>().HasData(
+             new Usuario
+             {
+                 ID = 1,
+                 DataCriacao = DateTime.Now,
+                 GUID = Guid.NewGuid(),
+                 Nome = "Hitalo"
+             });
         }
 
         public async Task<int> SaveChangesAsync()

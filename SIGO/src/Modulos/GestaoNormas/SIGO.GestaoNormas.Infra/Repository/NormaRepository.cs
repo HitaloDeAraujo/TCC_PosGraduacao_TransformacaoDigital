@@ -5,6 +5,7 @@ using SIGO.GestaoNormas.Infra.Context;
 using SIGO.Infra;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SIGO.GestaoNormas.Infra.Repository
@@ -65,7 +66,7 @@ namespace SIGO.GestaoNormas.Infra.Repository
         {
             try
             {
-                return await _context.Normas.SingleOrDefaultAsync(x => x.GUID.ToString().Equals(guid));
+                return await _context.Normas.SingleOrDefaultAsync(x => x.GUID.ToString().Equals(guid) && x.DataExclusao != null);
             }
             catch
             {
@@ -77,7 +78,7 @@ namespace SIGO.GestaoNormas.Infra.Repository
         {
             try
             {
-                return await _context.Normas.ToListAsync();
+                return await _context.Normas.Where(x => x.DataExclusao != null).ToListAsync();
             }
             catch
             {

@@ -78,7 +78,7 @@ namespace SIGO.GestaoProcessoIndustrial.Service
             {
                 return await _unitOfWork.Eventos.ObterEventos();
             }
-            catch
+            catch(System.Exception ex)
             {
                 throw;
             }

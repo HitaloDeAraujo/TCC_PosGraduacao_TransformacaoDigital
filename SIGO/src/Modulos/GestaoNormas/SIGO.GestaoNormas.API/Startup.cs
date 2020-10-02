@@ -55,7 +55,7 @@ namespace SIGO.GestaoNormas.API
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Gestao Normas", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = Program.AppName, Version = "v1" });
             });
         }
 
@@ -79,7 +79,7 @@ namespace SIGO.GestaoNormas.API
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Gestao Normas");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", Program.AppName);
             });
 
             ConfigureEventBus(app);

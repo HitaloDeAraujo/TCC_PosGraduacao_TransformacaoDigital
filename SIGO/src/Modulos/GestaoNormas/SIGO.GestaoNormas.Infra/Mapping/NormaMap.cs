@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SIGO.GestaoNormas.Domain.Entities;
+using SIGO.Infra;
 using SIGO.Utils;
 
 namespace SIGO.GestaoNormas.Infra.Mapping
@@ -33,11 +34,6 @@ namespace SIGO.GestaoNormas.Infra.Mapping
             Map.Property(x => x.RepositorioID)
                 .HasColumnType(DataTypes.MySQL.INT)
                 .IsRequired();
-
-            modelBuilder.Entity<Repositorio>()
-                .HasMany(b => b.Normas)
-                .WithOne()
-                .HasForeignKey(x => x.RepositorioID);
         }
     }
 }

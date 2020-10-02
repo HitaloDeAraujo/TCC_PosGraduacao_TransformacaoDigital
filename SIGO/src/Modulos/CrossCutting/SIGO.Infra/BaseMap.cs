@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SIGO.Domain.Entities;
 using SIGO.Utils;
 
-namespace SIGO.GestaoNormas.Infra.Mapping
+namespace SIGO.Infra
 {
     public abstract class BaseMap<T> where T : EntidadeBase
     {
@@ -28,8 +28,7 @@ namespace SIGO.GestaoNormas.Infra.Mapping
 
             Map.Property(x => x.DataExclusao)
                .HasColumnType(DataTypes.MySQL.DATETIME)
-               .IsRequired(false)
-               .IsRequired();
+               .IsRequired(false);
         }
     }
 }

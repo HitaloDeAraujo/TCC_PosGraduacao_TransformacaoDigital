@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <Folder Include="Connection\" />
-    <Folder Include="Mapping\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
