@@ -6,3 +6,6 @@ Senha MySQL Sigo@28786Ms
 
 dotnet ef migrations add MigracaoInicial --startup-project ../SIGO.GestaoNormas.API
 dotnet ef database update --startup-project ../SIGO.GestaoNormas.API
+
+dotnet ef migrations add MigracaoInicial --startup-project ../SIGO.GestaoProcessoIndustrial.API
+dotnet ef database update --startup-project ../SIGO.GestaoProcessoIndustrial.API
