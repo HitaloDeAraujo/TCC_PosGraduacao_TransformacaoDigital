@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SIGO.GestaoNormas.API.IntegrationEvents;
-using SIGO.GestaoNormas.API.IntegrationEvents.Events;
-using SIGO.GestaoNormas.Domain.Entities;
 using SIGO.GestaoNormas.Domain.Interfaces.Service;
 using System.Threading.Tasks;
 
@@ -18,8 +16,8 @@ namespace SIGO.GestaoNormas.API.Controllers
         {
             _normaService = normaService;
 
-            gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new NormaCadastradaIntegrationEvent(1, "Norma 1"));
-            gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new NormaCadastradaIntegrationEvent(2, "Norma 2"));
+            //gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new NormaCadastradaIntegrationEvent(1, "Norma 1"));
+            //gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new NormaCadastradaIntegrationEvent(2, "Norma 2"));
         }
 
         [HttpGet]
@@ -31,8 +29,13 @@ namespace SIGO.GestaoNormas.API.Controllers
             return Ok(normas);
         }
 
-        private static void receive()
+        [HttpGet]
+        [Route("{guid}")]
+        public async Task<IActionResult> Get(string guid)
         {
+            var norma = await _normaService.ObterNorma(guid);
+
+            return Ok(norma);
         }
     }
 }

@@ -6,6 +6,6 @@ namespace SIGO.Domain.Entities
     {
         public int ID { get; set; }
         public DateTime DataCriacao { get; set; }
-        public DateTime DataExclusao { get; set; }
+        public DateTime? DataExclusao { get; set; }
     }
 }

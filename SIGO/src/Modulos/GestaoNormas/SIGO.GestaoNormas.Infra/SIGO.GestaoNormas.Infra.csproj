@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CrossCutting\SIGO.Utils\SIGO.Utils.csproj" />
     <ProjectReference Include="..\SIGO.GestaoNormas.Domain\SIGO.GestaoNormas.Domain.csproj" />
   </ItemGroup>
 

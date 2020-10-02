@@ -64,7 +64,7 @@ namespace SIGO.GestaoNormas.Infra.Repository
         {
             try
             {
-                return await _context.Normas.SingleOrDefaultAsync(x => x.GUID.Equals(guid));
+                return await _context.Normas.SingleOrDefaultAsync(x => x.GUID.ToString().Equals(guid));
             }
             catch
             {
@@ -76,27 +76,7 @@ namespace SIGO.GestaoNormas.Infra.Repository
         {
             try
             {
-                List<Norma> normas = new List<Norma>();
-
-                Norma norma = new Norma()
-                {
-                    GUID = Guid.NewGuid(),
-                    Descricao = "Teste"
-                };
-
-                normas.Add(norma);
-
-                norma = new Norma()
-                {
-                    GUID = Guid.NewGuid(),
-                    Descricao = "Teste2"
-                };
-
-                normas.Add(norma);
-
-                return normas;
-
-                //return await _context.Normas.ToListAsync();
+                return await _context.Normas.ToListAsync();
             }
             catch
             {

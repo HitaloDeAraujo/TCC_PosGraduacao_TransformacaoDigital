@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using RabbitMQ.Client;
 using SIGO.Bus.EventBus;
 using SIGO.Bus.EventBus.Abstractions;
@@ -36,6 +37,12 @@ namespace SIGO.GestaoNormas.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = Configuration["ConnectionStrings:GestaoNormasConnection"];
+
+            services.AddDbContext<GestaoNormasDbContext>(options =>
+                options.UseMySql(connection)
+            );
+
             services.AddControllers();
 
             services.AddEventBus(Configuration)
@@ -45,6 +52,11 @@ namespace SIGO.GestaoNormas.API
 
             services.AddScoped<IDapperDbConnection, DapperDbConnection>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Gestao Normas", Version = "v1" });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -61,6 +73,13 @@ namespace SIGO.GestaoNormas.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Gestao Normas");
             });
 
             ConfigureEventBus(app);

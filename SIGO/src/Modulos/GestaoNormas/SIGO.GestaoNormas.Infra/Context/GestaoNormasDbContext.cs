@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using SIGO.GestaoNormas.Domain.Entities;
 using System;
 using System.Linq;
@@ -9,15 +8,8 @@ namespace SIGO.GestaoNormas.Infra.Context
 {
     public class GestaoNormasDbContext : DbContext
     {
-        private IConfiguration _configuration;
-
-        //public GestaoNormasDbContext()
-        //{
-        //}
-
-        public GestaoNormasDbContext(IConfiguration configuration)
+        public GestaoNormasDbContext(DbContextOptions<GestaoNormasDbContext> options) : base(options)
         {
-            _configuration = configuration;
         }
 
         #region DbSet
@@ -25,11 +17,6 @@ namespace SIGO.GestaoNormas.Infra.Context
         public DbSet<Norma> Normas { get; set; }
 
         #endregion
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseMySql(_configuration["ConnectionStrings:GestaoNormasConnection"]);
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,6 +30,29 @@ namespace SIGO.GestaoNormas.Infra.Context
             //new RepositorioMap(modelBuilder);
 
             #endregion
+
+            modelBuilder.Entity<Repositorio>().HasData(
+               new Repositorio
+               {
+                   ID = 1,
+                   DataCriacao = DateTime.Now,
+                   GUID = Guid.NewGuid(),
+                   URL = "https://github.com/HitaloDeAraujo",
+                   Nome = "Hitalo de Araujo",
+                   Descricao = "Repositório de Hitalo de Araujo"
+               });
+
+            modelBuilder.Entity<Norma>().HasData(
+                new Norma
+                {
+                    ID = 1,
+                    DataCriacao = DateTime.Now,
+                    GUID = Guid.NewGuid(),
+                    URL = "https://github.com/HitaloDeAraujo/AgenteConversacao/blob/master/HITALO%20ARAUJO%20PROJETO%20E%20DESENVOLVIMENTO%20DE%20UM%20ARCABOU%C3%87O%20DE%20AGENTE%20DE%20CONVERSA%C3%87%C3%83O%20-%2011.pdf",
+                    Titulo = "Norma de Criação de Agentes de Conversação",
+                    Descricao = "Norma de Criação de Agentes de Conversação criada por Hitalo de Araujo",
+                    RepositorioID = 1
+                });
         }
 
         public async Task<int> SaveChangesAsync()
