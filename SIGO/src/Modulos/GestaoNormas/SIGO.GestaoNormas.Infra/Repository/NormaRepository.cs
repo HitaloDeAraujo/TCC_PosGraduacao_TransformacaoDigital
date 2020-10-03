@@ -14,7 +14,7 @@ namespace SIGO.GestaoNormas.Infra.Repository
     {
         private readonly GestaoNormasDbContext _context;
 
-        public NormaRepository(GestaoNormasDbContext context, IDapperDbConnection dbConnection) : base(dbConnection)
+        public NormaRepository(GestaoNormasDbContext context, IDapperDbConnection dapperDbConnection) : base(dapperDbConnection)
         {
             _context = context;
         }

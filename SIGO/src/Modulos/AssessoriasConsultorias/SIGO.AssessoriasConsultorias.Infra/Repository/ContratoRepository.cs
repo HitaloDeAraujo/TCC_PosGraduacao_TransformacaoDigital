@@ -14,7 +14,7 @@ namespace SIGO.AssessoriasConsultorias.Infra.Repository
     {
         private readonly AssessoriasConsultoriasDbContext _context;
 
-        public ContratoRepository(AssessoriasConsultoriasDbContext context, IDapperDbConnection dbConnection) : base(dbConnection)
+        public ContratoRepository(AssessoriasConsultoriasDbContext context, IDapperDbConnection dapperDbConnection) : base(dapperDbConnection)
         {
             _context = context;
         }

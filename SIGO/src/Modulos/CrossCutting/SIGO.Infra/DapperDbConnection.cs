@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -6,11 +7,11 @@ namespace SIGO.Infra
 {
     public class DapperDbConnection : IDapperDbConnection
     {
-        private SqlConnection Connection = null;
+        private MySqlConnection Connection = null;
 
         public DapperDbConnection(IConfiguration configuration)
         {
-            Connection = new SqlConnection(configuration[""]);
+            Connection = new MySqlConnection("Server=localhost;DataBase=AssessoriasConsultorias;Uid=root;Pwd=Sigo@28786Ms");
         }
 
         public void Dispose()
@@ -32,7 +33,7 @@ namespace SIGO.Infra
             }
         }
 
-        public SqlConnection GetConnection()
+        public MySqlConnection GetConnection()
         {
             return Connection;
         }

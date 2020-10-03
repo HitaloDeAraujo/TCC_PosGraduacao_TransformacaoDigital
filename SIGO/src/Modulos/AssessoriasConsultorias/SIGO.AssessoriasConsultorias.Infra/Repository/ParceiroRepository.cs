@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
 using SIGO.AssessoriasConsultorias.Domain.Entities;
 using SIGO.AssessoriasConsultorias.Domain.Interfaces.Repository;
 using SIGO.AssessoriasConsultorias.Infra.Context;
@@ -14,7 +15,7 @@ namespace SIGO.AssessoriasConsultorias.Infra.Repository
     {
         private readonly AssessoriasConsultoriasDbContext _context;
 
-        public ParceiroRepository(AssessoriasConsultoriasDbContext context, IDapperDbConnection dbConnection) : base(dbConnection)
+        public ParceiroRepository(AssessoriasConsultoriasDbContext context, IDapperDbConnection dapperDbConnection) : base(dapperDbConnection)
         {
             _context = context;
         }
@@ -78,7 +79,25 @@ namespace SIGO.AssessoriasConsultorias.Infra.Repository
         {
             try
             {
+                string sqlParceiros = "SELECT Nome FROM parceiros;";
+
+                var parceiros = DapperConnection.Query<Parceiro>(sqlParceiros).ToList();
+
                 return await _context.Parceiros.Where(x => x.DataExclusao == null).ToListAsync();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<Parceiro>> ObterParceiros_Dapper()
+        {
+            try
+            {
+                string sqlParceiros = "SELECT Nome FROM parceiros;";
+
+                return (await DapperConnection.QueryAsync<Parceiro>(sqlParceiros)).ToList();
             }
             catch
             {

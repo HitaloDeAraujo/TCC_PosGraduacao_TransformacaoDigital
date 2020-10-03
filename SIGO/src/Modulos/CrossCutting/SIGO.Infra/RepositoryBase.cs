@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace SIGO.Infra
 {
     public abstract class RepositoryBase
     {
-        protected SqlConnection DapperConnection = null;
+        protected MySqlConnection DapperConnection = null;
         protected DbContext Context = null;
 
         public RepositoryBase(IDapperDbConnection dapperDbConnection)
