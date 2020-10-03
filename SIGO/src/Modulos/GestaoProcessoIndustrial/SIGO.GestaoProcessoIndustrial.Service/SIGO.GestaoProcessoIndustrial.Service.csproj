@@ -1,10 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Simuladores\SIGO.Simuladores.AD\SIGO.Simuladores.AD.csproj" />
+    <ProjectReference Include="..\..\CrossCutting\SIGO.Utils\SIGO.Utils.csproj" />
     <ProjectReference Include="..\SIGO.GestaoProcessoIndustrial.Domain\SIGO.GestaoProcessoIndustrial.Domain.csproj" />
   </ItemGroup>
 

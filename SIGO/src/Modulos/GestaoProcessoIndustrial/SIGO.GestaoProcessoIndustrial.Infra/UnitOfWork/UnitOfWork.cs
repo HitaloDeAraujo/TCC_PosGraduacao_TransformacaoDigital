@@ -4,8 +4,6 @@ using SIGO.GestaoProcessoIndustrial.Infra.Context;
 using SIGO.GestaoProcessoIndustrial.Infra.Repository;
 using SIGO.Infra;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SIGO.GestaoProcessoIndustrial.Infra.UnitOfWork
@@ -16,14 +14,15 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.UnitOfWork
         private readonly IDapperDbConnection _dapperDbConnection;
 
         public IEventoRepository Eventos { get; set; }
+        public IUsuarioRepository Usuarios { get; set; }
 
         public UnitOfWork(GestaoProcessoIndustrialDbContext context, IDapperDbConnection dapperDbConnection)
         {
             _context = context;
             _dapperDbConnection = dapperDbConnection;
-            //_dapperDbConnection.OpenConnection();
 
             Eventos = new EventoRepository(_context, _dapperDbConnection);
+            Usuarios = new UsuarioRepository(_context, _dapperDbConnection);
         }
 
         public int Commit()

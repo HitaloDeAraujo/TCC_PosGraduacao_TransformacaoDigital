@@ -20,7 +20,12 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Mapping
             Map.Property(x => x.Nome)
                 .HasColumnType(DataTypes.MySQL.STRING)
                 .IsRequired()
-                .HasMaxLength(DataLength.TEXT_MEDIUM);          
+                .HasMaxLength(DataLength.TEXT_MEDIUM);
+
+            Map.Property(x => x.Matricula)
+                .HasColumnType(DataTypes.MySQL.STRING)
+                .IsRequired()
+                .HasMaxLength(DataLength.TEXT_SHORT);
         }
     }
 }

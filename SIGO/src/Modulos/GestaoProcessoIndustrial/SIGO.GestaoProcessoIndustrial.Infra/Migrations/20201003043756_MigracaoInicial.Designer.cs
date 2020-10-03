@@ -9,7 +9,7 @@ using SIGO.GestaoProcessoIndustrial.Infra.Context;
 namespace SIGO.GestaoProcessoIndustrial.Infra.Migrations
 {
     [DbContext(typeof(GestaoProcessoIndustrialDbContext))]
-    [Migration("20201002173019_MigracaoInicial")]
+    [Migration("20201003043756_MigracaoInicial")]
     partial class MigracaoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,9 +63,9 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Migrations
                         new
                         {
                             ID = 1,
-                            DataCriacao = new DateTime(2020, 10, 2, 14, 30, 18, 458, DateTimeKind.Local).AddTicks(2402),
+                            DataCriacao = new DateTime(2020, 10, 3, 1, 37, 56, 236, DateTimeKind.Local).AddTicks(216),
                             Descricao = "Desc",
-                            GUID = "91ab59ec-a097-4009-bc46-feef53c2bdc7",
+                            GUID = "0a08947d-07b9-48a6-9d4a-39378054bc02",
                             Grau = 1,
                             Nome = "Norma Cadastrada",
                             TipoEventoID = 1
@@ -97,13 +97,13 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Migrations
                         new
                         {
                             ID = 1,
-                            DataCriacao = new DateTime(2020, 10, 2, 14, 30, 18, 452, DateTimeKind.Local).AddTicks(7584),
+                            DataCriacao = new DateTime(2020, 10, 3, 1, 37, 56, 233, DateTimeKind.Local).AddTicks(3751),
                             Nome = "Norma Cadastrada"
                         },
                         new
                         {
                             ID = 2,
-                            DataCriacao = new DateTime(2020, 10, 2, 14, 30, 18, 455, DateTimeKind.Local).AddTicks(3215),
+                            DataCriacao = new DateTime(2020, 10, 3, 1, 37, 56, 234, DateTimeKind.Local).AddTicks(6168),
                             Nome = "Norma Atualizada"
                         });
                 });
@@ -114,22 +114,65 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("DATETIME");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DataExclusao")
-                        .HasColumnType("DATETIME");
+                        .HasColumnType("datetime(6)");
 
-                    b.Property<string>("GUID")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("longtext")
-                        .HasMaxLength(36);
+                    b.Property<string>("Email")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<Guid>("GUID")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Id")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Matricula")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasMaxLength(100);
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
@@ -139,9 +182,18 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Migrations
                         new
                         {
                             ID = 1,
-                            DataCriacao = new DateTime(2020, 10, 2, 14, 30, 18, 458, DateTimeKind.Local).AddTicks(9454),
-                            GUID = "cf78be93-bd6a-4bbc-b36a-9850fedd107a",
-                            Nome = "Hitalo"
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1c0ffc2a-e901-42f8-b1f3-46e2be47b64d",
+                            DataCriacao = new DateTime(2020, 10, 3, 1, 37, 56, 236, DateTimeKind.Local).AddTicks(6848),
+                            EmailConfirmed = false,
+                            GUID = new Guid("200a868e-33ff-40e0-b315-ff0989f4c16e"),
+                            Id = "442b6832-5898-4795-9a0e-a1ae33348af3",
+                            LockoutEnabled = false,
+                            Matricula = "123",
+                            Nome = "Hitalo",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "f6d0a1b8-92f0-440d-9e73-0d5e8ef384ed",
+                            TwoFactorEnabled = false
                         });
                 });
 

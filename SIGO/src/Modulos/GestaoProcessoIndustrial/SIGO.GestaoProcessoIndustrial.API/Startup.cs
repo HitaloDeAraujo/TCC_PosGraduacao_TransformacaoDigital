@@ -1,11 +1,14 @@
 using Autofac;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RabbitMQ.Client;
 using SIGO.Bus.EventBus;
@@ -15,6 +18,7 @@ using SIGO.Bus.IntegrationEventLogEF.Services;
 using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents;
 using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents.EventHandling;
 using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents.Events;
+using SIGO.GestaoProcessoIndustrial.Domain.Entities;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Repository;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service;
@@ -24,6 +28,8 @@ using SIGO.GestaoProcessoIndustrial.Infra.UnitOfWork;
 using SIGO.GestaoProcessoIndustrial.Service;
 using SIGO.Infra;
 using SIGO.Utils;
+using System;
+using System.Text;
 
 namespace SIGO.GestaoProcessoIndustrial.API
 {
@@ -43,6 +49,22 @@ namespace SIGO.GestaoProcessoIndustrial.API
             services.AddDbContext<GestaoProcessoIndustrialDbContext>(options =>
                 options.UseMySql(connection)
             );
+
+            services.AddIdentity<UsuarioIdentityUser, IdentityRole>()
+                    .AddEntityFrameworkStores<GestaoProcessoIndustrialDbContext>()
+                    .AddDefaultTokenProviders();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["jwt:key"])),
+                    ClockSkew = TimeSpan.Zero
+                });
+
 
             services.AddControllers();
 
@@ -162,6 +184,7 @@ namespace SIGO.GestaoProcessoIndustrial.API
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<IEventoService, EventoService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
 
             return services;
         }
@@ -169,7 +192,8 @@ namespace SIGO.GestaoProcessoIndustrial.API
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IEventoRepository, EventoRepository>();
-            
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
             return services;
         }
     }

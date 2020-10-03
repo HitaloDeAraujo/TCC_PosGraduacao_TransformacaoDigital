@@ -12,5 +12,6 @@ namespace SIGO.GestaoProcessoIndustrial.Domain.Interfaces
         Task<int> CommitAsync();
 
         IEventoRepository Eventos { get; }
+        IUsuarioRepository Usuarios { get; }
     }
 }

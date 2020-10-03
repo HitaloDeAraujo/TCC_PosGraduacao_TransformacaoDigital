@@ -69,7 +69,8 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Context
                  ID = 1,
                  DataCriacao = DateTime.Now,
                  GUID = Guid.NewGuid(),
-                 Nome = "Hitalo"
+                 Nome = "Hitalo",
+                 Matricula = "123"
              });
         }
 

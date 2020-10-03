@@ -1,25 +1,28 @@
 ﻿using SIGO.GestaoProcessoIndustrial.Domain.Entities;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service;
+using SIGO.Simuladores.AD;
+using SIGO.Utils;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SIGO.GestaoProcessoIndustrial.Service
 {
-    public class EventoService : IEventoService
+    public class UsuarioService : IUsuarioService
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public EventoService(IUnitOfWork unitOfWork)
+        public UsuarioService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Evento> Salvar(Evento evento)
+        public async Task<Usuario> Salvar(Usuario usuario)
         {
             try
             {
-                await _unitOfWork.Eventos.Salvar(evento);
+                await _unitOfWork.Usuarios.Salvar(usuario);
                 await _unitOfWork.CommitAsync();
             }
             catch
@@ -27,14 +30,14 @@ namespace SIGO.GestaoProcessoIndustrial.Service
                 throw;
             }
 
-            return evento;
+            return usuario;
         }
 
-        public async Task Atualizar(Evento evento)
+        public async Task Atualizar(Usuario usuario)
         {
             try
             {
-                _unitOfWork.Eventos.Atualizar(evento);
+                _unitOfWork.Usuarios.Atualizar(usuario);
                 await _unitOfWork.CommitAsync();
             }
             catch
@@ -47,7 +50,7 @@ namespace SIGO.GestaoProcessoIndustrial.Service
         {
             try
             {
-                await _unitOfWork.Eventos.Excluir(guid);
+                await _unitOfWork.Usuarios.Excluir(guid);
                 await _unitOfWork.CommitAsync();
             }
             catch
@@ -56,32 +59,39 @@ namespace SIGO.GestaoProcessoIndustrial.Service
             }
         }
 
-        public async Task<Evento> ObterEvento(string guid)
+        public async Task<Usuario> ObterUsuario(string guid)
         {
-            var evento = new Evento();
+            var usuario = new Usuario();
 
             try
             {
-                evento = await _unitOfWork.Eventos.ObterEvento(guid);
+                usuario = await _unitOfWork.Usuarios.ObterUsuario(guid);
             }
             catch
             {
                 throw;
             }
 
-            return evento;
+            return usuario;
         }
 
-        public async Task<List<Evento>> ObterEventos()
+        public async Task<List<Usuario>> ObterUsuarios()
         {
             try
             {
-                return await _unitOfWork.Eventos.ObterEventos();
+                return await _unitOfWork.Usuarios.ObterUsuarios();
             }
             catch
             {
                 throw;
             }
+        }
+
+        public async Task<bool> Autenticar(string matricula, string senha)
+        {
+            var usuario = await _unitOfWork.Usuarios.ObterUsuarioPorMatricula(matricula);
+
+            return usuario != null && UsuariosAD.AutenticarComAD(usuario.Matricula, Seguranca.Encriptar(senha));
         }
     }
 }
