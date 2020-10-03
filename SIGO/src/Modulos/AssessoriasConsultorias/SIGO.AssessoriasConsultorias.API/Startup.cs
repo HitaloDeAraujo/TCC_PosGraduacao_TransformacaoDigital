@@ -6,14 +6,22 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using RabbitMQ.Client;
 using SIGO.AssessoriasConsultorias.API.IntegrationEvents;
 using SIGO.AssessoriasConsultorias.API.IntegrationEvents.EventHandling;
+using SIGO.AssessoriasConsultorias.Domain.Interfaces;
+using SIGO.AssessoriasConsultorias.Domain.Interfaces.Repository;
+using SIGO.AssessoriasConsultorias.Domain.Interfaces.Service;
 using SIGO.AssessoriasConsultorias.Infra.Context;
+using SIGO.AssessoriasConsultorias.Infra.Repository;
+using SIGO.AssessoriasConsultorias.Infra.UnitOfWork;
+using SIGO.AssessoriasConsultorias.Service;
 using SIGO.Bus.EventBus;
 using SIGO.Bus.EventBus.Abstractions;
 using SIGO.Bus.EventBusRabbitMQ;
 using SIGO.Bus.IntegrationEventLogEF.Services;
+using SIGO.Infra;
 using SIGO.Utils;
 
 namespace SIGO.AssessoriasConsultorias.API
@@ -30,19 +38,33 @@ namespace SIGO.AssessoriasConsultorias.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = Configuration["ConnectionStrings:AssessoriasConsultoriasConnection"];
+
+            services.AddDbContext<AssessoriasConsultoriasDbContext>(options =>
+                options.UseMySql(connection)
+            );
+
             services.AddControllers();
 
             services.AddEventBus(Configuration)
-                   .AddIntegrationServices(Configuration);
+                    .AddIntegrationServices(Configuration)
+                    .AddServices()
+                    .AddRepositories();
+
+            services.AddScoped<IDapperDbConnection, DapperDbConnection>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = Program.AppName, Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
 
             app.UseHttpsRedirection();
 
@@ -53,6 +75,13 @@ namespace SIGO.AssessoriasConsultorias.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", Program.AppName);
             });
 
             ConfigureEventBus(app);
@@ -124,6 +153,22 @@ namespace SIGO.AssessoriasConsultorias.API
 
             services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
             services.AddTransient<ContratoVencendoIntegrationEventHandler>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            services.AddScoped<IContratoService, ContratoService>();
+            services.AddScoped<IParceiroService, ParceiroService>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IContratoRepository, ContratoRepository>();
+            services.AddScoped<IParceiroRepository, ParceiroRepository>();
 
             return services;
         }

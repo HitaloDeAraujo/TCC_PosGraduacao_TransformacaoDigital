@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using SIGO.AssessoriasConsultorias.Domain.Entities;
+using SIGO.AssessoriasConsultorias.Domain.Enums;
+using SIGO.AssessoriasConsultorias.Infra.Mapping;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,23 +10,16 @@ namespace SIGO.AssessoriasConsultorias.Infra.Context
 {
     public class AssessoriasConsultoriasDbContext : DbContext
     {
-        private IConfiguration _configuration;
-
-        public AssessoriasConsultoriasDbContext(IConfiguration configuration)
+        public AssessoriasConsultoriasDbContext(DbContextOptions<AssessoriasConsultoriasDbContext> options) : base(options)
         {
-            _configuration = configuration;
         }
 
         #region DbSet
 
-        //public DbSet<Repositorio> Repositorios { get; set; }
+        public DbSet<Contrato> Contratos { get; set; }
+        public DbSet<Parceiro> Parceiros{ get; set; }
 
         #endregion
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //optionsBuilder.UseSqlServer(_configuration["ConnectionStrings:DoctorCnnSqlServer"]);
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,9 +30,33 @@ namespace SIGO.AssessoriasConsultorias.Infra.Context
 
             #region Mapeamento
 
-            //new RepositorioMap(modelBuilder);
+            new ContratoMap(modelBuilder);
+            new ParceiroMap(modelBuilder);
 
             #endregion
+
+            modelBuilder.Entity<Parceiro>().HasData(
+               new Parceiro
+               {
+                   ID = 1,
+                   DataCriacao = DateTime.Now,
+                   GUID = Guid.NewGuid(),
+                   Nome = "Contrato 1",
+                   Descricao = "Descrição 1",
+                   Tipo = TipoParceiro.Assessoria
+               });
+
+            modelBuilder.Entity<Contrato>().HasData(
+               new Contrato
+               {
+                   ID = 1,
+                   DataCriacao = DateTime.Now,
+                   GUID = Guid.NewGuid(),
+                   Nome = "Contrato 1",
+                   Descricao = "Descrição 1",
+                   URL = "URL",
+                   ParceiroID = 1
+               });
         }
 
         public async Task<int> SaveChangesAsync()

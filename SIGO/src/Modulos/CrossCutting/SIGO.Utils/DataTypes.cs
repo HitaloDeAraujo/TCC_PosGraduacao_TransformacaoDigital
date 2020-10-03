@@ -11,6 +11,7 @@
             public const string LONG = "DOUBLE";
             public const string DATETIME = "DATETIME";
             public const string DOUBLE = "DOUBLE";
+            public const string SHORT = "smallint";
         }
     }
 }

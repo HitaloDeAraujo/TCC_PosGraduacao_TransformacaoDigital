@@ -9,3 +9,6 @@ dotnet ef database update --startup-project ../SIGO.GestaoNormas.API
 
 dotnet ef migrations add MigracaoInicial --startup-project ../SIGO.GestaoProcessoIndustrial.API
 dotnet ef database update --startup-project ../SIGO.GestaoProcessoIndustrial.API
+
+dotnet ef migrations add MigracaoInicial --startup-project ../SIGO.AssessoriasConsultorias.API
+dotnet ef database update --startup-project ../SIGO.AssessoriasConsultorias.API
