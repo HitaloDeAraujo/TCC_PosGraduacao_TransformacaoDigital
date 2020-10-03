@@ -7,6 +7,7 @@ namespace SIGO.GestaoNormas.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class NormaController : ControllerBase
     {
         private readonly INormaService _normaService;
@@ -21,7 +22,6 @@ namespace SIGO.GestaoNormas.API.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
         public async Task<IActionResult> Get()
         {
             var normas = await _normaService.ObterNormas();

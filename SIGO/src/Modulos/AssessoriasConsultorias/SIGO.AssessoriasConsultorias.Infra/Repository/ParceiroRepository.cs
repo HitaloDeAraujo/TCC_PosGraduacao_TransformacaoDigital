@@ -66,7 +66,7 @@ namespace SIGO.AssessoriasConsultorias.Infra.Repository
         {
             try
             {
-                return await _context.Parceiros.SingleOrDefaultAsync(x => x.GUID.ToString().Equals(guid) && x.DataExclusao != null);
+                return await _context.Parceiros.SingleOrDefaultAsync(x => x.GUID.ToString().Equals(guid) && x.DataExclusao == null);
             }
             catch
             {
@@ -78,7 +78,7 @@ namespace SIGO.AssessoriasConsultorias.Infra.Repository
         {
             try
             {
-                return await _context.Parceiros.Where(x => x.DataExclusao != null).ToListAsync();
+                return await _context.Parceiros.Where(x => x.DataExclusao == null).ToListAsync();
             }
             catch
             {

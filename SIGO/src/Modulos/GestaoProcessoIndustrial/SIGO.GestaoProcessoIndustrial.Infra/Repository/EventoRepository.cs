@@ -14,7 +14,7 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Repository
     {
         private readonly GestaoProcessoIndustrialDbContext _context;
 
-        public EventoRepository(GestaoProcessoIndustrialDbContext context, IDapperDbConnection dbConnection) : base(dbConnection)
+        public EventoRepository(GestaoProcessoIndustrialDbContext context, IDapperDbConnection dapperDbConnection) : base(dapperDbConnection)
         {
             _context = context;
         }

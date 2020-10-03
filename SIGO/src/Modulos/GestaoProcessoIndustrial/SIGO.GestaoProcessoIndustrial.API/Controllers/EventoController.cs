@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SIGO.GestaoProcessoIndustrial.Domain.Entities;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service;
 using System.Threading.Tasks;
 
@@ -7,6 +6,7 @@ namespace SIGO.GestaoProcessoIndustrial.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class EventoController : ControllerBase
     {
         private readonly IEventoService _eventoService;
@@ -17,7 +17,6 @@ namespace SIGO.GestaoProcessoIndustrial.API.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
         public async Task<IActionResult> Get()
         {
             var eventos = await _eventoService.ObterEventos();
