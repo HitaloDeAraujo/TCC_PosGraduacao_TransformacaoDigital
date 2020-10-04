@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SIGO.AssessoriasConsultorias.Domain.Entities;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SIGO.AssessoriasConsultorias.Domain.Interfaces.Service;
 using System.Threading.Tasks;
 
@@ -7,6 +7,7 @@ namespace SIGO.AssessoriasConsultorias.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ParceiroController : ControllerBase
     {
         private readonly IParceiroService _parceiroService;
@@ -17,7 +18,6 @@ namespace SIGO.AssessoriasConsultorias.API.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
         public async Task<IActionResult> Get()
         {
             var parceiros = await _parceiroService.ObterParceiros();

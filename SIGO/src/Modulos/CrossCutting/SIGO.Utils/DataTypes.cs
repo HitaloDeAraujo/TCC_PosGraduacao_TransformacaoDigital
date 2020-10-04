@@ -5,7 +5,7 @@
         public static class MySQL
         {
             public const string INT = "int";
-            public const string GUID = "longtext";
+            public const string GUID = "char(36)";
             public const string STRING = "longtext";            
             public const string BOOL = "tinyint(1)";
             public const string LONG = "DOUBLE";

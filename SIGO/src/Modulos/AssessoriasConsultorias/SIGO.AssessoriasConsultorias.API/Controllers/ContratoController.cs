@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SIGO.AssessoriasConsultorias.Domain.Interfaces.Service;
 using System.Threading.Tasks;
 
@@ -6,7 +7,7 @@ namespace SIGO.AssessoriasConsultorias.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class ContratoController : ControllerBase
     {
         private readonly IContratoService _contratoService;

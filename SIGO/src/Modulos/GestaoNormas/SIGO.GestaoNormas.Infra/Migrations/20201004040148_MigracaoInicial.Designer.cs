@@ -9,7 +9,7 @@ using SIGO.GestaoNormas.Infra.Context;
 namespace SIGO.GestaoNormas.Infra.Migrations
 {
     [DbContext(typeof(GestaoNormasDbContext))]
-    [Migration("20201002011159_MigracaoInicial")]
+    [Migration("20201004040148_MigracaoInicial")]
     partial class MigracaoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,25 +26,32 @@ namespace SIGO.GestaoNormas.Infra.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("DATETIME");
 
                     b.Property<DateTime?>("DataExclusao")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("DATETIME");
 
                     b.Property<string>("Descricao")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasMaxLength(200);
 
                     b.Property<Guid>("GUID")
-                        .HasColumnType("char(36)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)")
+                        .HasMaxLength(36);
 
                     b.Property<int>("RepositorioID")
                         .HasColumnType("int");
 
                     b.Property<string>("Titulo")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasMaxLength(100);
 
                     b.Property<string>("URL")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("ID");
 
@@ -56,9 +63,9 @@ namespace SIGO.GestaoNormas.Infra.Migrations
                         new
                         {
                             ID = 1,
-                            DataCriacao = new DateTime(2020, 10, 1, 22, 11, 58, 871, DateTimeKind.Local).AddTicks(5876),
+                            DataCriacao = new DateTime(2020, 10, 4, 1, 1, 47, 750, DateTimeKind.Local).AddTicks(8232),
                             Descricao = "Norma de Criação de Agentes de Conversação criada por Hitalo de Araujo",
-                            GUID = new Guid("7fe6494b-c28a-4fa9-809f-bd63c4bc0aa3"),
+                            GUID = new Guid("1803e4a4-ce59-4abb-a004-0a1a3a2391f7"),
                             RepositorioID = 1,
                             Titulo = "Norma de Criação de Agentes de Conversação",
                             URL = "https://github.com/HitaloDeAraujo/AgenteConversacao/blob/master/HITALO%20ARAUJO%20PROJETO%20E%20DESENVOLVIMENTO%20DE%20UM%20ARCABOU%C3%87O%20DE%20AGENTE%20DE%20CONVERSA%C3%87%C3%83O%20-%2011.pdf"
@@ -72,34 +79,42 @@ namespace SIGO.GestaoNormas.Infra.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("DATETIME");
 
                     b.Property<DateTime?>("DataExclusao")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("DATETIME");
 
                     b.Property<string>("Descricao")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasMaxLength(200);
 
-                    b.Property<Guid>("GUID")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("GUID")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("longtext")
+                        .HasMaxLength(36);
 
                     b.Property<string>("Nome")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasMaxLength(100);
 
                     b.Property<string>("URL")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Repositorio");
+                    b.ToTable("Repositorios");
 
                     b.HasData(
                         new
                         {
                             ID = 1,
-                            DataCriacao = new DateTime(2020, 10, 1, 22, 11, 58, 867, DateTimeKind.Local).AddTicks(2482),
+                            DataCriacao = new DateTime(2020, 10, 4, 1, 1, 47, 748, DateTimeKind.Local).AddTicks(4077),
                             Descricao = "Repositório de Hitalo de Araujo",
-                            GUID = new Guid("ed1a358d-a4b8-46f1-8b83-f20170d8e199"),
+                            GUID = "4b1a7128-2c66-482a-8117-0faba2b69c40",
                             Nome = "Hitalo de Araujo",
                             URL = "https://github.com/HitaloDeAraujo"
                         });
