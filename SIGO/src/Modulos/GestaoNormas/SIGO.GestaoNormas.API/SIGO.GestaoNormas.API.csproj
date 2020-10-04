@@ -32,5 +32,9 @@
     <ProjectReference Include="..\SIGO.GestaoNormas.Service\SIGO.GestaoNormas.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="IntegrationEvents\Events\" />
+  </ItemGroup>
+
 
 </Project>

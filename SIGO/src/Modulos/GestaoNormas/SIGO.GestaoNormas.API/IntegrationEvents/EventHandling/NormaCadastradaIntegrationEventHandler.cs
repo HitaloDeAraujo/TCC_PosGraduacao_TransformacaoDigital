@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Serilog.Context;
 using SIGO.Bus.EventBus.Abstractions;
-using SIGO.GestaoNormas.API.IntegrationEvents.Events;
+using SIGO.Bus.EventBus.Events.SIGO;
 using SIGO.GestaoNormas.Infra.Context;
 using System.Threading.Tasks;
 using static SIGO.Utils.Configuration;

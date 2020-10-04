@@ -33,5 +33,9 @@
     <ProjectReference Include="..\SIGO.GestaoProcessoIndustrial.Service\SIGO.GestaoProcessoIndustrial.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="IntegrationEvents\Events\" />
+  </ItemGroup>
+
 
 </Project>

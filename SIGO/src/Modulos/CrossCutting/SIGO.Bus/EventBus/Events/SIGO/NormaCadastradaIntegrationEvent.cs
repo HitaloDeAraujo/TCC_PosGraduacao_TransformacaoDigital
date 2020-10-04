@@ -1,6 +1,4 @@
-﻿using SIGO.Bus.EventBus.Events;
-
-namespace SIGO.GestaoNormas.API.IntegrationEvents.Events
+﻿namespace SIGO.Bus.EventBus.Events.SIGO
 {
     public class NormaCadastradaIntegrationEvent : IntegrationEvent
     {

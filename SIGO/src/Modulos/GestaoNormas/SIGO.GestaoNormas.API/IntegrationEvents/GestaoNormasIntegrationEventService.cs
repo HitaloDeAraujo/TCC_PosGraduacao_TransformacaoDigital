@@ -45,7 +45,7 @@ namespace SIGO.GestaoNormas.API.IntegrationEvents
             catch (Exception ex)
             {
                 _logger.LogError(ex, "ERROR Publishing integration event: {IntegrationEventId} from {AppName} - ({@IntegrationEvent})", evt.Id, Program.AppName, evt);
-                await _eventLogService.MarkEventAsFailedAsync(evt.Id);
+                //await _eventLogService.MarkEventAsFailedAsync(evt.Id);
             }
         }
 

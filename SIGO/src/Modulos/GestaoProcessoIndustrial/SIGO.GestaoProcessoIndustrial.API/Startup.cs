@@ -12,12 +12,12 @@ using Microsoft.OpenApi.Models;
 using RabbitMQ.Client;
 using SIGO.Bus.EventBus;
 using SIGO.Bus.EventBus.Abstractions;
+using SIGO.Bus.EventBus.Events.SIGO;
 using SIGO.Bus.EventBusRabbitMQ;
 using SIGO.Bus.IntegrationEventLogEF.Services;
 using SIGO.Domain;
 using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents;
 using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents.EventHandling;
-using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents.Events;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Repository;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service;
@@ -28,7 +28,6 @@ using SIGO.GestaoProcessoIndustrial.Service;
 using SIGO.Infra;
 using SIGO.Utils;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SIGO.GestaoProcessoIndustrial.API
 {
@@ -143,6 +142,7 @@ namespace SIGO.GestaoProcessoIndustrial.API
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
             eventBus.Subscribe<NormaCadastradaIntegrationEvent, NormaCadastradaIntegrationEventHandler>();
+            eventBus.Subscribe<EstoqueMinimoIntegrationEvent, EstoqueMinimoIntegrationEventHandler>();
         }
     }
 
@@ -205,6 +205,7 @@ namespace SIGO.GestaoProcessoIndustrial.API
 
             services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
             services.AddTransient<NormaCadastradaIntegrationEventHandler>();
+            services.AddTransient<EstoqueMinimoIntegrationEventHandler>();
 
             return services;
         }
