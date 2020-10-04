@@ -23,9 +23,9 @@ namespace SIGO.GestaoProcessoIndustrial.API.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Post([FromBody] UsuarioDTO usuarioDTO)
+        public async Task<IActionResult> Post([FromBody] LoginDTO loginDTO)
         {
-            var result = await _usuarioService.Autenticar(usuarioDTO.Email, usuarioDTO.Senha);
+            var result = await _usuarioService.Autenticar(loginDTO.Email, loginDTO.Senha);
 
             if (result != null)
             {

@@ -98,7 +98,9 @@ namespace SIGO.GestaoProcessoIndustrial.Service
                 UsuarioAD usuarioAD = new UsuarioAD()
                 {
                     Email = email,
-                    Senha = Seguranca.Encriptar(senha)
+                    Senha = Seguranca.Encriptar(senha),
+                    Nome = usuario.Nome,
+                    Grupos = usuario.Grupos
                 };
 
                 if (usuarioAD.AutenticarComAD())
@@ -106,7 +108,8 @@ namespace SIGO.GestaoProcessoIndustrial.Service
                     usuarioDTO = new UsuarioDTO()
                     {
                         Email = email,
-                        Grupos = ""
+                        Nome = usuario.Nome,
+                        Grupos = usuario.Grupos
                     };
                 }
             }

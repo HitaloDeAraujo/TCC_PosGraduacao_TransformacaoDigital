@@ -69,7 +69,7 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Context
                 DataCriacao = DateTime.Now,
                 GUID = Guid.NewGuid(),
                 Nome = "Hitalo",
-                Email = "123"
+                Email = "hitalo@hitalo.dev"
             };
 
             usuario.AdicionarGrupo(Usuario.Grupo.ADMINISTRADOR);
