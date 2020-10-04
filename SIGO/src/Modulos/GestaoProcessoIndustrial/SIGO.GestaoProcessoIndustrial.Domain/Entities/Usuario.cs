@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using SIGO.Domain.Entities;
+﻿using SIGO.Domain.Entities;
 using System;
 
 namespace SIGO.GestaoProcessoIndustrial.Domain.Entities
@@ -8,10 +7,6 @@ namespace SIGO.GestaoProcessoIndustrial.Domain.Entities
     {
         public Guid GUID { get; set; }
         public string Nome { get; set; }
-        public string Matricula { get; set; }
-    }
-
-    public class UsuarioIdentityUser : IdentityUser
-    {
+        public string Email { get; set; }
     }
 }

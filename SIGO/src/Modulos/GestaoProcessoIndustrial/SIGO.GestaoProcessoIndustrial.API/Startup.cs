@@ -2,7 +2,6 @@ using Autofac;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +17,6 @@ using SIGO.Bus.IntegrationEventLogEF.Services;
 using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents;
 using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents.EventHandling;
 using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents.Events;
-using SIGO.GestaoProcessoIndustrial.Domain.Entities;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Repository;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service;
@@ -28,7 +26,7 @@ using SIGO.GestaoProcessoIndustrial.Infra.UnitOfWork;
 using SIGO.GestaoProcessoIndustrial.Service;
 using SIGO.Infra;
 using SIGO.Utils;
-using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace SIGO.GestaoProcessoIndustrial.API
@@ -50,21 +48,26 @@ namespace SIGO.GestaoProcessoIndustrial.API
                 options.UseMySql(connection)
             );
 
-            services.AddIdentity<UsuarioIdentityUser, IdentityRole>()
-                    .AddEntityFrameworkStores<GestaoProcessoIndustrialDbContext>()
-                    .AddDefaultTokenProviders();
+            Program.AppKey = Configuration["JWT:Key"];
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-                options.TokenValidationParameters = new TokenValidationParameters
+            var key = Encoding.ASCII.GetBytes(Program.AppKey);
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["jwt:key"])),
-                    ClockSkew = TimeSpan.Zero
-                });
-
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
 
             services.AddControllers();
 
@@ -79,6 +82,33 @@ namespace SIGO.GestaoProcessoIndustrial.API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = Program.AppName, Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description =
+        "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+{
+    {
+        new OpenApiSecurityScheme
+        {
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.SecurityScheme,
+                Id = "Bearer"
+            },
+            Scheme = "oauth2",
+            Name = "Bearer",
+            In = ParameterLocation.Header,
+
+        },
+        new List<string>()
+    }
+});
             });
         }
 
@@ -94,7 +124,9 @@ namespace SIGO.GestaoProcessoIndustrial.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
@@ -113,6 +145,9 @@ namespace SIGO.GestaoProcessoIndustrial.API
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
         {
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
             eventBus.Subscribe<NormaCadastradaIntegrationEvent, NormaCadastradaIntegrationEventHandler>();
         }

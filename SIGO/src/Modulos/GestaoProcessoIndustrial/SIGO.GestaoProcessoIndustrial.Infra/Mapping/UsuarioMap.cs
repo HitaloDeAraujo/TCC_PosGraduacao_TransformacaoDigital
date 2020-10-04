@@ -22,7 +22,7 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Mapping
                 .IsRequired()
                 .HasMaxLength(DataLength.TEXT_MEDIUM);
 
-            Map.Property(x => x.Matricula)
+            Map.Property(x => x.Email)
                 .HasColumnType(DataTypes.MySQL.STRING)
                 .IsRequired()
                 .HasMaxLength(DataLength.TEXT_SHORT);

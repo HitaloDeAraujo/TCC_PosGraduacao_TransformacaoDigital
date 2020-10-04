@@ -10,7 +10,7 @@ namespace SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Repository
         void Atualizar(Usuario usuario);
         Task Excluir(string guid);
         Task<Usuario> ObterUsuario(string guid);
-        Task<Usuario> ObterUsuarioPorMatricula(string matricula);
+        Task<Usuario> ObterUsuarioPorEmail(string email);
         Task<List<Usuario>> ObterUsuarios();
     }
 }

@@ -74,11 +74,11 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Repository
             }
         }
 
-        public async Task<Usuario> ObterUsuarioPorMatricula(string matricula)
+        public async Task<Usuario> ObterUsuarioPorEmail(string email)
         {
             try
             {
-                return await _context.Usuarios.SingleOrDefaultAsync(x => x.Matricula.ToString().Equals(matricula) && x.DataExclusao == null);
+                return await _context.Usuarios.SingleOrDefaultAsync(x => x.Email == email && x.DataExclusao == null);
             }
             catch
             {
@@ -97,12 +97,5 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Repository
                 throw;
             }
         }
-
-        public async Task<bool> Autenticar(string nome, string senha)
-        {
-            throw new NotImplementedException();
-        }
-
-       
     }
 }

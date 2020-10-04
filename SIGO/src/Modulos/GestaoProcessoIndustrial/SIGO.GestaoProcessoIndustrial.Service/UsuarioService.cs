@@ -3,7 +3,6 @@ using SIGO.GestaoProcessoIndustrial.Domain.Interfaces;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service;
 using SIGO.Simuladores.AD;
 using SIGO.Utils;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -87,11 +86,16 @@ namespace SIGO.GestaoProcessoIndustrial.Service
             }
         }
 
-        public async Task<bool> Autenticar(string matricula, string senha)
+        public async Task<bool> Autenticar(string email, string senha)
         {
-            var usuario = await _unitOfWork.Usuarios.ObterUsuarioPorMatricula(matricula);
+            var usuario = await _unitOfWork.Usuarios.ObterUsuarioPorEmail(email);
 
-            return usuario != null && UsuariosAD.AutenticarComAD(usuario.Matricula, Seguranca.Encriptar(senha));
+            UsuarioAD usuarioAD = new UsuarioAD()
+            {
+                Email = email
+            };
+
+            return usuario != null && usuarioAD.AutenticarComAD(usuario.Email, Seguranca.Encriptar(senha));
         }
     }
 }

@@ -7,6 +7,7 @@ namespace SIGO.GestaoProcessoIndustrial.API
     public class Program
     {
         public static string AppName { get; internal set; } = "SIGO - Gestão do Processo Industrial";
+        public static string AppKey { get; set; }
 
         public static void Main(string[] args)
         {

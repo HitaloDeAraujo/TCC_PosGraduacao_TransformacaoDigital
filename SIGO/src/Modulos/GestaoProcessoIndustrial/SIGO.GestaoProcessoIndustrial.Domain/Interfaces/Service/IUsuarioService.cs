@@ -11,6 +11,6 @@ namespace SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service
         Task Excluir(string guid);
         Task<Usuario> ObterUsuario(string guid);
         Task<List<Usuario>> ObterUsuarios();
-        Task<bool> Autenticar(string matricula, string senha);
+        Task<bool> Autenticar(string email, string senha);
     }
 }

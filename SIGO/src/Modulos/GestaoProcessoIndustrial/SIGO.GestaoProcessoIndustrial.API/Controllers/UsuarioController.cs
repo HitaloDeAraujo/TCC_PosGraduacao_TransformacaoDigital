@@ -1,15 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SIGO.GestaoProcessoIndustrial.Domain.Entities;
-using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using static SIGO.Utils.Seguranca;
-using System.IdentityModel.Tokens.Jwt;
-using System;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Microsoft.Extensions.Configuration;
+using SIGO.GestaoProcessoIndustrial.Domain.DTOs;
+using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service;
+using SIGO.Simuladores.AD;
+using System.Threading.Tasks;
 
 namespace SIGO.GestaoProcessoIndustrial.API.Controllers
 {
@@ -29,43 +24,20 @@ namespace SIGO.GestaoProcessoIndustrial.API.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Post(string matricula, string senha)
+        public async Task<IActionResult> Post([FromBody] UsuarioDTO usuarioDTO)
         {
-            var result = await _usuarioService.Autenticar(matricula, senha);
+            var result = await _usuarioService.Autenticar(usuarioDTO.Email, usuarioDTO.Senha);
 
-            BuildToken(new Usuario()
+            if (result)
             {
-                Matricula = matricula
-            });
+                var token = TokenService.GenerateToken(new UsuarioAD(){ 
+                    Email = usuarioDTO.Email
+                }, Program.AppKey);
 
-            return Ok(result);
-        }
+                return Ok(token);
+            }
 
-        private UsuarioToken BuildToken(Usuario usuario)
-        {
-            var claims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.UniqueName, usuario.Matricula),
-                new Claim("meuValor", "oque voce quiser"),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            
-            var expiracao = DateTime.UtcNow.AddHours(1);
-
-            JwtSecurityToken token = new JwtSecurityToken(
-               issuer: null,
-               audience: null,
-               claims: claims,
-               expires: expiracao,
-               signingCredentials: creds);
-
-            return new UsuarioToken()
-            {
-                Token = new JwtSecurityTokenHandler().WriteToken(token),
-                Expiracao = expiracao
-            };
+            return BadRequest();
         }
     }
 }
