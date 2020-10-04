@@ -1,4 +1,5 @@
-﻿using SIGO.GestaoProcessoIndustrial.Domain.Entities;
+﻿using SIGO.GestaoProcessoIndustrial.Domain.DTOs;
+using SIGO.GestaoProcessoIndustrial.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,6 +12,6 @@ namespace SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service
         Task Excluir(string guid);
         Task<Usuario> ObterUsuario(string guid);
         Task<List<Usuario>> ObterUsuarios();
-        Task<bool> Autenticar(string email, string senha);
+        Task<UsuarioDTO> Autenticar(string email, string senha);
     }
 }

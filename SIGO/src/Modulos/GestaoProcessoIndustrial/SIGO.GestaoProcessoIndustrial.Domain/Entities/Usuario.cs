@@ -8,5 +8,18 @@ namespace SIGO.GestaoProcessoIndustrial.Domain.Entities
         public Guid GUID { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
+        public string Grupos { get; set; } = string.Empty;
+
+        public void AdicionarGrupo(string grupo)
+        {
+            Grupos = Grupos.Length > 0 ? Grupos + ", " + grupo : grupo;
+        }
+
+        public class Grupo
+        {
+            public const string ADMINISTRADOR = nameof(ADMINISTRADOR);
+            public static string DIRETOR = nameof(DIRETOR);
+            public static string GERENTE = nameof(GERENTE);
+        }
     }
 }

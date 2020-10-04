@@ -1,4 +1,5 @@
-﻿using SIGO.GestaoProcessoIndustrial.Domain.Entities;
+﻿using SIGO.GestaoProcessoIndustrial.Domain.DTOs;
+using SIGO.GestaoProcessoIndustrial.Domain.Entities;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service;
 using SIGO.Simuladores.AD;
@@ -86,16 +87,31 @@ namespace SIGO.GestaoProcessoIndustrial.Service
             }
         }
 
-        public async Task<bool> Autenticar(string email, string senha)
+        public async Task<UsuarioDTO> Autenticar(string email, string senha)
         {
             var usuario = await _unitOfWork.Usuarios.ObterUsuarioPorEmail(email);
 
-            UsuarioAD usuarioAD = new UsuarioAD()
-            {
-                Email = email
-            };
+            UsuarioDTO usuarioDTO = null;
 
-            return usuario != null && usuarioAD.AutenticarComAD(usuario.Email, Seguranca.Encriptar(senha));
+            if (usuario != null)
+            {
+                UsuarioAD usuarioAD = new UsuarioAD()
+                {
+                    Email = email,
+                    Senha = Seguranca.Encriptar(senha)
+                };
+
+                if (usuarioAD.AutenticarComAD())
+                {
+                    usuarioDTO = new UsuarioDTO()
+                    {
+                        Email = email,
+                        Grupos = ""
+                    };
+                }
+            }
+
+            return usuarioDTO;
         }
     }
 }

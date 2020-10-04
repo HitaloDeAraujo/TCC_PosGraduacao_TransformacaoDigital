@@ -63,15 +63,18 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Context
                  TipoEventoID = 1
              });
 
-            modelBuilder.Entity<Usuario>().HasData(
-             new Usuario
-             {
-                 ID = 1,
-                 DataCriacao = DateTime.Now,
-                 GUID = Guid.NewGuid(),
-                 Nome = "Hitalo",
-                 Email = "123"
-             });
+            var usuario = new Usuario
+            {
+                ID = 1,
+                DataCriacao = DateTime.Now,
+                GUID = Guid.NewGuid(),
+                Nome = "Hitalo",
+                Email = "123"
+            };
+
+            usuario.AdicionarGrupo(Usuario.Grupo.ADMINISTRADOR);
+
+            modelBuilder.Entity<Usuario>().HasData(usuario);
         }
 
         public async Task<int> SaveChangesAsync()

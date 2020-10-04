@@ -10,7 +10,6 @@ namespace SIGO.GestaoProcessoIndustrial.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
@@ -28,16 +27,18 @@ namespace SIGO.GestaoProcessoIndustrial.API.Controllers
         {
             var result = await _usuarioService.Autenticar(usuarioDTO.Email, usuarioDTO.Senha);
 
-            if (result)
+            if (result != null)
             {
-                var token = TokenService.GenerateToken(new UsuarioAD(){ 
-                    Email = usuarioDTO.Email
+                var token = TokenService.GerarToken(new UsuarioAD(){ 
+                    Email = result.Email,
+                    Nome = result.Nome,
+                    Grupos = result.Grupos
                 }, Program.AppKey);
 
                 return Ok(token);
             }
 
-            return BadRequest();
+            return Unauthorized();
         }
     }
 }

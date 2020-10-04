@@ -61,9 +61,9 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Migrations
                         new
                         {
                             ID = 1,
-                            DataCriacao = new DateTime(2020, 10, 3, 1, 37, 56, 236, DateTimeKind.Local).AddTicks(216),
+                            DataCriacao = new DateTime(2020, 10, 4, 0, 18, 14, 42, DateTimeKind.Local).AddTicks(8574),
                             Descricao = "Desc",
-                            GUID = "0a08947d-07b9-48a6-9d4a-39378054bc02",
+                            GUID = "b2afba3f-fc14-4137-97fc-746ab290fefc",
                             Grau = 1,
                             Nome = "Norma Cadastrada",
                             TipoEventoID = 1
@@ -95,13 +95,13 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Migrations
                         new
                         {
                             ID = 1,
-                            DataCriacao = new DateTime(2020, 10, 3, 1, 37, 56, 233, DateTimeKind.Local).AddTicks(3751),
+                            DataCriacao = new DateTime(2020, 10, 4, 0, 18, 14, 40, DateTimeKind.Local).AddTicks(3476),
                             Nome = "Norma Cadastrada"
                         },
                         new
                         {
                             ID = 2,
-                            DataCriacao = new DateTime(2020, 10, 3, 1, 37, 56, 234, DateTimeKind.Local).AddTicks(6168),
+                            DataCriacao = new DateTime(2020, 10, 4, 0, 18, 14, 41, DateTimeKind.Local).AddTicks(6244),
                             Nome = "Norma Atualizada"
                         });
                 });
@@ -112,65 +112,30 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("DATETIME");
 
                     b.Property<DateTime?>("DataExclusao")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("DATETIME");
 
                     b.Property<string>("Email")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasMaxLength(50);
 
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<string>("GUID")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("longtext")
+                        .HasMaxLength(36);
 
-                    b.Property<Guid>("GUID")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Id")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Matricula")
+                    b.Property<string>("Grupos")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Nome")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasMaxLength(100);
 
                     b.HasKey("ID");
 
@@ -180,18 +145,11 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Migrations
                         new
                         {
                             ID = 1,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1c0ffc2a-e901-42f8-b1f3-46e2be47b64d",
-                            DataCriacao = new DateTime(2020, 10, 3, 1, 37, 56, 236, DateTimeKind.Local).AddTicks(6848),
-                            EmailConfirmed = false,
-                            GUID = new Guid("200a868e-33ff-40e0-b315-ff0989f4c16e"),
-                            Id = "442b6832-5898-4795-9a0e-a1ae33348af3",
-                            LockoutEnabled = false,
-                            Matricula = "123",
-                            Nome = "Hitalo",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "f6d0a1b8-92f0-440d-9e73-0d5e8ef384ed",
-                            TwoFactorEnabled = false
+                            DataCriacao = new DateTime(2020, 10, 4, 0, 18, 14, 43, DateTimeKind.Local).AddTicks(731),
+                            Email = "123",
+                            GUID = "c3f2da62-f5e8-4f2f-bbd5-a8f392688f28",
+                            Grupos = "ADMINISTRADOR",
+                            Nome = "Hitalo"
                         });
                 });
 
