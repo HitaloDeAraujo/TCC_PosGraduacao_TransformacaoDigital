@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using SIGO.Domain;
 using SIGO.GestaoProcessoIndustrial.Domain.Entities;
 using SIGO.GestaoProcessoIndustrial.Infra.Mapping;
 using System;
@@ -72,7 +73,7 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Context
                 Email = "hitalo@hitalo.dev"
             };
 
-            usuario.AdicionarGrupo(Usuario.Grupo.ADMINISTRADOR);
+            usuario.AdicionarGrupo(Autorizacao.Grupo.ADMINISTRADOR);
 
             modelBuilder.Entity<Usuario>().HasData(usuario);
         }

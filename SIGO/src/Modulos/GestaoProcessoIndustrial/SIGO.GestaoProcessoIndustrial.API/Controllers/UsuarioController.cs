@@ -33,7 +33,7 @@ namespace SIGO.GestaoProcessoIndustrial.API.Controllers
                     Email = result.Email,
                     Nome = result.Nome,
                     Grupos = result.Grupos
-                }, Program.AppKey);
+                });
 
                 return Ok(token);
             }

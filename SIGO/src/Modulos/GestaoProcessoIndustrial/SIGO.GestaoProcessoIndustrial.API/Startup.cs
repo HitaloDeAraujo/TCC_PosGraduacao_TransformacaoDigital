@@ -14,6 +14,7 @@ using SIGO.Bus.EventBus;
 using SIGO.Bus.EventBus.Abstractions;
 using SIGO.Bus.EventBusRabbitMQ;
 using SIGO.Bus.IntegrationEventLogEF.Services;
+using SIGO.Domain;
 using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents;
 using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents.EventHandling;
 using SIGO.GestaoProcessoIndustrial.API.IntegrationEvents.Events;
@@ -48,10 +49,6 @@ namespace SIGO.GestaoProcessoIndustrial.API
                 options.UseMySql(connection)
             );
 
-            Program.AppKey = Configuration["JWT:Key"];
-
-            var key = Encoding.ASCII.GetBytes(Program.AppKey);
-
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -63,7 +60,7 @@ namespace SIGO.GestaoProcessoIndustrial.API
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    IssuerSigningKey = new SymmetricSecurityKey(Autorizacao.Chave),
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };

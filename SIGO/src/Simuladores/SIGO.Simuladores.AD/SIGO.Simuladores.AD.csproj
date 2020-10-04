@@ -8,4 +8,8 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modulos\CrossCutting\SIGO.Domain\SIGO.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

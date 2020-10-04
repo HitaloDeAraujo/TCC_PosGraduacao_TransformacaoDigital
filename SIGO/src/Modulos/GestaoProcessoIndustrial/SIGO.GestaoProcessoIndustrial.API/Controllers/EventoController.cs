@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SIGO.GestaoProcessoIndustrial.Domain.Entities;
+using SIGO.Domain;
 using SIGO.GestaoProcessoIndustrial.Domain.Interfaces.Service;
 using System.Threading.Tasks;
 
@@ -8,7 +8,7 @@ namespace SIGO.GestaoProcessoIndustrial.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize (Roles = Usuario.Grupo.ADMINISTRADOR)]
+    [Authorize (Roles = Autorizacao.Grupo.ADMINISTRADOR)]
     public class EventoController : ControllerBase
     {
         private readonly IEventoService _eventoService;

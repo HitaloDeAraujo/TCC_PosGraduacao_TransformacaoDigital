@@ -14,12 +14,5 @@ namespace SIGO.GestaoProcessoIndustrial.Domain.Entities
         {
             Grupos = Grupos.Length > 0 ? Grupos + ", " + grupo : grupo;
         }
-
-        public class Grupo
-        {
-            public const string ADMINISTRADOR = nameof(ADMINISTRADOR);
-            public static string DIRETOR = nameof(DIRETOR);
-            public static string GERENTE = nameof(GERENTE);
-        }
     }
 }
