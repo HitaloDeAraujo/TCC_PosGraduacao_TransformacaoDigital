@@ -20,7 +20,7 @@
     "SIGO.Simuladores.ESB.Mule": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/mule",
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

@@ -18,6 +18,7 @@
     <ProjectReference Include="..\..\Modulos\CrossCutting\SIGO.Bus\SIGO.Bus.csproj" />
     <ProjectReference Include="..\..\Modulos\CrossCutting\SIGO.Utils\SIGO.Utils.csproj" />
     <ProjectReference Include="..\Legados\SIGO.Simuladores.Legado.Logistica\SIGO.Simuladores.Legado.Logistica.csproj" />
+    <ProjectReference Include="..\Legados\SIGO.Simuladores.Legado.SegurancaQualidade\SIGO.Simuladores.Legado.SegurancaQualidade.csproj" />
   </ItemGroup>
 
 

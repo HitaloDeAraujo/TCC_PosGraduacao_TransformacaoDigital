@@ -6,9 +6,9 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SIGO.Simuladores.Legado.Logistica
+namespace SIGO.Simuladores.Legado.SegurancaQualidade
 {
-    public class Logistica
+    public class SegurancaQualidade
     {
         private static string URL = "https://localhost:5009";
 
@@ -21,19 +21,18 @@ namespace SIGO.Simuladores.Legado.Logistica
                 {
                     client.BaseAddress = new Uri(URL);
 
-                    int quantidade = random.Next(1, 200);
-                    var estoqueMinimoIntegrationEvent = new EstoqueMinimoIntegrationEvent()
+                    int quantidade = random.Next(1, 200 - 1);
+                    var materialInconsistenteIntegrationEvent = new MaterialInconsistenteIntegrationEvent()
                     {
-                        ProdutoID = random.Next(0, 200),
-                        Quantidade = quantidade,
-                        EstoqueMinimo = quantidade + 1
+                        MaterialID = random.Next(1, 500),
+                        Descricao = "Material com elasticidade mais alta que o comum"
                     };
 
-                    var jsonString = JsonSerializer.Serialize(estoqueMinimoIntegrationEvent);
+                    var jsonString = JsonSerializer.Serialize(materialInconsistenteIntegrationEvent);
 
                     var data = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
-                    await client.PostAsync("/api/Mule/EstoqueMinimo/PublicarEvento", data);
+                    await client.PostAsync("/api/Mule/MaterialInconsistente/PublicarEvento", data);
                 }
 
                 Thread.Sleep(TimeSpan.FromMinutes(2));

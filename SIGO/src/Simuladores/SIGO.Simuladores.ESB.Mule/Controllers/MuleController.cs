@@ -23,5 +23,14 @@ namespace SIGO.Simuladores.ESB.Mule.Controllers
 
             return Ok();
         }
+
+        [HttpPost]
+        [Route("MaterialInconsistente/PublicarEvento")]
+        public async Task<IActionResult> PublicarEvento([FromBody] MaterialInconsistenteIntegrationEvent materialInconsistenteIntegrationEvent)
+        {
+            await _esbMuleIntegrationEventService.PublicarEvento(materialInconsistenteIntegrationEvent);
+
+            return Ok();
+        }
     }
 }
