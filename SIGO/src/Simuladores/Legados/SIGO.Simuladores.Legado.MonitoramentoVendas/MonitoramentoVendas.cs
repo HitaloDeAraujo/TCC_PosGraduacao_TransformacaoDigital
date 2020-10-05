@@ -32,7 +32,7 @@ namespace SIGO.Simuladores.Legado.MonitoramentoVendas
 
                     var data = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
-                    await client.PostAsync("/api/Mule/RelacaoOrcamentoVendas/PublicarEvento", data);
+                    await client.PostAsync("/api/Mule/PublicarEvento/RelacaoOrcamentoVendas", data);
                 }
 
                 Thread.Sleep(TimeSpan.FromSeconds(10));

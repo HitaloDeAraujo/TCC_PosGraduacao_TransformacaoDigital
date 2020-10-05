@@ -33,7 +33,7 @@ namespace SIGO.Simuladores.Legado.Logistica
 
                     var data = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
-                    await client.PostAsync("/api/Mule/EstoqueMinimo/PublicarEvento", data);
+                    await client.PostAsync("/api/Mule/PublicarEvento/EstoqueMinimo", data);
                 }
 
                 Thread.Sleep(TimeSpan.FromMinutes(2));

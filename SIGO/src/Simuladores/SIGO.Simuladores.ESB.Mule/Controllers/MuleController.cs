@@ -16,7 +16,7 @@ namespace SIGO.Simuladores.ESB.Mule.Controllers
         }
 
         [HttpPost]
-        [Route("EstoqueMinimo/PublicarEvento")]
+        [Route("PublicarEvento/EstoqueMinimo")]
         public async Task<IActionResult> PublicarEvento([FromBody] EstoqueMinimoIntegrationEvent estoqueMinimoIntegrationEvent)
         {
             await _esbMuleIntegrationEventService.PublicarEvento(estoqueMinimoIntegrationEvent);
@@ -25,7 +25,7 @@ namespace SIGO.Simuladores.ESB.Mule.Controllers
         }
 
         [HttpPost]
-        [Route("MaterialInconsistente/PublicarEvento")]
+        [Route("PublicarEvento/MaterialInconsistente")]
         public async Task<IActionResult> PublicarEvento([FromBody] MaterialInconsistenteIntegrationEvent materialInconsistenteIntegrationEvent)
         {
             await _esbMuleIntegrationEventService.PublicarEvento(materialInconsistenteIntegrationEvent);
@@ -34,7 +34,7 @@ namespace SIGO.Simuladores.ESB.Mule.Controllers
         }
 
         [HttpPost]
-        [Route("RelacaoOrcamentoVendas/PublicarEvento")]
+        [Route("PublicarEvento/RelacaoOrcamentoVendas")]
         public async Task<IActionResult> PublicarEvento([FromBody] RelacaoOrcamentoVendasIntegrationEvent relacaoOrcamentoVendasIntegrationEvent)
         {
             await _esbMuleIntegrationEventService.PublicarEvento(relacaoOrcamentoVendasIntegrationEvent);
@@ -43,7 +43,7 @@ namespace SIGO.Simuladores.ESB.Mule.Controllers
         }
 
         [HttpPost]
-        [Route("InteligenciaNegocio/PublicarEvento")]
+        [Route("PublicarEvento/InteligenciaNegocio")]
         public async Task<IActionResult> PublicarEvento([FromBody] IndicativoInteligenciaNegocioIntegrationEvent indicativoInteligenciaNegocioIntegrationEvent)
         {
             await _esbMuleIntegrationEventService.PublicarEvento(indicativoInteligenciaNegocioIntegrationEvent);

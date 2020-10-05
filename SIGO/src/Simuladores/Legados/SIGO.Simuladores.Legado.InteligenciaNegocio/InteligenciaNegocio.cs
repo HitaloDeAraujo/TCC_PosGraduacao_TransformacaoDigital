@@ -23,18 +23,18 @@ namespace SIGO.Simuladores.Legado.InteligenciaNegocio
 
                     DateTime dataInicio = DateTime.Now;
                     dataInicio.AddDays(random.Next(1, 15));
-                    var estoqueMinimoIntegrationEvent = new IndicativoInteligenciaNegocioIntegrationEvent()
+                    var indicativoInteligenciaNegocioIntegrationEvent = new IndicativoInteligenciaNegocioIntegrationEvent()
                     {
                         PrevisaoVendas = random.Next(1000000, int.MaxValue),
                         DataInicio = dataInicio,
                         DataFim = dataInicio.AddDays(15)
                     };
 
-                    var jsonString = JsonSerializer.Serialize(estoqueMinimoIntegrationEvent);
+                    var jsonString = JsonSerializer.Serialize(indicativoInteligenciaNegocioIntegrationEvent);
 
                     var data = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
-                    await client.PostAsync("/api/Mule/InteligenciaNegocio/PublicarEvento", data);
+                    await client.PostAsync("/api/Mule/PublicarEvento/InteligenciaNegocio", data);
                 }
 
                 Thread.Sleep(TimeSpan.FromHours(1));

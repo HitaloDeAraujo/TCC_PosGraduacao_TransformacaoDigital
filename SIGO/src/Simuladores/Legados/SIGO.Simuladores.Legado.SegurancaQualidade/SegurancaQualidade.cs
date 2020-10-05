@@ -32,7 +32,7 @@ namespace SIGO.Simuladores.Legado.SegurancaQualidade
 
                     var data = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
-                    await client.PostAsync("/api/Mule/MaterialInconsistente/PublicarEvento", data);
+                    await client.PostAsync("/api/Mule/PublicarEvento/MaterialInconsistente", data);
                 }
 
                 Thread.Sleep(TimeSpan.FromMinutes(2));
