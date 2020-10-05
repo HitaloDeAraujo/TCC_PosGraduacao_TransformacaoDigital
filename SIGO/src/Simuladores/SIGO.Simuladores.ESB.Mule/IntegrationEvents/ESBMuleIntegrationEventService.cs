@@ -18,7 +18,7 @@ namespace SIGO.Simuladores.ESB.Mule.IntegrationEvents
             _logger = logger;
         }
 
-        public async Task PublicarEventoEventBusAsync(IntegrationEvent evt)
+        public async Task PublicarEvento(IntegrationEvent evt)
         {
             try
             {

@@ -8,8 +8,4 @@
     <ProjectReference Include="..\..\..\Modulos\CrossCutting\SIGO.Bus\SIGO.Bus.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="IntegrationEvents\Events\" />
-  </ItemGroup>
-
 </Project>

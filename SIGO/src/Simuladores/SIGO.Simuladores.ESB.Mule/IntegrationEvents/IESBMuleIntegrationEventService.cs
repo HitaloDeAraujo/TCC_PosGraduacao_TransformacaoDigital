@@ -5,6 +5,6 @@ namespace SIGO.Simuladores.ESB.Mule.IntegrationEvents
 {
     public interface IESBMuleIntegrationEventService
     {
-        Task PublicarEventoEventBusAsync(IntegrationEvent evt);
+        Task PublicarEvento(IntegrationEvent evt);
     }
 }

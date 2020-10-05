@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SIGO.Bus.EventBus.Events.SIGO;
 using SIGO.Simuladores.ESB.Mule.IntegrationEvents;
+using System.Threading.Tasks;
 
 namespace SIGO.Simuladores.ESB.Mule.Controllers
 {
@@ -19,15 +15,11 @@ namespace SIGO.Simuladores.ESB.Mule.Controllers
             _esbMuleIntegrationEventService = esbMuleIntegrationEventService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpPost]
+        [Route("EstoqueMinimo/PublicarEvento")]
+        public async Task<IActionResult> PublicarEvento([FromBody] EstoqueMinimoIntegrationEvent estoqueMinimoIntegrationEvent)
         {
-            _esbMuleIntegrationEventService.PublicarEventoEventBusAsync(new EstoqueMinimoIntegrationEvent()
-            {
-                ProdutoID = 864,
-                Quantidade = 100,
-                EstoqueMinimo = 100
-            });
+            await _esbMuleIntegrationEventService.PublicarEvento(estoqueMinimoIntegrationEvent);
 
             return Ok();
         }

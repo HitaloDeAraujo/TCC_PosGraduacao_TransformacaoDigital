@@ -12,7 +12,9 @@ using SIGO.Bus.EventBus.Abstractions;
 using SIGO.Bus.EventBusRabbitMQ;
 using SIGO.Bus.IntegrationEventLogEF.Services;
 using SIGO.Simuladores.ESB.Mule.IntegrationEvents;
+using SIGO.Simuladores.Legado.Logistica;
 using SIGO.Utils;
+using System.Threading.Tasks;
 
 namespace SIGO.Simuladores.ESB.Mule
 {
@@ -64,6 +66,11 @@ namespace SIGO.Simuladores.ESB.Mule
             });
 
             ConfigureEventBus(app);
+
+            Task.Run(async () =>
+            {
+                await Logistica.Simular();
+            });
         }
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
