@@ -12,7 +12,9 @@ using SIGO.Bus.EventBus.Abstractions;
 using SIGO.Bus.EventBusRabbitMQ;
 using SIGO.Bus.IntegrationEventLogEF.Services;
 using SIGO.Simuladores.ESB.Mule.IntegrationEvents;
+using SIGO.Simuladores.Legado.InteligenciaNegocio;
 using SIGO.Simuladores.Legado.Logistica;
+using SIGO.Simuladores.Legado.MonitoramentoVendas;
 using SIGO.Simuladores.Legado.SegurancaQualidade;
 using SIGO.Utils;
 using System.Threading.Tasks;
@@ -76,6 +78,16 @@ namespace SIGO.Simuladores.ESB.Mule
             Task.Run(async () =>
             {
                 await SegurancaQualidade.Simular();
+            });
+
+            Task.Run(async () =>
+            {
+                await MonitoramentoVendas.Simular();
+            });
+
+            Task.Run(async () =>
+            {
+                await InteligenciaNegocio.Simular();
             });
         }
 

@@ -32,5 +32,23 @@ namespace SIGO.Simuladores.ESB.Mule.Controllers
 
             return Ok();
         }
+
+        [HttpPost]
+        [Route("RelacaoOrcamentoVendas/PublicarEvento")]
+        public async Task<IActionResult> PublicarEvento([FromBody] RelacaoOrcamentoVendasIntegrationEvent relacaoOrcamentoVendasIntegrationEvent)
+        {
+            await _esbMuleIntegrationEventService.PublicarEvento(relacaoOrcamentoVendasIntegrationEvent);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("InteligenciaNegocio/PublicarEvento")]
+        public async Task<IActionResult> PublicarEvento([FromBody] IndicativoInteligenciaNegocioIntegrationEvent indicativoInteligenciaNegocioIntegrationEvent)
+        {
+            await _esbMuleIntegrationEventService.PublicarEvento(indicativoInteligenciaNegocioIntegrationEvent);
+
+            return Ok();
+        }
     }
 }
