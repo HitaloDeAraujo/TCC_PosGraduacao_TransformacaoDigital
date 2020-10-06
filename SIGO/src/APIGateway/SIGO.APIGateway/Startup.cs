@@ -22,11 +22,16 @@ namespace SIGO.APIGateway
             this._configuration = configuration;
         }
 
+        public IConfigurationRoot Configuration { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOcelot(_configuration);
+            services.AddSingleton<IConfiguration>(provider => new ConfigurationBuilder()
+                    .AddJsonFile("configuration.json", optional: true, reloadOnChange: true)
+                    .Build());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

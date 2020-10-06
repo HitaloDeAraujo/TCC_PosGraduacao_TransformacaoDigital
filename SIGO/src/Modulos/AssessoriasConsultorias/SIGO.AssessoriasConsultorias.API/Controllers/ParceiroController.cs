@@ -18,6 +18,7 @@ namespace SIGO.AssessoriasConsultorias.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Get()
         {
             var parceiros = await _parceiroService.ObterParceiros();

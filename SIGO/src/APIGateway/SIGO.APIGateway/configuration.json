@@ -1,0 +1,16 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5015
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Parceiro/",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete", "Options" ]
+    }
+  ]
+}

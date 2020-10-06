@@ -67,8 +67,8 @@ namespace SIGO.AssessoriasConsultorias.API
 
             services.AddControllers();
 
-            services.AddEventBus(Configuration)
-                    .AddIntegrationServices(Configuration)
+            services//.AddEventBus(Configuration)
+                    //.AddIntegrationServices(Configuration)
                     .AddServices()
                     .AddRepositories();
 
@@ -133,7 +133,7 @@ namespace SIGO.AssessoriasConsultorias.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", Program.AppName);
             });
 
-            ConfigureEventBus(app);
+            //ConfigureEventBus(app);
         }
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)

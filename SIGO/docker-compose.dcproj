@@ -2,11 +2,11 @@
 <Project ToolsVersion="15.0" Sdk="Microsoft.Docker.Sdk">
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
-    <DockerTargetOS>Windows</DockerTargetOS>
-    <ProjectGuid>e9481f50-8a33-4a3f-af17-5b175714f391</ProjectGuid>
+    <DockerTargetOS>Linux</DockerTargetOS>
+    <ProjectGuid>411487e7-2e08-47b6-9a68-f6cf0e3d8f22</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://{ServiceIPAddress}{ServicePort}/weatherforecast</DockerServiceUrl>
-    <DockerServiceName>sigo.gestaoprocessoindustrial.api</DockerServiceName>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
+    <DockerServiceName>sigo.assessoriasconsultorias.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
