@@ -1,13 +1,4 @@
 # Starter pipeline
-  task: Docker@2
-  inputs:
-    containerRegistry: 'sigocontainersregistry'
-    repository: 'apigestaonormas'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
-    tags: |
-      $(Build.BuildId)
-      latest
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -26,3 +17,13 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+  - task: Docker@2
+  inputs:
+    containerRegistry: 'sigocontainersregistry'
+    repository: 'apigestaonormas'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      $(Build.BuildId)
+      latest
