@@ -22,8 +22,8 @@ steps:
     containerRegistry: 'sigocontainersregistry'
     repository: 'apigestaonormas'
     command: 'buildAndPush'
-    Dockerfile: '$(Build.SourcesDirectory)/src/Modulos/GestaoNormas/SIGO.GestaoNormas.API/Dockerfile'
-    buildContext: '$(Build.SourcesDirectory)/src/Modulos/GestaoNormas/SIGO.GestaoNormas.API/'
+    Dockerfile: 'src/Modulos/AssessoriasConsultorias/SIGO.AssessoriasConsultorias.API/Dockerfile'
+    buildContext: '.'
     tags: |
       $(Build.BuildId)
       latest
