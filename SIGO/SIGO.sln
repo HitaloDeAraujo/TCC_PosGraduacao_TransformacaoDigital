@@ -63,7 +63,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.Simuladores.Legado.Mon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.Simuladores.Legado.InteligenciaNegocio", "src\Simuladores\Legados\SIGO.Simuladores.Legado.InteligenciaNegocio\SIGO.Simuladores.Legado.InteligenciaNegocio.csproj", "{1581135A-947C-4B3D-8457-7D2F3C209549}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SIGO.ApiGateway", "SIGO.ApiGateway", "{43543CB5-C0C8-4AD0-9051-076473B1FF2D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{43543CB5-C0C8-4AD0-9051-076473B1FF2D}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{411487E7-2E08-47B6-9A68-F6CF0E3D8F22}"
 EndProject

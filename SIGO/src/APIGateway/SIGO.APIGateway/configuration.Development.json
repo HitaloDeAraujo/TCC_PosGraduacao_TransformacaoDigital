@@ -9,7 +9,7 @@
           "Port": 5015
         }
       ],
-      "UpstreamPathTemplate": "/api1/{everything}",
+      "UpstreamPathTemplate": "/assessoriasconsultorias/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     },
     {
@@ -18,10 +18,22 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44377
+          "Port": 5018
         }
       ],
-      "UpstreamPathTemplate": "/api2/{everything}",
+      "UpstreamPathTemplate": "/gestaonormas/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5020
+        }
+      ],
+      "UpstreamPathTemplate": "/gestaoprocessoindustrial/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     }
   ],

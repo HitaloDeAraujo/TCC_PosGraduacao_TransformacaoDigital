@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SIGO.AssessoriasConsultorias.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
     public class ParceiroController : ControllerBase

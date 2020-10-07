@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SIGO.Domain;
 using SIGO.GestaoNormas.API.IntegrationEvents;
 using SIGO.GestaoNormas.Domain.Interfaces.Service;
 using System.Threading.Tasks;
@@ -9,7 +8,8 @@ namespace SIGO.GestaoNormas.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = Autorizacao.Grupo.ADMINISTRADOR)]
+    //[Authorize(Roles = Autorizacao.Grupo.ADMINISTRADOR)]
+    [AllowAnonymous]
     public class NormaController : ControllerBase
     {
         private readonly INormaService _normaService;
@@ -18,9 +18,6 @@ namespace SIGO.GestaoNormas.API.Controllers
             INormaService normaService)
         {
             _normaService = normaService;
-
-            //gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new NormaCadastradaIntegrationEvent(1, "Norma 1"));
-            //gestaoNormasIntegrationEventService.PublishThroughEventBusAsync(new NormaCadastradaIntegrationEvent(2, "Norma 2"));
         }
 
         [HttpGet]
