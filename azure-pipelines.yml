@@ -23,7 +23,6 @@ steps:
     repository: 'apigestaonormas'
     command: 'buildAndPush'
     Dockerfile: '**/SIGO.GestaoNormas.API/Dockerfile'
-    buildContext: '$(Build.Repository.LocalPath)'
     tags: |
       $(Build.BuildId)
       latest
