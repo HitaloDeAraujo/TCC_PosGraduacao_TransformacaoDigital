@@ -7,14 +7,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["SIGO.GestaoNormas.API.csproj", "src/Modulos/GestaoNormas/SIGO.GestaoNormas.API/"]
-COPY ["SIGO.GestaoNormas.Service.csproj", "src/Modulos/GestaoNormas/SIGO.GestaoNormas.Service/"]
-COPY ["SIGO.GestaoNormas.Domain.csproj", "src/Modulos/GestaoNormas/SIGO.GestaoNormas.Domain/"]
-COPY ["SIGO.Domain.csproj", "src/Modulos/CrossCutting/SIGO.Domain/"]
-COPY ["SIGO.Bus.csproj", "src/Modulos/CrossCutting/SIGO.Bus/"]
-COPY ["SIGO.Utils.csproj", "src/Modulos/CrossCutting/SIGO.Utils/"]
-COPY ["SIGO.GestaoNormas.Infra.csproj", "src/Modulos/GestaoNormas/SIGO.GestaoNormas.Infra/"]
-COPY ["SIGO.Infra.csproj", "src/Modulos/CrossCutting/SIGO.Infra/"]
+COPY ["src/Modulos/GestaoNormas/SIGO.GestaoNormas.API.csproj", "src/Modulos/GestaoNormas/SIGO.GestaoNormas.API/"]
+COPY ["src/Modulos/GestaoNormas/SIGO.GestaoNormas.Service/SIGO.GestaoNormas.Service.csproj", "src/Modulos/GestaoNormas/SIGO.GestaoNormas.Service/"]
+COPY ["src/Modulos/GestaoNormas/SIGO.GestaoNormas.Domain/SIGO.GestaoNormas.Domain.csproj", "src/Modulos/GestaoNormas/SIGO.GestaoNormas.Domain/"]
+COPY ["src/Modulos/CrossCutting/SIGO.Domain/SIGO.Domain.csproj", "src/Modulos/CrossCutting/SIGO.Domain/"]
+COPY ["src/Modulos/CrossCutting/SIGO.Bus/SIGO.Bus.csproj", "src/Modulos/CrossCutting/SIGO.Bus/"]
+COPY ["src/Modulos/CrossCutting/SIGO.Utils/SIGO.Utils.csproj", "src/Modulos/CrossCutting/SIGO.Utils/"]
+COPY ["src/Modulos/GestaoNormas/SIGO.GestaoNormas.Infra/SIGO.GestaoNormas.Infra.csproj", "src/Modulos/GestaoNormas/SIGO.GestaoNormas.Infra/"]
+COPY ["src/Modulos/CrossCutting/SIGO.Infra/SIGO.Infra.csproj", "src/Modulos/CrossCutting/SIGO.Infra/"]
 RUN dotnet restore "src/Modulos/GestaoNormas/SIGO.GestaoNormas.API/SIGO.GestaoNormas.API.csproj"
 COPY . .
 WORKDIR "/src/src/Modulos/GestaoNormas/SIGO.GestaoNormas.API"
