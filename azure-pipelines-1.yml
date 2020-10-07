@@ -1,0 +1,28 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Avaliação Gratuita(5306016b-3042-4573-ba4b-82ea33040924)'
+    azureContainerRegistry: '{"loginServer":"sigocontainers.azurecr.io", "id" : "/subscriptions/5306016b-3042-4573-ba4b-82ea33040924/resourceGroups/SIGO/providers/Microsoft.ContainerRegistry/registries/sigocontainers"}'
+    dockerComposeFile: '**/docker-compose.yml'
+    action: 'Run a Docker Compose command'
+    dockerComposeCommand: 'buildAndPush'
