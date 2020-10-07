@@ -28,17 +28,17 @@ namespace SIGO.AssessoriasConsultorias.Infra.UnitOfWork
 
         public int Commit()
         {
-            throw new NotImplementedException();
+            return _context.SaveChanges();
         }
 
-        public Task<int> CommitAsync()
+        public async Task<int> CommitAsync()
         {
-            throw new NotImplementedException();
+            return await _context.SaveChangesAsync();
         }
 
         public void Dispose()
         {
-            //throw new NotImplementedException();
+            _context.Dispose();
         }
     }
 }

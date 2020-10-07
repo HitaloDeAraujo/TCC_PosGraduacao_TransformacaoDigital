@@ -3,7 +3,6 @@ using SIGO.GestaoNormas.Domain.Interfaces.Repository;
 using SIGO.GestaoNormas.Infra.Context;
 using SIGO.GestaoNormas.Infra.Repository;
 using SIGO.Infra;
-using System;
 using System.Threading.Tasks;
 
 namespace SIGO.GestaoNormas.Infra.UnitOfWork
