@@ -4,13 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-  branches:
-    include:
-    - master
-  paths:
-    include:
-    - src/Modulos/GestaoNormas/*
-    - src/Modulos/CrossCutting/*
+- master
 
 pool:
   vmImage: 'ubuntu-latest'
