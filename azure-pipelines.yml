@@ -1,5 +1,5 @@
 # Starter pipeline
-- task: Docker@2
+  task: Docker@2
   inputs:
     containerRegistry: 'sigocontainersregistry'
     repository: 'apigestaonormas'
