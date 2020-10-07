@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SIGO.Domain;
 using SIGO.GestaoNormas.API.IntegrationEvents;
+using SIGO.GestaoNormas.Domain.DTOs;
 using SIGO.GestaoNormas.Domain.Interfaces.Service;
 using System.Threading.Tasks;
 
@@ -18,6 +19,22 @@ namespace SIGO.GestaoNormas.API.Controllers
             INormaService normaService)
         {
             _normaService = normaService;
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Post([FromBody] NormaDTO normaDTO)
+        {
+            try
+            {
+                var norma = await _normaService.Salvar(normaDTO.ToNorma());
+
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet]
