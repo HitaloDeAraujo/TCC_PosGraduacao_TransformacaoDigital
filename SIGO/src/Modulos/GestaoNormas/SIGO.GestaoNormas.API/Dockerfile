@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["src/Modulos/GestaoNormas/SIGO.GestaoNormas.API.csproj", "src/Modulos/GestaoNormas/SIGO.GestaoNormas.API/"]
+COPY ["SIGO.GestaoNormas.API.csproj", "src/Modulos/GestaoNormas/SIGO.GestaoNormas.API/"]
 COPY ["../SIGO.GestaoNormas.Service/SIGO.GestaoNormas.Service.csproj", "src/Modulos/GestaoNormas/SIGO.GestaoNormas.Service/"]
 COPY ["src/Modulos/GestaoNormas/SIGO.GestaoNormas.Domain/SIGO.GestaoNormas.Domain.csproj", "src/Modulos/GestaoNormas/SIGO.GestaoNormas.Domain/"]
 COPY ["src/Modulos/CrossCutting/SIGO.Domain/SIGO.Domain.csproj", "src/Modulos/CrossCutting/SIGO.Domain/"]
