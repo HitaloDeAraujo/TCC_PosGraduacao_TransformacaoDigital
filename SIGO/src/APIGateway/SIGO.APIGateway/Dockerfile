@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["src/APIGateway/SIGO.ApiGateway/SIGO.ApiGateway.csproj", "src/APIGateway/SIGO.ApiGateway/"]
+COPY ["SIGO.ApiGateway.csproj", "src/APIGateway/SIGO.ApiGateway/"]
 RUN dotnet restore "src/APIGateway/SIGO.ApiGateway/SIGO.ApiGateway.csproj"
 COPY . .
 WORKDIR "/src/src/APIGateway/SIGO.ApiGateway"
