@@ -11,7 +11,8 @@ namespace SIGO.Infra
 
         public DapperDbConnection(IConfiguration configuration)
         {
-            Connection = new MySqlConnection("Server=localhost;DataBase=AssessoriasConsultorias;Uid=root;Pwd=Sigo@28786Ms");
+            var dapperConnection = configuration["ConnectionStrings:DapperConnection"];
+            Connection = new MySqlConnection(dapperConnection);
         }
 
         public void Dispose()
