@@ -1,7 +1,8 @@
 import { RouterModule, Routes } from "@angular/router";
 import { LoginPageComponent } from "./pages/login-page/login-page.component";
 import { GestaoProcessoIndustrialPageComponent } from "./pages/GestaoProcessoIndustrial/gestao-processo-industrial-page/gestao-processo-industrial-page.component";
-import { NgModule } from '@angular/core';
+import { AssessoriasConsultoriasPageComponent } from "./pages/AssessoriasConsultorias/Home/assessorias-consultorias-page/assessorias-consultorias-page.component";
+import { NgModule } from "@angular/core";
 
 const appRoutes: Routes = [
   {
@@ -11,6 +12,10 @@ const appRoutes: Routes = [
   {
     path: "GestaoProcessoIndustrial",
     component: GestaoProcessoIndustrialPageComponent
+  },
+  {
+    path: "AssessoriasConsultorias",
+    component: AssessoriasConsultoriasPageComponent
   }
 ];
 

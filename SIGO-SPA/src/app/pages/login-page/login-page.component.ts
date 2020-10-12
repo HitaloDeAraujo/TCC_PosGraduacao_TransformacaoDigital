@@ -16,5 +16,4 @@ export class LoginPageComponent implements OnInit {
   public Entrar(){
     this.router.navigate(['/GestaoProcessoIndustrial']);
   }
-
 }
