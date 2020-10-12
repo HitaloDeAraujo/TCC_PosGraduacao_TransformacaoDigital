@@ -7,16 +7,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { IconSIGOComponent } from './controls/icon-sigo/icon-sigo.component';
 import { GestaoProcessoIndustrialPageComponent } from './pages/GestaoProcessoIndustrial/gestao-processo-industrial-page/gestao-processo-industrial-page.component';
 
+import { ChartsModule } from 'ng2-charts';
+import { OrcamentosPedidosMesesGraphComponent } from './pages/GestaoProcessoIndustrial/gestao-processo-industrial-page/Graphs/orcamentos-pedidos-meses-graph/orcamentos-pedidos-meses-graph.component';
+import { OrcamentosPedidosMesGraphComponent } from './pages/GestaoProcessoIndustrial/gestao-processo-industrial-page/Graphs/orcamentos-pedidos-mes-graph/orcamentos-pedidos-mes-graph.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     IconSIGOComponent,
-    GestaoProcessoIndustrialPageComponent
+    GestaoProcessoIndustrialPageComponent,
+    OrcamentosPedidosMesesGraphComponent,
+    OrcamentosPedidosMesGraphComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

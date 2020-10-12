@@ -3,3 +3,40 @@ img {
     margin-left: auto;
     margin-right: auto;
 }
+
+p {
+    margin: 0;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+    .card-container>*:not(.circle-link), .terminal {
+        width: 100%;
+    }
+    .card:not(.highlight-card) {
+        height: 16px;
+        margin: 8px 0;
+    }
+    .card.highlight-card span {
+        margin-left: 72px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+        display: none;
+        visibility: hidden;
+    }
+}
