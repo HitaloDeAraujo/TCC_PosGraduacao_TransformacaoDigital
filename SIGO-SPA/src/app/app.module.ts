@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IconSIGOComponent } from './controls/icon-sigo/icon-sigo.component';
+import { GestaoProcessoIndustrialPageComponent } from './pages/GestaoProcessoIndustrial/gestao-processo-industrial-page/gestao-processo-industrial-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    IconSIGOComponent
+    IconSIGOComponent,
+    GestaoProcessoIndustrialPageComponent
   ],
   imports: [
     BrowserModule,
