@@ -1,1 +1,96 @@
-<p>assessorias-consultorias-home-page works!</p>
+<app-nav-principal></app-nav-principal>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" style="">
+            <div class="sidebar-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            Assessorias e Consultorias <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Parceiros
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Contratos
+                        </a>
+                    </li>
+                </ul>
+
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Módulos</span>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link modulos" href="#">
+                            <app-icon-sigo Title="Gestão de Normas" ClassIcon="fa fa-sticky-note"></app-icon-sigo>
+                            <span>Gestão de Normas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link modulos">
+                            <app-icon-sigo Title="Gestão do Proceso Industrial" ClassIcon="fa fa-industry red">
+                            </app-icon-sigo>
+                            <span>Gestão do Proceso Industrial</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <div class="chartjs-size-monitor"
+                style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                <div class="chartjs-size-monitor-expand"
+                    style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                </div>
+                <div class="chartjs-size-monitor-shrink"
+                    style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                    <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                </div>
+            </div>
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Assessorias e Consultorias</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-calendar">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        2020
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <app-cards-ac CardStyle='bg-success'
+                              Title='Contratos em estado normal'
+                              SubTitle='175 contratos em estado normal'
+                              Description='175 contratos tem vencimento em período superior a três meses'></app-cards-ac>
+
+                <app-cards-ac CardStyle='bg-warning'
+                              Title='Contratos em estado de atenção'
+                              SubTitle='2 contratos em estado de atenção'
+                              Description='2 contratos tem vencimento em período inferior a um meses'></app-cards-ac>
+                
+                <app-cards-ac CardStyle='bg-danger'
+                              Title='Contratos vencidos'
+                              SubTitle='Nenhum contrato vencido'
+                              Description='Nenhum contrato está vencido'></app-cards-ac>
+            </div>
+        </main>
+    </div>
+</div>

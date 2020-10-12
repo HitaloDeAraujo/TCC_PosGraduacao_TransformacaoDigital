@@ -11,5 +11,4 @@ export class AssessoriasConsultoriasPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

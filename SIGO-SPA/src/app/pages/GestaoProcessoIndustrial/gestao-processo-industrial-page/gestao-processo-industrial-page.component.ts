@@ -10,13 +10,15 @@ import { ParceiroService } from '../../../services/parceiro.service';
 })
 
 export class GestaoProcessoIndustrialPageComponent implements OnInit {
-  
+
   constructor(private parceiroService: ParceiroService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) { }
-  
+
 
   ngOnInit(): void {
-    //this.startTimer();
-    this.obterParceiros();
+  }
+
+  public onClick(modulo) {
+      this.router.navigate([modulo]);
   }
 
   obterParceiros() {
@@ -25,7 +27,6 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
       result => {
 
         if (result != null) {
-
           this.toastr.success('Sucesso');
         }
         else
@@ -40,12 +41,8 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
   startTimer() {
     setInterval(() => {
       this.toastr.success('Sessão encerrada!');
-    },1000)
+    }, 1000)
 
 
-  }
-  public onSair(){
-    this.router.navigate(['']);
-    this.toastr.success('Sessão encerrada!');
   }
 }

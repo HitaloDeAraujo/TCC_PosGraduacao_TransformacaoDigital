@@ -1,0 +1,13 @@
+.card {
+    max-width: 18rem;
+    min-height: 13rem;
+    min-width: 18rem;
+}
+
+.zoom {
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    transform: scale(1.05);
+}

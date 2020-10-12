@@ -17,6 +17,8 @@ import { ParceiroService } from './services/parceiro.service'
 import { RequestInterceptor } from './utils/request-interceptor'
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AssessoriasConsultoriasPageComponent } from './pages/AssessoriasConsultorias/Home/assessorias-consultorias-page/assessorias-consultorias-page.component';
+import { NavPrincipalComponent } from './controls/nav-principal/nav-principal.component';
+import { CardsACComponent } from './pages/AssessoriasConsultorias/Home/CardsAC/cards-ac/cards-ac.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { AssessoriasConsultoriasPageComponent } from './pages/AssessoriasConsult
     GestaoProcessoIndustrialPageComponent,
     OrcamentosPedidosMesesGraphComponent,
     OrcamentosPedidosMesGraphComponent,
-    AssessoriasConsultoriasPageComponent
+    AssessoriasConsultoriasPageComponent,
+    NavPrincipalComponent,
+    CardsACComponent
   ],
   imports: [
     BrowserModule,

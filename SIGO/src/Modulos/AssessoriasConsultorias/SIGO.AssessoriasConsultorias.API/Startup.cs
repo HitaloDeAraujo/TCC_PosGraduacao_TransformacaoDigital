@@ -34,6 +34,8 @@ namespace SIGO.AssessoriasConsultorias.API
     {
         public IConfiguration Configuration { get; }
 
+        private readonly string SIGO_Front = "SIGO_Front";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -65,9 +67,20 @@ namespace SIGO.AssessoriasConsultorias.API
                 };
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: SIGO_Front,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:4200")
+                                       .AllowAnyHeader()
+                                                  .AllowAnyMethod();
+                                  });
+            });
+
             services.AddControllers();
 
-            services.AddEventBus(Configuration)
+            services//.AddEventBus(Configuration)
                     .AddIntegrationServices(Configuration)
                     .AddServices()
                     .AddRepositories();
@@ -118,6 +131,8 @@ namespace SIGO.AssessoriasConsultorias.API
 
             app.UseRouting();
 
+            app.UseCors(SIGO_Front);
+
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -133,7 +148,7 @@ namespace SIGO.AssessoriasConsultorias.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", Program.AppName);
             });
 
-            ConfigureEventBus(app);
+            //ConfigureEventBus(app);
         }
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
