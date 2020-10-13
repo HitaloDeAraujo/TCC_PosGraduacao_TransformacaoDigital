@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl  } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { RepositorioDTO } from '../../../../DTOs/repositorio.dto';
 import { RepositorioService } from '../../../../services/repositorio.service';
 
 @Component({
@@ -64,7 +65,26 @@ export class InclusaoRepositorioComponent implements OnInit {
   }
 
   public onSubmit(){
-    let nome = this.repositorioForm.value.nome;
-    debugger;
+
+    let repositorioDTO = new RepositorioDTO();
+
+    repositorioDTO.Nome = this.repositorioForm.value.nome;
+    repositorioDTO.URL = this.repositorioForm.value.url;
+    repositorioDTO.Descricao = this.repositorioForm.value.descricao;
+
+    this.repositorioService.Post(repositorioDTO).subscribe(
+
+      result => {
+
+        if (result != null) {
+          this.toastr.error("Repositório cadastrado com sucesso", "Alerta");
+        }
+        else
+          this.toastr.error("Erro", "Alerta");
+      },
+      error => {
+        this.toastr.error("Erro", "Alerta");
+      }
+    );
   }
 }

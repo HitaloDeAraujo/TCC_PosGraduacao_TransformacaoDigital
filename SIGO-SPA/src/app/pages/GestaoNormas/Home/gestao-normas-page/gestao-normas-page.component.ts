@@ -22,7 +22,6 @@ export class GestaoNormasPageComponent implements OnInit {
   }
 
   public onMenuClick(modulo) {
-    debugger;
     this.router.navigate([modulo]);
   }
 

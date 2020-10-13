@@ -61,10 +61,6 @@
             <div
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Gestão de Normas</h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <button type="button" class="btn btn-danger ml-2"
-                        (click)="onMenuClick('/GestaoNormas/Repositorios/Novo')">Cancelar</button>
-                </div>
             </div>
 
             <form [formGroup]="repositorioForm" (ngSubmit)="onSubmit()">
@@ -85,6 +81,8 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-danger ml-2"
+                        (click)="onMenuClick('/GestaoNormas/Repositorios/')">Cancelar</button>
             </form>
         </main>
     </div>

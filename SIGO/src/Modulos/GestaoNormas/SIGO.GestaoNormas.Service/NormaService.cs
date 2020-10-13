@@ -101,7 +101,7 @@ namespace SIGO.GestaoNormas.Service
             {
                 Norma norma = new Norma()
                 {
-                    ID = id,
+                    ID = id++,
                     DataCriacao = DateTime.Now,
                     GUID = Guid.NewGuid(),
                     URL = "https://github.com/HitaloDeAraujo/AgenteConversacao/blob/master/HITALO%20ARAUJO%20PROJETO%20E%20DESENVOLVIMENTO%20DE%20UM%20ARCABOU%C3%87O%20DE%20AGENTE%20DE%20CONVERSA%C3%87%C3%83O%20-%2011.pdf",
