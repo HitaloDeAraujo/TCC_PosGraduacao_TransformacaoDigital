@@ -37,5 +37,17 @@ namespace SIGO.GestaoNormas.API.Controllers
 
             return Ok(repositorio);
         }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Post([FromBody] RepositorioDTO repositorioDTO)
+        {
+            var repositorio = await _repositorioService.Salvar(repositorioDTO.ToRepositorio());
+
+            if (repositorio.ID != 0)
+                return Ok();
+            else
+                return BadRequest();
+        }
     }
 }

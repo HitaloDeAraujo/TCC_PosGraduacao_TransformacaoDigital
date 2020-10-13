@@ -11,5 +11,6 @@ namespace SIGO.GestaoNormas.Domain.Interfaces.Service
         Task Excluir(string guid);
         Task<Norma> ObterNorma(string guid);
         Task<List<Norma>> ObterNormas();
+        Task<List<Norma>> ObterNormasExternas(string url, Repositorio repositorio);
     }
 }

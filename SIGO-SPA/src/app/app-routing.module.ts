@@ -6,7 +6,8 @@ import { ListagemParceirosComponent } from "./pages/AssessoriasConsultorias/Parc
 import { GestaoNormasPageComponent } from "./pages/GestaoNormas/Home/gestao-normas-page/gestao-normas-page.component"
 import { ListagemNormasComponent } from "./pages/GestaoNormas/Normas/listagem-normas/listagem-normas.component"
 import { ListagemRepositoriosComponent } from "./pages/GestaoNormas/Repositorios/listagem-repositorios/listagem-repositorios.component";
-
+import { InclusaoRepositorioComponent } from "./pages/GestaoNormas/Repositorios/inclusao-repositorio/inclusao-repositorio.component"
+1
 import { NgModule } from "@angular/core";
 
 const appRoutes: Routes = [
@@ -37,6 +38,10 @@ const appRoutes: Routes = [
   {
     path: "GestaoNormas/Repositorios",
     component: ListagemRepositoriosComponent
+  },
+  {
+    path: "GestaoNormas/Repositorios/Novo",
+    component: InclusaoRepositorioComponent
   }
 ];
 

@@ -1,7 +1,9 @@
 ﻿using SIGO.GestaoNormas.Domain.Entities;
 using SIGO.GestaoNormas.Domain.Interfaces;
 using SIGO.GestaoNormas.Domain.Interfaces.Service;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SIGO.GestaoNormas.Service
@@ -82,6 +84,36 @@ namespace SIGO.GestaoNormas.Service
             {
                 throw;
             }
+        }
+
+        public async Task<List<Norma>> ObterNormasExternas(string url, Repositorio repositorio)
+        {
+            var ultimaNorma = (await ObterNormas()).OrderBy(x => x.ID).LastOrDefault();
+            int id = ultimaNorma != null ? ultimaNorma.ID + 1 : 1;
+
+            List<Norma> normas = new List<Norma>();
+
+            Random random = new Random();
+
+            int quantNormas = random.Next(2, 9);
+
+            for (int i = 0; i < quantNormas; i++)
+            {
+                Norma norma = new Norma()
+                {
+                    ID = id,
+                    DataCriacao = DateTime.Now,
+                    GUID = Guid.NewGuid(),
+                    URL = "https://github.com/HitaloDeAraujo/AgenteConversacao/blob/master/HITALO%20ARAUJO%20PROJETO%20E%20DESENVOLVIMENTO%20DE%20UM%20ARCABOU%C3%87O%20DE%20AGENTE%20DE%20CONVERSA%C3%87%C3%83O%20-%2011.pdf",
+                    Titulo = string.Concat("Norma numero", ultimaNorma.ID + 1),
+                    Descricao = string.Concat("Norma numero", ultimaNorma.ID + 1, " do repositório ", repositorio.Nome),
+                    RepositorioID = repositorio.ID
+                };
+
+                normas.Add(norma);
+            }
+           
+            return normas;
         }
     }
 }

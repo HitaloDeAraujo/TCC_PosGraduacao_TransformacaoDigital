@@ -27,6 +27,7 @@ import { GestaoNormasPageComponent } from './pages/GestaoNormas/Home/gestao-norm
 import { ListagemNormasComponent } from './pages/GestaoNormas/Normas/listagem-normas/listagem-normas.component';
 import { ListagemRepositoriosComponent } from './pages/GestaoNormas/Repositorios/listagem-repositorios/listagem-repositorios.component';
 import { CardGestaoNormasHomeComponent } from './pages/GestaoNormas/Home/Cards/card-gestao-normas-home/card-gestao-normas-home.component';
+import { InclusaoRepositorioComponent } from './pages/GestaoNormas/Repositorios/inclusao-repositorio/inclusao-repositorio.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CardGestaoNormasHomeComponent } from './pages/GestaoNormas/Home/Cards/c
     GestaoNormasPageComponent,
     ListagemNormasComponent,
     ListagemRepositoriosComponent,
-    CardGestaoNormasHomeComponent
+    CardGestaoNormasHomeComponent,
+    InclusaoRepositorioComponent
   ],
   imports: [
     BrowserModule,
