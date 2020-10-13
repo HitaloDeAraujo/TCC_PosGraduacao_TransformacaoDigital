@@ -37,7 +37,6 @@ export class ListagemNormasComponent implements OnInit {
 
         if (result != null) {
           this.normas = result;
-          this.toastr.success('Sucesso');
           this.dtTrigger.next();
         }
         else

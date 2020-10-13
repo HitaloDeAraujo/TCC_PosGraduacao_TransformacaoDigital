@@ -36,9 +36,7 @@ export class ListagemRepositoriosComponent implements OnInit {
       result => {
 
         if (result != null) {
-          debugger;
           this.repositorios = result;
-          this.toastr.success('Sucesso');
           this.dtTrigger.next();
         }
         else

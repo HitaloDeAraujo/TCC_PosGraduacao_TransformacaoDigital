@@ -79,13 +79,14 @@
             <div id="secao-graficos" class="ml-4 mr-4">
                 <div class="row h-100 justify-content-center align-items-center">
                     <app-card-gestao-normas-home Title="Repositórios"
-                        Descricao="Repositórios de Normas cadastrados no SIGO" ActionText="Coleção de Repositórios"
+                        Descricao="Repositórios de Normas cadastrados no SIGO" ActionText="Coleção de {{quantRepositorios}} Repositório(s)"
                         Image="../../../../../../assets/box-solid.svg"
                         Value="/GestaoNormas/Normas" (ActionClicked)="onMenuClick($event)"></app-card-gestao-normas-home>
-
-                    <app-card-gestao-normas-home Title="Normas"
-                        Descricao="Normas cadastrados no SIGO" ActionText="Coleção de Normas"
-                        Image="../../../../../../assets/sticky-note-solid.svg"></app-card-gestao-normas-home>              
+                        
+                        <app-card-gestao-normas-home Title="Normas"
+                        Descricao="Normas cadastrados no SIGO" ActionText="Coleção de {{quantNormas}} Norma(s)"
+                        Image="../../../../../../assets/sticky-note-solid.svg"
+                        Value="/GestaoNormas/Repositorios" (ActionClicked)="onMenuClick($event)"></app-card-gestao-normas-home>              
                 </div>
             </div>
         </main>

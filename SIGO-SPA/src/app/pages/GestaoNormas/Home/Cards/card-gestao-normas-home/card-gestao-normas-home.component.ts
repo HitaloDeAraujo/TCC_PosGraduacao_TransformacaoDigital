@@ -23,5 +23,4 @@ export class CardGestaoNormasHomeComponent implements OnInit {
   public onActionClick() {
     this.ActionClicked.emit(this.Value);
   }
-
 }

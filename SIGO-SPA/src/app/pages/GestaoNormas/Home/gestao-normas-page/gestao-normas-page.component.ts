@@ -32,8 +32,7 @@ export class GestaoNormasPageComponent implements OnInit {
       result => {
 
         if (result != null) {
-          this.quantNormas = result;
-          this.toastr.success('Sucesso');
+          this.quantNormas = result["length"];;
         }
         else
           this.toastr.error("Erro", "Alerta");
@@ -50,8 +49,7 @@ export class GestaoNormasPageComponent implements OnInit {
       result => {
 
         if (result != null) {
-          this.quantRepositorios = result;
-          this.toastr.success('Sucesso');
+          this.quantRepositorios = result["length"];
         }
         else
           this.toastr.error("Erro", "Alerta");
