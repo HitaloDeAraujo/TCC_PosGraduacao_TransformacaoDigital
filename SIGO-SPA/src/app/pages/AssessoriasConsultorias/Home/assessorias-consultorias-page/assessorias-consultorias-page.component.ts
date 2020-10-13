@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ParceiroService } from '../../../../services/parceiro.service'
 
 @Component({
   selector: 'app-assessorias-consultorias-page',
@@ -7,8 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssessoriasConsultoriasPageComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private parceiroService: ParceiroService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) { }
+  
   ngOnInit(): void {
+  }
+
+  public onMenuClick(menu) {
+    this.router.navigate([menu]);
   }
 }

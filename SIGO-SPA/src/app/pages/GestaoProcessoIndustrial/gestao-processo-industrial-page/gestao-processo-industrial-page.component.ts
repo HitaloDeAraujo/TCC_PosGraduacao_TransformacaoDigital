@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ParceiroService } from '../../../services/parceiro.service';
+import { DataTablesOptions } from '../../../utils/data-tables-utils';
 
 @Component({
   selector: 'app-gestao-processo-industrial-page',
@@ -11,38 +11,21 @@ import { ParceiroService } from '../../../services/parceiro.service';
 
 export class GestaoProcessoIndustrialPageComponent implements OnInit {
 
-  constructor(private parceiroService: ParceiroService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private toastr: ToastrService) { }
 
+  dtOptions: any;
 
   ngOnInit(): void {
+    this.dtOptions = DataTablesOptions.PortuguesBrasil;
   }
 
   public onClick(modulo) {
-      this.router.navigate([modulo]);
-  }
-
-  obterParceiros() {
-    this.parceiroService.Get().subscribe(
-
-      result => {
-
-        if (result != null) {
-          this.toastr.success('Sucesso');
-        }
-        else
-          this.toastr.error("Erro", "Alerta");
-      },
-      error => {
-        this.toastr.error("Erro", "Alerta");
-      }
-    );
+    this.router.navigate([modulo]);
   }
 
   startTimer() {
     setInterval(() => {
       this.toastr.success('Sessão encerrada!');
     }, 1000)
-
-
   }
 }

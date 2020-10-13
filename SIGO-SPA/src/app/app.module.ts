@@ -19,6 +19,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AssessoriasConsultoriasPageComponent } from './pages/AssessoriasConsultorias/Home/assessorias-consultorias-page/assessorias-consultorias-page.component';
 import { NavPrincipalComponent } from './controls/nav-principal/nav-principal.component';
 import { CardsACComponent } from './pages/AssessoriasConsultorias/Home/CardsAC/cards-ac/cards-ac.component';
+import { DataTablesModule } from 'angular-datatables';
+import { ListagemParceirosComponent } from './pages/AssessoriasConsultorias/Parceiros/listagem-parceiros/listagem-parceiros.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { CardsACComponent } from './pages/AssessoriasConsultorias/Home/CardsAC/c
     OrcamentosPedidosMesGraphComponent,
     AssessoriasConsultoriasPageComponent,
     NavPrincipalComponent,
-    CardsACComponent
+    CardsACComponent,
+    ListagemParceirosComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { CardsACComponent } from './pages/AssessoriasConsultorias/Home/CardsAC/c
     ChartsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    DataTablesModule,
     ToastrModule.forRoot()
   ],
   providers: [
