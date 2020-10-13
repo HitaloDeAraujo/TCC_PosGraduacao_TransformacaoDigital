@@ -110,6 +110,8 @@ namespace SIGO.GestaoNormas.Service
                     RepositorioID = repositorio.ID
                 };
 
+                await Salvar(norma);
+
                 normas.Add(norma);
             }
            
