@@ -86,7 +86,7 @@ namespace SIGO.GestaoNormas.Service
             }
         }
 
-        public async Task<List<Norma>> ObterNormasExternas(string url, Repositorio repositorio)
+        public async Task<List<Norma>> ObterNormasExternas(Repositorio repositorio)
         {
             var ultimaNorma = (await ObterNormas()).OrderBy(x => x.ID).LastOrDefault();
             int id = ultimaNorma != null ? ultimaNorma.ID + 1 : 1;

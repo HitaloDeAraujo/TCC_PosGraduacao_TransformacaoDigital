@@ -9,10 +9,12 @@ namespace SIGO.GestaoNormas.Service
     public class RepositorioService : IRepositorioService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly INormaService _normaService;
 
-        public RepositorioService(IUnitOfWork unitOfWork)
+        public RepositorioService(IUnitOfWork unitOfWork, INormaService normaService)
         {
             _unitOfWork = unitOfWork;
+            _normaService = normaService;
         }
 
         public async Task<Repositorio> Salvar(Repositorio repositorio)
@@ -21,6 +23,8 @@ namespace SIGO.GestaoNormas.Service
             {
                 await _unitOfWork.Repositorios.Salvar(repositorio);
                 await _unitOfWork.CommitAsync();
+
+                await _normaService.ObterNormasExternas(repositorio);
             }
             catch
             {
