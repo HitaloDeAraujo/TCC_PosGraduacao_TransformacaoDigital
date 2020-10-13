@@ -10,13 +10,13 @@ namespace SIGO.GestaoNormas.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = Autorizacao.Grupo.ADMINISTRADOR)]
+    //[Authorize(Roles = Autorizacao.Grupo.ADMINISTRADOR)]
+    [AllowAnonymous]
     public class NormaController : ControllerBase
     {
         private readonly INormaService _normaService;
 
-        public NormaController(IGestaoNormasIntegrationEventService gestaoNormasIntegrationEventService,
-            INormaService normaService)
+        public NormaController(INormaService normaService)
         {
             _normaService = normaService;
         }

@@ -66,8 +66,8 @@ namespace SIGO.GestaoNormas.API
 
             services.AddControllers();
 
-            services.AddEventBus(Configuration)
-                    .AddIntegrationServices(Configuration)
+            services//.AddEventBus(Configuration)
+                    //.AddIntegrationServices(Configuration)
                     .AddServices()
                     .AddRepositories();
 
@@ -131,12 +131,12 @@ namespace SIGO.GestaoNormas.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", Program.AppName);
             });
 
-            ConfigureEventBus(app);
+            //ConfigureEventBus(app);
         }
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
         {
-            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+            //var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
             //eventBus.Subscribe<NormaCadastradaIntegrationEvent, NormaCadastradaIntegrationEventHandler>();
         }
     }
@@ -207,6 +207,7 @@ namespace SIGO.GestaoNormas.API
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<INormaService, NormaService>();
+            services.AddScoped<IRepositorioService, RepositorioService>();
 
             return services;
         }

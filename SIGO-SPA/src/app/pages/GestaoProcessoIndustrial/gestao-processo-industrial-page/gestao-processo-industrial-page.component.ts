@@ -19,7 +19,7 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
     this.dtOptions = DataTablesOptions.PortuguesBrasil;
   }
 
-  public onClick(modulo) {
+  public onMenuClick(modulo) {
     this.router.navigate([modulo]);
   }
 

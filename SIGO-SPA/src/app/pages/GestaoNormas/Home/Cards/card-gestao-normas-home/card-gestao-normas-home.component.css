@@ -1,0 +1,15 @@
+img {
+    align-self: center;
+    margin-top: 1rem;
+    width: 5rem;
+    height: 5rem;
+}
+
+.card {
+    min-height: 18rem;
+    width: 18rem;
+}
+
+.card-text {
+    height: 3rem;;
+}

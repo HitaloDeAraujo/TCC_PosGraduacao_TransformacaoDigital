@@ -35,13 +35,13 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <a class="nav-link modulos">
+                        <a class="nav-link modulos" (click)="onMenuClick('/GestaoNormas')">
                             <app-icon-sigo Title="Gestão de Normas" ClassIcon="fa fa-sticky-note"></app-icon-sigo>
                             <span>Gestão de Normas</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link modulos" (click)="onClick('/AssessoriasConsultorias')">
+                        <a class="nav-link modulos" (click)="onMenuClick('/AssessoriasConsultorias')">
                             <app-icon-sigo Title="Assessorias e Consultorias" ClassIcon="fa fa-users black">
                             </app-icon-sigo>
                             <span>Assessorias e Consultorias</span>

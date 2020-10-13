@@ -2,42 +2,42 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
-import { ParceiroService } from '../../../../services/parceiro.service';
+import { RepositorioService } from '../../../../services/repositorio.service';
 import { DataTablesOptions } from '../../../../utils/data-tables-utils';
 
 @Component({
-  selector: 'app-listagem-parceiros',
-  templateUrl: './listagem-parceiros.component.html',
-  styleUrls: ['./listagem-parceiros.component.css']
+  selector: 'app-listagem-repositorios',
+  templateUrl: './listagem-repositorios.component.html',
+  styleUrls: ['./listagem-repositorios.component.css']
 })
+export class ListagemRepositoriosComponent implements OnInit {
 
-export class ListagemParceirosComponent implements OnInit {
+  public repositorios;
 
   dtOptions: any;
 
   public dtTrigger: Subject<any> = new Subject<any>();
-
-  public parceiros;
-
-  constructor(private parceiroService: ParceiroService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) { }
+  
+  constructor(private repositorioService: RepositorioService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.dtOptions = DataTablesOptions.PortuguesBrasil;
 
-    this.obterParceiros();
+    this.obterRepositorios();
   }
 
-  public onMenuClick(menu) {
-    this.router.navigate([menu]);
+  public onMenuClick(modulo) {
+    this.router.navigate([modulo]);
   }
 
-  obterParceiros() {
-    this.parceiroService.Get().subscribe(
+  obterRepositorios() {
+    this.repositorioService.Get().subscribe(
 
       result => {
 
         if (result != null) {
-          this.parceiros = result;
+          debugger;
+          this.repositorios = result;
           this.toastr.success('Sucesso');
           this.dtTrigger.next();
         }

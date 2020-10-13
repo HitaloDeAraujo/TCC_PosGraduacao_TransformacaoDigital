@@ -14,6 +14,8 @@ import { OrcamentosPedidosMesGraphComponent } from './pages/GestaoProcessoIndust
 import { ToastrModule } from 'ngx-toastr';
 import { BaseService } from './services/base.service'
 import { ParceiroService } from './services/parceiro.service'
+import { NormaService } from './services/norma.service'
+import { RepositorioService } from './services/repositorio.service'
 import { RequestInterceptor } from './utils/request-interceptor'
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AssessoriasConsultoriasPageComponent } from './pages/AssessoriasConsultorias/Home/assessorias-consultorias-page/assessorias-consultorias-page.component';
@@ -21,6 +23,10 @@ import { NavPrincipalComponent } from './controls/nav-principal/nav-principal.co
 import { CardsACComponent } from './pages/AssessoriasConsultorias/Home/CardsAC/cards-ac/cards-ac.component';
 import { DataTablesModule } from 'angular-datatables';
 import { ListagemParceirosComponent } from './pages/AssessoriasConsultorias/Parceiros/listagem-parceiros/listagem-parceiros.component';
+import { GestaoNormasPageComponent } from './pages/GestaoNormas/Home/gestao-normas-page/gestao-normas-page.component';
+import { ListagemNormasComponent } from './pages/GestaoNormas/Normas/listagem-normas/listagem-normas.component';
+import { ListagemRepositoriosComponent } from './pages/GestaoNormas/Repositorios/listagem-repositorios/listagem-repositorios.component';
+import { CardGestaoNormasHomeComponent } from './pages/GestaoNormas/Home/Cards/card-gestao-normas-home/card-gestao-normas-home.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +39,11 @@ import { ListagemParceirosComponent } from './pages/AssessoriasConsultorias/Parc
     AssessoriasConsultoriasPageComponent,
     NavPrincipalComponent,
     CardsACComponent,
-    ListagemParceirosComponent
+    ListagemParceirosComponent,
+    GestaoNormasPageComponent,
+    ListagemNormasComponent,
+    ListagemRepositoriosComponent,
+    CardGestaoNormasHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +57,8 @@ import { ListagemParceirosComponent } from './pages/AssessoriasConsultorias/Parc
   providers: [
     BaseService,
     ParceiroService,
+    NormaService,
+    RepositorioService,
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

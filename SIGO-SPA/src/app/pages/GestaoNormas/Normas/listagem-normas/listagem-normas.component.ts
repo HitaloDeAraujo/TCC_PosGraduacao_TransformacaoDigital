@@ -2,42 +2,41 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
-import { ParceiroService } from '../../../../services/parceiro.service';
+import { NormaService } from '../../../../services/norma.service';
 import { DataTablesOptions } from '../../../../utils/data-tables-utils';
 
 @Component({
-  selector: 'app-listagem-parceiros',
-  templateUrl: './listagem-parceiros.component.html',
-  styleUrls: ['./listagem-parceiros.component.css']
+  selector: 'app-listagem-normas',
+  templateUrl: './listagem-normas.component.html',
+  styleUrls: ['./listagem-normas.component.css']
 })
+export class ListagemNormasComponent implements OnInit {
 
-export class ListagemParceirosComponent implements OnInit {
+  public normas;
 
   dtOptions: any;
 
   public dtTrigger: Subject<any> = new Subject<any>();
 
-  public parceiros;
-
-  constructor(private parceiroService: ParceiroService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) { }
+  constructor(private normaService: NormaService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.dtOptions = DataTablesOptions.PortuguesBrasil;
 
-    this.obterParceiros();
+    this.obterNormas();
   }
 
-  public onMenuClick(menu) {
-    this.router.navigate([menu]);
+  public onMenuClick(modulo) {
+    this.router.navigate([modulo]);
   }
 
-  obterParceiros() {
-    this.parceiroService.Get().subscribe(
+  obterNormas() {
+    this.normaService.Get().subscribe(
 
       result => {
 
         if (result != null) {
-          this.parceiros = result;
+          this.normas = result;
           this.toastr.success('Sucesso');
           this.dtTrigger.next();
         }
