@@ -10,6 +10,5 @@ namespace SIGO.GestaoNormas.Domain.Entities
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public int RepositorioID { get; set; }
-        public Repositorio Repositorio { get; set; }
     }
 }

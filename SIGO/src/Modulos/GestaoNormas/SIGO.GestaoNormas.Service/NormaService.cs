@@ -104,7 +104,7 @@ namespace SIGO.GestaoNormas.Service
                     ID = id++,
                     DataCriacao = DateTime.Now,
                     GUID = Guid.NewGuid(),
-                    URL = "https://github.com/HitaloDeAraujo/AgenteConversacao/blob/master/HITALO%20ARAUJO%20PROJETO%20E%20DESENVOLVIMENTO%20DE%20UM%20ARCABOU%C3%87O%20DE%20AGENTE%20DE%20CONVERSA%C3%87%C3%83O%20-%2011.pdf",
+                    URL = "https://github.com/HitaloDeAraujo/pag_teste_tcc_pos/blob/master/pag%20(" + random.Next(1, 61) + ").pdf",
                     Titulo = string.Concat("Norma numero", ultimaNorma.ID + 1),
                     Descricao = string.Concat("Norma numero", ultimaNorma.ID + 1, " do repositório ", repositorio.Nome),
                     RepositorioID = repositorio.ID
@@ -114,7 +114,7 @@ namespace SIGO.GestaoNormas.Service
 
                 normas.Add(norma);
             }
-           
+
             return normas;
         }
     }

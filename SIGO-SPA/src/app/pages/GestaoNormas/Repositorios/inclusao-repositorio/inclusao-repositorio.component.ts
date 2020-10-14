@@ -75,9 +75,9 @@ export class InclusaoRepositorioComponent implements OnInit {
     this.repositorioService.Post(repositorioDTO).subscribe(
 
       result => {
-
         if (result != null) {
-          this.toastr.error("Repositório cadastrado com sucesso", "Alerta");
+          this.toastr.success("Repositório cadastrado com sucesso", "Alerta");
+          this.router.navigate(["/GestaoNormas/Repositorios"]);
         }
         else
           this.toastr.error("Erro", "Alerta");

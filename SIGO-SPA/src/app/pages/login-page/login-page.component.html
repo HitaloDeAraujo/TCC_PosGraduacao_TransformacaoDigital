@@ -14,17 +14,19 @@
       <app-icon-sigo Title="Segurança e Qualidade" ClassIcon="fa fa-eye steelblue"></app-icon-sigo>
     </div>
   </div>
-
-  <form class="form-signin">
+  
+  <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <img class="mb-4 mt-4 text-center" src="/assets/logo-sigo.png" alt="" width="72">
 
     <h1 class="h3 mb-3 font-weight-normal">Sistema Integrado de Gestão e Operação</h1>
+    
     <label for="inputEmail" class="sr-only">Email</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="">
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" formControlName="email">
+   
     <label for="inputPassword" class="sr-only">Senha</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required="">
+    <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required="" formControlName="senha">
 
-    <button class="btn btn-lg btn-dark btn-block" type="submit" (click)="Entrar()">Entrar</button>
+    <button class="btn btn-lg btn-dark btn-block" type="submit" [disabled]="!loginForm.valid">Entrar</button>
   </form>
 </div>
 

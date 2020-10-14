@@ -10,6 +10,7 @@ namespace SIGO.GestaoProcessoIndustrial.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
@@ -35,7 +36,13 @@ namespace SIGO.GestaoProcessoIndustrial.API.Controllers
                     Grupos = result.Grupos
                 });
 
-                return Ok(token);
+                TokenDTO tokenDTO = new TokenDTO()
+                {
+                    NomeUsuario = result.Nome,
+                    Token = token
+                };
+
+                return Ok(tokenDTO);
             }
 
             return Unauthorized();

@@ -28,7 +28,7 @@ export class BaseService {
 
     public createRequestOptions(params?: HttpParams) {
 
-        let token = localStorage.getItem('token');
+        let token = localStorage.getItem('TOKEN');
 
         let options =
         {

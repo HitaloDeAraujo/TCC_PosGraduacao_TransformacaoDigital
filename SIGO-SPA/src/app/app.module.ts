@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BaseService } from './services/base.service'
 import { ParceiroService } from './services/parceiro.service'
 import { NormaService } from './services/norma.service'
+import { UsuarioService } from './services/usuario.service'
 import { RepositorioService } from './services/repositorio.service'
 import { RequestInterceptor } from './utils/request-interceptor'
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
@@ -29,6 +30,7 @@ import { ListagemNormasComponent } from './pages/GestaoNormas/Normas/listagem-no
 import { ListagemRepositoriosComponent } from './pages/GestaoNormas/Repositorios/listagem-repositorios/listagem-repositorios.component';
 import { CardGestaoNormasHomeComponent } from './pages/GestaoNormas/Home/Cards/card-gestao-normas-home/card-gestao-normas-home.component';
 import { InclusaoRepositorioComponent } from './pages/GestaoNormas/Repositorios/inclusao-repositorio/inclusao-repositorio.component';
+import { NavigationGuardService } from './security/navigation.guard.service';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { InclusaoRepositorioComponent } from './pages/GestaoNormas/Repositorios/
     ParceiroService,
     NormaService,
     RepositorioService,
+    UsuarioService,
+    [NavigationGuardService],
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

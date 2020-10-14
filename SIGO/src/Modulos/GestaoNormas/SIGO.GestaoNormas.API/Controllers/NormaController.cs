@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SIGO.Domain;
-using SIGO.GestaoNormas.API.IntegrationEvents;
 using SIGO.GestaoNormas.Domain.DTOs;
 using SIGO.GestaoNormas.Domain.Interfaces.Service;
 using System.Threading.Tasks;
@@ -9,9 +8,7 @@ using System.Threading.Tasks;
 namespace SIGO.GestaoNormas.API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    //[Authorize(Roles = Autorizacao.Grupo.ADMINISTRADOR)]
-    [AllowAnonymous]
+    [Authorize(Roles = Autorizacao.Grupo.ADMINISTRADOR)]
     public class NormaController : ControllerBase
     {
         private readonly INormaService _normaService;
@@ -22,7 +19,6 @@ namespace SIGO.GestaoNormas.API.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public async Task<IActionResult> Post([FromBody] NormaDTO normaDTO)
         {
             try

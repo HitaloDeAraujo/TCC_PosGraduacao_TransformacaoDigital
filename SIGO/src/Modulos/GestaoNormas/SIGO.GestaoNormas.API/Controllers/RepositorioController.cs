@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SIGO.Domain;
-using SIGO.GestaoNormas.API.IntegrationEvents;
 using SIGO.GestaoNormas.Domain.DTOs;
 using SIGO.GestaoNormas.Domain.Interfaces.Service;
 using System.Threading.Tasks;
@@ -10,8 +9,7 @@ namespace SIGO.GestaoNormas.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Roles = Autorizacao.Grupo.ADMINISTRADOR)]
-    [AllowAnonymous]
+    [Authorize(Roles = Autorizacao.Grupo.ADMINISTRADOR)]
     public class RepositorioController : ControllerBase
     {
         private readonly IRepositorioService _repositorioService;
@@ -39,13 +37,12 @@ namespace SIGO.GestaoNormas.API.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> Post([FromBody] RepositorioDTO repositorioDTO)
         {
             var repositorio = await _repositorioService.Salvar(repositorioDTO.ToRepositorio());
 
             if (repositorio.ID != 0)
-                return Ok();
+                return Ok(repositorio);
             else
                 return BadRequest();
         }

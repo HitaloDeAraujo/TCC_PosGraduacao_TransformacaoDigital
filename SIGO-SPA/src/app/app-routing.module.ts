@@ -9,6 +9,7 @@ import { ListagemRepositoriosComponent } from "./pages/GestaoNormas/Repositorios
 import { InclusaoRepositorioComponent } from "./pages/GestaoNormas/Repositorios/inclusao-repositorio/inclusao-repositorio.component"
 1
 import { NgModule } from "@angular/core";
+import { NavigationGuardService } from "./security/navigation.guard.service";
 
 const appRoutes: Routes = [
   {
@@ -17,44 +18,50 @@ const appRoutes: Routes = [
   },
   {
     path: "GestaoProcessoIndustrial",
-    component: GestaoProcessoIndustrialPageComponent
+    component: GestaoProcessoIndustrialPageComponent,
+    canActivate: [NavigationGuardService]
   },
   {
     path: "AssessoriasConsultorias",
-    component: AssessoriasConsultoriasPageComponent
+    component: AssessoriasConsultoriasPageComponent,
+    canActivate: [NavigationGuardService]
   },
   {
     path: "AssessoriasConsultorias/Parceiros",
-    component: ListagemParceirosComponent
+    component: ListagemParceirosComponent,
+    canActivate: [NavigationGuardService]
   },
   {
     path: "GestaoNormas",
-    component: GestaoNormasPageComponent
+    component: GestaoNormasPageComponent,
+    canActivate: [NavigationGuardService]
   },
   {
     path: "GestaoNormas/Normas",
-    component: ListagemNormasComponent
+    component: ListagemNormasComponent,
+    canActivate: [NavigationGuardService]
   },
   {
     path: "GestaoNormas/Repositorios",
-    component: ListagemRepositoriosComponent
+    component: ListagemRepositoriosComponent,
+    canActivate: [NavigationGuardService]
   },
   {
     path: "GestaoNormas/Repositorios/Novo",
-    component: InclusaoRepositorioComponent
+    component: InclusaoRepositorioComponent,
+    canActivate: [NavigationGuardService]
   }
 ];
 
 @NgModule({
-    imports: [
-      RouterModule.forRoot(
-        appRoutes,
-        { enableTracing: true } // <-- debugging purposes only
-      )
-    ],
-    exports: [
-      RouterModule
-    ]
-  })
-  export class AppRoutingModule {}
- 
+  imports: [
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: false }
+    )
+  ],
+  exports: [
+    RouterModule
+  ]
+})
+export class AppRoutingModule { }
