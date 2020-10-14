@@ -19,7 +19,7 @@ export class RequestInterceptor implements HttpInterceptor {
                 {
                     this.router.navigate(['']);
                     localStorage.removeItem("TOKEN");
-                    this.toastr.warning("Tokwn expirado", "Alerta");
+                    this.toastr.warning("Por favor, faça login novamente!", "Alerta");
                     return EMPTY;
                 }
 

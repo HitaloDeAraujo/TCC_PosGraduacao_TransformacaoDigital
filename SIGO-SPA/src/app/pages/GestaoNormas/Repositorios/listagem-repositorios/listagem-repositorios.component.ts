@@ -22,7 +22,6 @@ export class ListagemRepositoriosComponent implements OnInit {
 
   ngOnInit(): void {
     this.dtOptions = DataTablesOptions.PortuguesBrasil;
-
     this.obterRepositorios();
   }
 

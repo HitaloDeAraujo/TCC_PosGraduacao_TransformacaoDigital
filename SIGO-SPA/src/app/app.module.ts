@@ -18,6 +18,7 @@ import { ParceiroService } from './services/parceiro.service'
 import { NormaService } from './services/norma.service'
 import { UsuarioService } from './services/usuario.service'
 import { RepositorioService } from './services/repositorio.service'
+import { EventoService } from './services/evento.service'
 import { RequestInterceptor } from './utils/request-interceptor'
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AssessoriasConsultoriasPageComponent } from './pages/AssessoriasConsultorias/Home/assessorias-consultorias-page/assessorias-consultorias-page.component';
@@ -31,6 +32,7 @@ import { ListagemRepositoriosComponent } from './pages/GestaoNormas/Repositorios
 import { CardGestaoNormasHomeComponent } from './pages/GestaoNormas/Home/Cards/card-gestao-normas-home/card-gestao-normas-home.component';
 import { InclusaoRepositorioComponent } from './pages/GestaoNormas/Repositorios/inclusao-repositorio/inclusao-repositorio.component';
 import { NavigationGuardService } from './security/navigation.guard.service';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,7 @@ import { NavigationGuardService } from './security/navigation.guard.service';
     NormaService,
     RepositorioService,
     UsuarioService,
+    EventoService,
     [NavigationGuardService],
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
   ],

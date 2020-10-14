@@ -6,7 +6,5 @@ namespace SIGO.GestaoProcessoIndustrial.Domain.Entities
     public class TipoEvento : EntidadeBase
     {
         public string Nome { get; set; }
-
-        public List<Evento> Eventos { get; set; }
     }
 }

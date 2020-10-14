@@ -31,7 +31,7 @@ export class GestaoNormasPageComponent implements OnInit {
       result => {
 
         if (result != null) {
-          this.quantNormas = result["length"];;
+          this.quantNormas = result["length"];
         }
         else
           this.toastr.error("Erro", "Alerta");

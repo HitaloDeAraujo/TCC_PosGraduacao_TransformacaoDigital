@@ -78,7 +78,7 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Repository
         {
             try
             {
-                return await _context.Eventos.Where(x => x.DataExclusao == null).ToListAsync();
+                return await _context.Eventos.Where(x => x.DataExclusao == null).Include(x => x.TipoEvento).ToListAsync();
             }
             catch
             {

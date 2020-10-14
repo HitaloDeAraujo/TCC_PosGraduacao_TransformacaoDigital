@@ -18,6 +18,9 @@ export class LoginPageComponent implements OnInit {
   constructor(private usuarioService: UsuarioService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+
+    localStorage.clear();
+
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, this.emailValidator]),
       senha: new FormControl('', [Validators.required, this.senhaValidator])
@@ -60,13 +63,12 @@ export class LoginPageComponent implements OnInit {
     let loginDTO = new LoginDTO();
     loginDTO.Email = this.loginForm.value.email;
     loginDTO.Senha = this.loginForm.value.senha;
-    debugger;
+
     this.usuarioService.Post(loginDTO).subscribe(
 
       result => {
 
         if (result != null) {
-          debugger;
           localStorage.setItem("TOKEN", result.token);
 
           this.router.navigate(['/GestaoProcessoIndustrial']);
