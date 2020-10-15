@@ -2,13 +2,13 @@
     <div class="card-header">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col card-title-label">
-                <span>Orçamentos/Pedidos</span>
+                <span>{{Title}}</span>
             </div>
         </div>
     </div>
     <div class="card-body">
         <div class="chart-container">
-            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+            <canvas baseChart [datasets]="BarChartData" [labels]="barChartLabels" [options]="barChartOptions"
                 [legend]="barChartLegend" [chartType]="barChartType">
             </canvas>
         </div>

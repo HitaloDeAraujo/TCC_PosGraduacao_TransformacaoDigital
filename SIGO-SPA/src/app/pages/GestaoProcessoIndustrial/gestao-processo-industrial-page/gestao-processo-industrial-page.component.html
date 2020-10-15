@@ -83,7 +83,7 @@
 
             <div id="secao-graficos" class="ml-4 mr-4">
                 <div class="row h-100 justify-content-center align-items-center">
-                    <app-orcamentos-pedidos-meses-graph class="col-12 col-lg-6" Title="Orçamentos/Pedidos">
+                    <app-orcamentos-pedidos-meses-graph class="col-12 col-lg-6" Title="Orçamentos/Pedidos" [BarChartDataBind]="relacaoOrcamentosVendas">
                     </app-orcamentos-pedidos-meses-graph>
                     <app-orcamentos-pedidos-mes-graph class="col-12 col-lg-6" Title="Relação Orçamentos/Pedidos" [BarChartDataBind]="relacaoOrcamentosVendas">
                     </app-orcamentos-pedidos-mes-graph>

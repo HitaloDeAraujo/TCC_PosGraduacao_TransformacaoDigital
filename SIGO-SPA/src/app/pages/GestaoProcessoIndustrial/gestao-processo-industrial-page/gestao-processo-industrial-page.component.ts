@@ -25,7 +25,9 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions = DataTablesOptions.PortuguesBrasil;
     this.obterEventos();
-    this.obterRelacaoOrcamentosVendas();
+    this.startTimerObterRelacaoOrcamentosVendas();
+
+    this.relacaoOrcamentosVendas = [{ data: [50, 50] }];
   }
 
   public onMenuClick(modulo) {
@@ -57,7 +59,10 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
 
         if (result != null) {
           let relacaoOrcamentosVendas: RelacaoOrcamentosVendas = JSON.parse(result["descricao"]);
-          this.relacaoOrcamentosVendas = [{data: [relacaoOrcamentosVendas.Orcamentos, relacaoOrcamentosVendas.Vendas]}];
+
+          if (relacaoOrcamentosVendas.Orcamentos != this.relacaoOrcamentosVendas[0].data[0]) {
+            this.relacaoOrcamentosVendas = [{ data: [relacaoOrcamentosVendas.Orcamentos, relacaoOrcamentosVendas.Vendas] }];
+          }
         }
         else
           this.toastr.error("Erro", "Alerta");
@@ -68,10 +73,10 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
     );
   }
 
-  startTimer() {
+  startTimerObterRelacaoOrcamentosVendas() {
     setInterval(() => {
-      this.toastr.success('Sessão encerrada!');
-    }, 1000)
+      this.obterRelacaoOrcamentosVendas();
+    }, 10000)
   }
 }
 

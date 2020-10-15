@@ -20,7 +20,6 @@ export class OrcamentosPedidosMesGraphComponent implements OnInit {
   public BarChartData = [{data: [50,50]}];
   @Input() Title: string;
 
-  // [{data: [50,50]}];
   constructor() { }
 
   ngOnInit(): void {
@@ -28,10 +27,7 @@ export class OrcamentosPedidosMesGraphComponent implements OnInit {
 
   ngOnChanges(Changes: SimpleChanges) {
 
-    if (Changes.BarChartDataBind != undefined && Changes.BarChartDataBind.currentValue != undefined){
-      debugger;
+    if (Changes.BarChartDataBind != undefined && Changes.BarChartDataBind.currentValue != undefined)
       this.BarChartData = Changes.BarChartDataBind.currentValue;
-    }
   }
-
 }

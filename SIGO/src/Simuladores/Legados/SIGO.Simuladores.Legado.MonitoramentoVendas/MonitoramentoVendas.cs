@@ -19,11 +19,11 @@ namespace SIGO.Simuladores.Legado.MonitoramentoVendas
                 {
                     client.BaseAddress = new Uri(URL);
 
-                    int orcamentos = random.Next(3000, 5000);
+                    int orcamentos = random.Next(3000, 9000);
                     var relacaoOrcamentoVendasIntegrationEvent = new RelacaoOrcamentoVendasIntegrationEvent()
                     {
                         Orcamentos = orcamentos,
-                        Vendas = random.Next(1, orcamentos)
+                        Vendas = orcamentos - random.Next(800, 2000) - new Random(orcamentos).Next(0, 99)
                     };
 
                     var jsonString = JsonSerializer.Serialize(relacaoOrcamentoVendasIntegrationEvent);
@@ -33,7 +33,7 @@ namespace SIGO.Simuladores.Legado.MonitoramentoVendas
                     await client.PostAsync("/api/Mule/PublicarEvento/RelacaoOrcamentoVendas", data);
                 }
 
-                Thread.Sleep(TimeSpan.FromMinutes(2));
+                Thread.Sleep(TimeSpan.FromSeconds(10));
             }
         }
     }
