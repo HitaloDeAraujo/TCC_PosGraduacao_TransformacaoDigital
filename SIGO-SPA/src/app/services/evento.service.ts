@@ -10,4 +10,8 @@ export class EventoService {
     public Get() {
         return this.baseService.get('gestaoprocessoindustrial/api/evento');
     }
+
+    public ObterRelacaoOrcamentosVendas() {
+        return this.baseService.get('gestaoprocessoindustrial/api/evento/tipoEvento/maisRecente/' + 4);
+    }
 }

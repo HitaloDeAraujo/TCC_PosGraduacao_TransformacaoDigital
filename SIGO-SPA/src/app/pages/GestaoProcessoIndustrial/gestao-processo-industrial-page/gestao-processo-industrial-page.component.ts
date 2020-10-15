@@ -14,6 +14,7 @@ import { Subject } from 'rxjs';
 export class GestaoProcessoIndustrialPageComponent implements OnInit {
 
   public eventos;
+  public relacaoOrcamentosVendas;
 
   dtOptions: any;
 
@@ -24,6 +25,7 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions = DataTablesOptions.PortuguesBrasil;
     this.obterEventos();
+    this.obterRelacaoOrcamentosVendas();
   }
 
   public onMenuClick(modulo) {
@@ -36,10 +38,26 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
       result => {
 
         if (result != null) {
-
-          debugger;
           this.eventos = result;
           this.dtTrigger.next();
+        }
+        else
+          this.toastr.error("Erro", "Alerta");
+      },
+      error => {
+        this.toastr.error("Erro", "Alerta");
+      }
+    );
+  }
+
+  obterRelacaoOrcamentosVendas() {
+    this.eventoService.ObterRelacaoOrcamentosVendas().subscribe(
+
+      result => {
+
+        if (result != null) {
+          let relacaoOrcamentosVendas: RelacaoOrcamentosVendas = JSON.parse(result["descricao"]);
+          this.relacaoOrcamentosVendas = [{data: [relacaoOrcamentosVendas.Orcamentos, relacaoOrcamentosVendas.Vendas]}];
         }
         else
           this.toastr.error("Erro", "Alerta");
@@ -55,4 +73,9 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
       this.toastr.success('Sessão encerrada!');
     }, 1000)
   }
+}
+
+interface RelacaoOrcamentosVendas {
+  Orcamentos: string;
+  Vendas: string;
 }

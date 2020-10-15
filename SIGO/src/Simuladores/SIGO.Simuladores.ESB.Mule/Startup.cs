@@ -28,6 +28,28 @@ namespace SIGO.Simuladores.ESB.Mule
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            var URL = configuration[Utils.Configuration.Keys.SimuladorESBMuleURI];
+
+            Task.Run(async () =>
+            {
+                await Logistica.Simular(URL);
+            });
+
+            Task.Run(async () =>
+            {
+                await SegurancaQualidade.Simular(URL);
+            });
+
+            Task.Run(async () =>
+            {
+                await MonitoramentoVendas.Simular(URL);
+            });
+
+            Task.Run(async () =>
+            {
+                await InteligenciaNegocio.Simular(URL);
+            });
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -69,32 +91,10 @@ namespace SIGO.Simuladores.ESB.Mule
             });
 
             ConfigureEventBus(app);
-
-            Task.Run(async () =>
-            {
-                await Logistica.Simular();
-            });
-
-            Task.Run(async () =>
-            {
-                await SegurancaQualidade.Simular();
-            });
-
-            Task.Run(async () =>
-            {
-                await MonitoramentoVendas.Simular();
-            });
-
-            Task.Run(async () =>
-            {
-                await InteligenciaNegocio.Simular();
-            });
         }
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
         {
-            //var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
-            //eventBus.Subscribe<EstoqueMinimoIntegrationEvent, NormaCadastradaIntegrationEventHandler>();
         }
     }
 

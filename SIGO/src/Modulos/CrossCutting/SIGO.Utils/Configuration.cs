@@ -9,6 +9,7 @@
             public static string EventBusPassword = nameof(EventBusPassword);
             public static string EventBusRetryCount = nameof(EventBusRetryCount);
             public static string SubscriptionClientName = nameof(SubscriptionClientName);
+            public static string SimuladorESBMuleURI = nameof(SimuladorESBMuleURI);
         }
 
         public class LogContextUtils

@@ -67,8 +67,8 @@ namespace SIGO.GestaoProcessoIndustrial.API
 
             services.AddControllers();
 
-            services//.AddEventBus(Configuration)
-                    //.AddIntegrationServices(Configuration)
+            services.AddEventBus(Configuration)
+                    .AddIntegrationServices(Configuration)
                     .AddServices()
                     .AddRepositories();
 
@@ -135,7 +135,7 @@ namespace SIGO.GestaoProcessoIndustrial.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", Program.AppName);
             });
 
-            //ConfigureEventBus(app);
+            ConfigureEventBus(app);
         }
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
@@ -143,6 +143,7 @@ namespace SIGO.GestaoProcessoIndustrial.API
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
             eventBus.Subscribe<NormaCadastradaIntegrationEvent, NormaCadastradaIntegrationEventHandler>();
             eventBus.Subscribe<EstoqueMinimoIntegrationEvent, EstoqueMinimoIntegrationEventHandler>();
+            eventBus.Subscribe<RelacaoOrcamentoVendasIntegrationEvent, RelacaoOrcamentoVendasEventHandler>();
         }
     }
 
@@ -206,6 +207,7 @@ namespace SIGO.GestaoProcessoIndustrial.API
             services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
             services.AddTransient<NormaCadastradaIntegrationEventHandler>();
             services.AddTransient<EstoqueMinimoIntegrationEventHandler>();
+            services.AddTransient<RelacaoOrcamentoVendasEventHandler>();
 
             return services;
         }

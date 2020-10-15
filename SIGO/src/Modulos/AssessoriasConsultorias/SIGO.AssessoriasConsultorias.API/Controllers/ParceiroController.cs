@@ -22,10 +22,6 @@ namespace SIGO.AssessoriasConsultorias.API.Controllers
         public async Task<IActionResult> Get()
         {
             var parceiros = await _parceiroService.ObterParceiros();
-            parceiros.Add(new Domain.Entities.Parceiro()
-            {
-                Nome = "teste"
-            });
 
             return Ok(parceiros);
         }

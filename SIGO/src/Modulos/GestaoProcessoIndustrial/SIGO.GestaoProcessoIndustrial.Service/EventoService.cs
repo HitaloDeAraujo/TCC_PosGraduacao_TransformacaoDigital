@@ -72,11 +72,39 @@ namespace SIGO.GestaoProcessoIndustrial.Service
             return evento;
         }
 
+        public async Task<Evento> ObterEventoMaisRecente(int tipoEventoId)
+        {
+            var evento = new Evento();
+
+            try
+            {
+                evento = await _unitOfWork.Eventos.ObterEventoMaisRecente(tipoEventoId);
+            }
+            catch
+            {
+                throw;
+            }
+
+            return evento;
+        }
+
         public async Task<List<Evento>> ObterEventos()
         {
             try
             {
                 return await _unitOfWork.Eventos.ObterEventos();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<Evento>> ObterEventos(int tipoEventoId)
+        {
+            try
+            {
+                return await _unitOfWork.Eventos.ObterEventos(tipoEventoId);
             }
             catch
             {

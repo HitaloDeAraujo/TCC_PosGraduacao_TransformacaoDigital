@@ -74,11 +74,38 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Repository
             }
         }
 
+        public async Task<Evento> ObterEventoMaisRecente(int tipoEventoId)
+        {
+            try
+            {
+                //LastOrDefault nao esta funcionando
+                return await _context.Eventos.Where(x => x.DataExclusao == null && x.TipoEventoID == tipoEventoId).OrderByDescending(x => x.DataCriacao).FirstAsync();
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }
+
         public async Task<List<Evento>> ObterEventos()
         {
             try
             {
                 return await _context.Eventos.Where(x => x.DataExclusao == null).Include(x => x.TipoEvento).ToListAsync();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<Evento>> ObterEventos(int tipoEventoId)
+        {
+            try
+            {
+                return await _context.Eventos.Where(x => x.DataExclusao == null && x.TipoEventoID == tipoEventoId)
+                                             .Include(x => x.TipoEvento)
+                                             .ToListAsync();
             }
             catch
             {

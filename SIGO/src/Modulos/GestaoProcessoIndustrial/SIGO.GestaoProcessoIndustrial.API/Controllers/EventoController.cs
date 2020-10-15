@@ -27,10 +27,19 @@ namespace SIGO.GestaoProcessoIndustrial.API.Controllers
         }
 
         [HttpGet]
-        [Route("{guid}")]
+        [Route("guid")]
         public async Task<IActionResult> Get(string guid)
         {
             var evento = await _eventoService.ObterEvento(guid);
+
+            return Ok(evento);
+        }
+
+        [HttpGet]
+        [Route("TipoEvento/MaisRecente/{tipoEvento}")]
+        public async Task<IActionResult> Get_EventoMaisRecente(int tipoEvento)
+        {
+            var evento = await _eventoService.ObterEventoMaisRecente(tipoEvento);
 
             return Ok(evento);
         }

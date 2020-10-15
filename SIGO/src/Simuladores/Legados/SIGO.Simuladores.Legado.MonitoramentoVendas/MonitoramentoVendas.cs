@@ -10,9 +10,7 @@ namespace SIGO.Simuladores.Legado.MonitoramentoVendas
 {
     public class MonitoramentoVendas
     {
-        private static string URL = "https://localhost:5009";
-
-        public static async Task Simular()
+        public static async Task Simular(string URL)
         {
             Random random = new Random();
             while (true)
@@ -35,7 +33,7 @@ namespace SIGO.Simuladores.Legado.MonitoramentoVendas
                     await client.PostAsync("/api/Mule/PublicarEvento/RelacaoOrcamentoVendas", data);
                 }
 
-                Thread.Sleep(TimeSpan.FromSeconds(10));
+                Thread.Sleep(TimeSpan.FromMinutes(2));
             }
         }
     }

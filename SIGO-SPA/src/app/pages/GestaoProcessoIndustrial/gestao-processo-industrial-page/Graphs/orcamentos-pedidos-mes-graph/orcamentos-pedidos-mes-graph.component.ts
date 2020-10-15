@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-orcamentos-pedidos-mes-graph',
@@ -16,11 +16,22 @@ export class OrcamentosPedidosMesGraphComponent implements OnInit {
 
   public barChartType = 'pie';
   public barChartLegend = true;
-  public barChartData = [{data: [60,40]}];
+  @Input() BarChartDataBind = [{data: [50,50]}];
+  public BarChartData = [{data: [50,50]}];
+  @Input() Title: string;
 
+  // [{data: [50,50]}];
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(Changes: SimpleChanges) {
+
+    if (Changes.BarChartDataBind != undefined && Changes.BarChartDataBind.currentValue != undefined){
+      debugger;
+      this.BarChartData = Changes.BarChartDataBind.currentValue;
+    }
   }
 
 }

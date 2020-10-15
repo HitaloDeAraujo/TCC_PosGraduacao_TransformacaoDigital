@@ -10,9 +10,7 @@ namespace SIGO.Simuladores.Legado.InteligenciaNegocio
 {
     public class InteligenciaNegocio
     {
-        private static string URL = "https://localhost:5009";
-
-        public static async Task Simular()
+        public static async Task Simular(string URL)
         {
             Random random = new Random();
             while (true)

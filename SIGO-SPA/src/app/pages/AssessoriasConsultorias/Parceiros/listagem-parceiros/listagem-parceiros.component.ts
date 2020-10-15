@@ -38,7 +38,6 @@ export class ListagemParceirosComponent implements OnInit {
 
         if (result != null) {
           this.parceiros = result;
-          this.toastr.success('Sucesso');
           this.dtTrigger.next();
         }
         else

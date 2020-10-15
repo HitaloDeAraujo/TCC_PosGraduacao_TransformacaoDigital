@@ -50,6 +50,18 @@ namespace SIGO.GestaoProcessoIndustrial.Infra.Context
                   ID = 2,
                   DataCriacao = DateTime.Now,
                   Nome = "Norma Atualizada"
+              },
+              new TipoEvento
+              {
+                  ID = 3,
+                  DataCriacao = DateTime.Now,
+                  Nome = "Estoque mínimo"
+              },
+              new TipoEvento
+              {
+                  ID = 4,
+                  DataCriacao = DateTime.Now,
+                  Nome = "Relação orçamento venda"
               });
 
             modelBuilder.Entity<Evento>().HasData(

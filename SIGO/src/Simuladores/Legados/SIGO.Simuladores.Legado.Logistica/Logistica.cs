@@ -10,9 +10,7 @@ namespace SIGO.Simuladores.Legado.Logistica
 {
     public class Logistica
     {
-        private static string URL = "https://localhost:5009";
-
-        public static async Task Simular()
+        public static async Task Simular(string URL)
         {
             Random random = new Random();
             while (true)
@@ -36,7 +34,7 @@ namespace SIGO.Simuladores.Legado.Logistica
                     await client.PostAsync("/api/Mule/PublicarEvento/EstoqueMinimo", data);
                 }
 
-                Thread.Sleep(TimeSpan.FromMinutes(2));
+                Thread.Sleep(TimeSpan.FromSeconds(15));
             }
         }
     }
