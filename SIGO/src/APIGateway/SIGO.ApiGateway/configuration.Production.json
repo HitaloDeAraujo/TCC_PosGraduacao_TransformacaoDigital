@@ -5,7 +5,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "https://sigoassessoriasconsultorias.azurewebsites.net",
+          "Host": "sigoassessoriasconsultorias.azurewebsites.net",
           "Port": 80
         }
       ],
