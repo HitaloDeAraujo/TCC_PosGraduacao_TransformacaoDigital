@@ -33,7 +33,7 @@ namespace SIGO.Simuladores.Legado.MonitoramentoVendas
                     await client.PostAsync("/api/Mule/PublicarEvento/RelacaoOrcamentoVendas", data);
                 }
 
-                Thread.Sleep(TimeSpan.FromSeconds(10));
+                Thread.Sleep(TimeSpan.FromMinutes(2));
             }
         }
     }

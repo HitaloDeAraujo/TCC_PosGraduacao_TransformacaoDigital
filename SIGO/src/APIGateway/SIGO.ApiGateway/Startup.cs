@@ -30,9 +30,9 @@ namespace SIGO.ApiGateway
                 options.AddPolicy(name: SIGO_Front,
                                   builder =>
                                   {
-                                      builder.WithOrigins("http://localhost:4200")
-                                       .AllowAnyHeader()
-                                                  .AllowAnyMethod();
+                                      builder.WithOrigins("http://localhost:4200", "https://sigoweb.azurewebsites.net/")
+                                             .AllowAnyHeader()
+                                             .AllowAnyMethod();
                                   });
             });
         }
