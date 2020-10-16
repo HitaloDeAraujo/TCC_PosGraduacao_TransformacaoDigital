@@ -6,7 +6,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "sigoassessoriasconsultorias.azurewebsites.net",
-          "Port": 80
+          "Port": 443
         }
       ],
       "UpstreamPathTemplate": "/assessoriasconsultorias/{everything}",
