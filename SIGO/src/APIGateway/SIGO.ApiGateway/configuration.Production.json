@@ -17,8 +17,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5018
+          "Host": "sigogestaonormas.azurewebsites.net",
+          "Port": 443
         }
       ],
       "UpstreamPathTemplate": "/gestaonormas/{everything}",
@@ -29,8 +29,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5020
+          "Host": "sigogestaoprocessoindustrial.azurewebsites.net",
+          "Port": 443
         }
       ],
       "UpstreamPathTemplate": "/gestaoprocessoindustrial/{everything}",

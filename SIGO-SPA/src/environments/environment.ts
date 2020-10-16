@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API: 'https://sigogestaoprocessoindustrial.azurewebsites.net'
+  API: 'https://sigoapigateway.azurewebsites.net'
 };
 
 /*
