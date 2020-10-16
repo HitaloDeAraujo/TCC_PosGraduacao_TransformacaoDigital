@@ -25,6 +25,7 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions = DataTablesOptions.PortuguesBrasil;
     this.obterEventos();
+    this.obterRelacaoOrcamentosVendas();
     this.startTimerObterRelacaoOrcamentosVendas();
 
     this.relacaoOrcamentosVendas = [{ data: [50, 50] }];
