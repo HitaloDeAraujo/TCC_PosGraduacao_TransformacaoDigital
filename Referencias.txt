@@ -1,0 +1,27 @@
+KRZYWIEC, Wojciech. Build and run Angular application in a Docker container. Disponível em: <https://medium.com/@wkrzywiec/build-and-run-angular-application-in-a-docker-container-b65dbbc50be8>. Acesso em: 01 outubro de 2020.
+
+
+DAPPER. Dapper Tutorial. Disponível em:
+<https://dapper-tutorial.net/dapper> Acesso em: 15 de setembro de 2020.
+
+
+MICROSOFT. Implementar Gateways de API com o Ocelot. Disponível em:
+<https://docs.microsoft.com/pt-br/dotnet/architecture/microservices/multi-container-microservice-net-applications/implement-api-gateways-with-ocelot> Acesso em: 28 de setembro de 2020.
+
+
+
+Apendices
+
+URL do projeto no GitHub: https://github.com/HitaloDeAraujo/TCC_PosGraduacao_TransformacaoDigital
+
+Gestão do Proceso Industrial: https://sigogestaoprocessoindustrial.azurewebsites.net/swagger/index.html
+Gestão de Normas: https://sigogestaonormas.azurewebsites.net/swagger/index.html
+Assessorias e Consultorias: https://sigoassessoriasconsultorias.azurewebsites.net/swagger/index.html
+ApiGateway: https://sigoapigateway.azurewebsites.net
+Interface Web: https://sigoweb.azurewebsites.net/
+
+
+Agradecimentos
+
+
+
