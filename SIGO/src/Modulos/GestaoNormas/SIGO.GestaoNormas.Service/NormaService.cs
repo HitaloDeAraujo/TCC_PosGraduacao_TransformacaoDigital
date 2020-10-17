@@ -95,7 +95,7 @@ namespace SIGO.GestaoNormas.Service
 
             Random random = new Random();
 
-            int quantNormas = random.Next(2, 9);
+            int quantNormas = random.Next(10, 20);
 
             for (int i = 0; i < quantNormas; i++)
             {
@@ -105,8 +105,8 @@ namespace SIGO.GestaoNormas.Service
                     DataCriacao = DateTime.Now,
                     GUID = Guid.NewGuid(),
                     URL = "https://github.com/HitaloDeAraujo/pag_teste_tcc_pos/blob/master/pag%20(" + random.Next(1, 61) + ").pdf",
-                    Titulo = string.Concat("Norma numero", ultimaNorma.ID + 1),
-                    Descricao = string.Concat("Norma numero", ultimaNorma.ID + 1, " do repositório ", repositorio.Nome),
+                    Titulo = string.Concat("Norma numero", id),
+                    Descricao = string.Concat("Norma numero", id, " do repositório ", repositorio.Nome),
                     RepositorioID = repositorio.ID
                 };
 
