@@ -70,3 +70,22 @@ Esta RNF atende ao RNF de Usabilidade
 
 
 ======================= PARTE DOIS ==========================
+
+[Tela de Gestão de Normas]
+Podemos observar que o "Processo" não esta escrito corretamente
+
+[Abrir Git bash]
+Fazer commit
+
+[Abrir devops]
+[Abrir pipeline]
+[Abrir release]
+
+
+==================== PARTE TRES ============================
+Mostrar recursos do SIGO
+
+
+==================== PARTE QUATRO ==========================
+
+Este é o SIGO. Agradeço a todos e ate uma proxima!
