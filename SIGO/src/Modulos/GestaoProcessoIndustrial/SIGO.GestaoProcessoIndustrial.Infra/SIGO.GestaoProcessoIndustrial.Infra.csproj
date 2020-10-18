@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Connection\**" />
+    <EmbeddedResource Remove="Connection\**" />
+    <None Remove="Connection\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.8" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.2" />
@@ -12,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Connection\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 
