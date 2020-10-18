@@ -1,0 +1,72 @@
+Olá meu nome é Hitalo Filipe e neste breve vídeo vou apresentar a prova de conceito do 
+sistema SIGO  (Sistema Integrado de Gestão e Operação) e alguns outros aspectos relacioados
+ao processo de planejamento e desenvolvimento do projeto.
+
+
+O codigo fonte está disponivel no GitHub, os módulos das API's, a aplicação frontend,
+o API gateway, os bancos de dados, o servidor RabbitMQ e as imagens dos containers estão 
+hospedados no Azure. Com excessão dos bancos de dados, todos os servidores estão em containers.
+E cada um deles esta em uma imagem docker exclusiva.
+
+os pipelines de integração continua e de entrega continua estão no Azure devops.
+
+pq nao usar apenas o github ou apenas o azure? pq pretendo deixar o projeto no meu portifolio
+publico no GitHub e ja tenho experiencia com azure. Alem de que acho importante usar multiplos
+serviços de nuvem. Uma possível evolução do processo de implantação poderia ser o uso de mais
+de um serviço, como por exemplo o AWS.
+
+O ESB não foi implantado, ele está sendo simulado na infrestrutura local com uma aplicação .NET Core.
+
+
+[Abrir tela login]
+
+Esta é a tela de autenticação do SIGO. Com identificação visual da empresa e do sistema.
+Todos os módulos são representados por esses icones.
+
+[Tela Principal]
+Ao fazer autenticação é gerado um token, se o token  for excluido o sistema deve redirecionar o usuário para
+a tela de autenticação. Este comportamento atende ao RNF de Segurança
+
+
+[Tela login]
+[Tela Principal]
+A palavra de ordem neste projeto é a integração. Esta tela do módulo de Gestão do Processo Industrial é o 
+centro de operações do SIGO. Os módulos escrevem e leem mensagens no servidor RabbitMQ.
+
+Todos os eventos de integração são exibidas nesta listagem [MOSTRAR LISTAGEM]. Nestes dois graficos temos
+a exibição da relação entre Orçamentos e Vendas obtida por evento enviado pelo sistema legado de 
+Monitoramento de Vendas. Este comportamento atende ao RNF de Interoperabilidade
+[Mostrar legado local]
+
+[Mostrar menu lateral]
+No menu localizado no lado esquerdo temos duas seções: a de funcionalidades do módulo e a de listegem
+de módulos. Esta divisão busca facilitar a navegação do usuário. 
+[Clicar em Assessorias e Consultorias] 
+Tambem foi feito uso de cores que tentam destacar o grau de atenção que as mensagens e textos devem receber
+Esta RNF atende ao RNF de Usabilidade
+
+
+[Clicar em Gestão de Normas]
+Nesta tela podemos cadadtrar repositorios de normas relacionadas ao ramo de atuação da empresa.
+[Iniciar processo]
+[Digitar dados do repositório]
+https://github.com/HitaloDeAraujo/pag_teste_tcc_pos
+
+Quando o repositório é cadastrado, o SIGO busca todas as normas contidas neste repositório automaticamente.
+
+[Clicar em Normas]
+Estas são as normas do repositório. Este comportamento tambem atende ao RNF de Interoperabilidade
+
+[Clicar em Gestão do Processo Industrial]
+[Abrir ferramentas do desenvolvedor]
+
+O sistema deve oferecer as mesmas funcionalidades em todos os dispositivos.
+As telas se adaptam ao tamanho da tela
+
+[Clicar no menu]
+[Clicar Gestão de Normas]
+
+Esta RNF atende ao RNF de Usabilidade
+
+
+======================= PARTE DOIS ==========================

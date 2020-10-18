@@ -10,7 +10,6 @@ namespace SIGO.Simuladores.ESB.Mule.IntegrationEvents
     {
         private readonly IEventBus _eventBus;
         private readonly ILogger<ESBMuleIntegrationEventService> _logger;
-        private volatile bool disposedValue;
 
         public ESBMuleIntegrationEventService(ILogger<ESBMuleIntegrationEventService> logger, IEventBus eventBus)
         {
@@ -22,16 +21,13 @@ namespace SIGO.Simuladores.ESB.Mule.IntegrationEvents
         {
             try
             {
-                _logger.LogInformation("----- Publishing integration event: {IntegrationEventId_published} from {AppName} - ({@IntegrationEvent})", evt.Id, Program.AppName, evt);
+                _logger.LogInformation("----- Publicando evento de integração: {IntegrationEventId_published} from {AppName} - ({@IntegrationEvent})", evt.Id, Program.AppName, evt);
 
-                // await _eventLogService.MarkEventAsInProgressAsync(evt.Id);
                 _eventBus.Publish(evt);
-                // await _eventLogService.MarkEventAsPublishedAsync(evt.Id);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "ERROR Publishing integration event: {IntegrationEventId} from {AppName} - ({@IntegrationEvent})", evt.Id, Program.AppName, evt);
-                //await _eventLogService.MarkEventAsFailedAsync(evt.Id);
+                _logger.LogError(ex, "ERRO ao publicar evento: {IntegrationEventId} from {AppName} - ({@IntegrationEvent})", evt.Id, Program.AppName, evt);
             }
         }
     }
