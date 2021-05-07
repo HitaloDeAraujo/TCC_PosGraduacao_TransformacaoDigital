@@ -2,8 +2,6 @@ Inicializar RabbitMQ
 
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 
-Senha MySQL Sigo@28786Ms
-
 dotnet ef migrations add MigracaoInicial --startup-project ../SIGO.GestaoNormas.API
 dotnet ef database update --startup-project ../SIGO.GestaoNormas.API
 
@@ -12,18 +10,4 @@ dotnet ef database update --startup-project ../SIGO.GestaoProcessoIndustrial.API
 
 dotnet ef migrations add MigracaoInicial --startup-project ../SIGO.AssessoriasConsultorias.API
 dotnet ef database update --startup-project ../SIGO.AssessoriasConsultorias.API
-
-BD Gestão de Normas
-hitalo
-Sigo@28786Ms
-
-Server=sigotccpos.mysql.database.azure.com; Port=3306; Database=GestaoNormas; Uid=hitalo@sigotccpos;Pwd=Sigo@28786Ms; SslMode=Preferred;
-
-Server=sigotccpos.mysql.database.azure.com; Port=3306; Database=AssessoriasConsultorias; Uid=hitalo@sigotccpos;Pwd=Sigo@28786Ms; SslMode=Preferred;
-
-Server=sigotccpos.mysql.database.azure.com; Port=3306; Database=GestaoProcessoIndustrial; Uid=hitalo@sigotccpos;Pwd=Sigo@28786Ms; SslMode=Preferred;
-
-
-
-
 
